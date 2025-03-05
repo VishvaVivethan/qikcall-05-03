@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  nginx:
+     image: nginx:latest
+     container_name: webserver
+     restart: unless-stopped
+     ports:
+       - 80:80
+       # - 443:443
+     volumes:
+       - ./template:/etc/nginx/nginx.conf
+       # - ./chained-cert.pem:/ssl/server.crt
+       # - ./key.pem:/ssl/server.key
+       # - ./Arsha:/var/www/pleaders.in/public_html
+     networks:
+       - default
+
+  qik_rest_server:
+    build:
+      dockerfile: "Dockerfile"
+      context: "."
+    container_name: qik_rest_server
+    volumes:
+      - ./public:/usr/src/app/public
+    restart: unless-stopped
+    networks:
+      - default
+
+networks:
+  default:
+    external: 
+       name: qik
+

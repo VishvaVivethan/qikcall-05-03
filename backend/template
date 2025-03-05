@@ -1,0 +1,53 @@
+events { }
+
+http {
+  #client_max_body_size 20M;
+    upstream userloadbalancer {
+    ip_hash;
+    server qik_rest_server:2525;
+   }
+   
+   server {
+        listen 80;
+        server_name qikcall.com;
+        location / {
+         proxy_set_header      X-Real-IP $remote_addr;
+         proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_pass http://qikcall_ui:4000;
+        }
+
+        location /api/ {
+           proxy_set_header      X-Real-IP $remote_addr;
+           proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_pass http://userloadbalancer/api/;
+        }
+   }
+
+   # server {
+
+   #      listen 443 ssl;
+   #      server_name www.sankarabricks.co.in sankarabricks.co.in;
+   #      ssl_certificate      /ssl/server.crt;
+   #      ssl_certificate_key  /ssl/server.key;
+
+   #      location / {
+   #        proxy_set_header      X-Real-IP $remote_addr;
+   #        proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+   #        proxy_pass http://sankara_ui:4000;
+   #      }
+
+   #      location /api/ {
+   #         proxy_set_header      X-Real-IP $remote_addr;
+   #         proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+   #         proxy_pass http://userloadbalancer/api/;
+   #      }
+
+   #      location /kautos/ {
+   #         proxy_set_header      X-Real-IP $remote_addr;
+   #         proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
+   #         proxy_pass http://kautos_rest_server1:4652/;
+   #      }
+
+   #  }
+}
+

@@ -1,0 +1,1036 @@
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color:#2d2859; /* Slightly darker yellow background color */
+    border-radius: 25px;
+    padding: 5px;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+.dropdown, .input-group {
+    margin-right: 10px;
+}
+.dropdown select {
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-bar-mob {
+  display: grid;
+  align-items: center;
+  background-color:#ffffff; /* Slightly darker yellow background color */
+  border: solid #a72f0a 1px;
+  
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+height: 50px;
+  margin: auto;
+  
+}
+.dropdown-mob, .input-group-mob {
+  margin-right: 10px;
+  font-size: 10px;
+  background-color: #2d2859;
+}
+.select-mob select {
+  border: none;
+  background: none;
+  font-size: 10px;
+  color: #030303;
+  cursor: pointer;
+}
+.input-group {
+    flex: 1;
+}
+.input-group input {
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 25px;
+    outline: none;
+    width: 100%;
+}
+.input-group button {
+    background-color: #f7f4cd; /* Dark blue color */
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+.input-group button .fas {
+    font-size: 16px;
+}
+
+
+#input-mob {
+ color: #000;
+ background-color: #f7f4cd;
+ border-radius: 4px;
+
+}
+.input-group-mob input {
+  border: none;
+  padding: 2px 5px;
+  font-size: 10px;
+  border-radius: 25px;
+  outline: none;
+  width: 100%;
+}
+.input-group-mob button {
+  background-color: #f7f4cd; /* Dark blue color */
+  border: none;
+  color: black;
+  padding: 2px 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+.input-group-mob button .fas {
+  font-size: 10px;
+}
+
+
+/* .button {
+    background-color: #2d2859;
+    color: #fff;
+    width: auto;
+    height: 50px;
+    padding: 5px;
+    font-size: 15px;
+    box-shadow: 4px 4px 10px #868282;
+    border-radius: 10px; 
+    border: none;
+    margin: 0 10px;
+  } */
+  .cat{
+    text-decoration: none;
+  }
+
+  .logo{
+    width: 100px;
+  }
+  
+  /* Base styles for the navbar */
+.navbar {
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f7f4cd;
+  }
+  
+  .navbar .logo {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .navbar .button {
+    background-color: #2d2859;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .navbar .search-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .navbar .search-bar select,
+  .navbar .search-bar button {
+    padding: 5px;
+  }
+  
+  /* Responsive styles */
+
+  @media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: grid !important;
+        flex-basis: auto;
+    }
+}
+
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .navbar .button {
+      width: 100%;
+      margin: 5px 0;
+    }
+  
+    .navbar .search-bar {
+      flex-direction: column;
+    }
+  
+    .navbar .search-bar select,
+    .navbar .search-bar button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .navbar .logo {
+      max-width: 80px !important;
+    }
+    #mid-button-mob {
+      background-color: #2d2859 !important;
+      height: 25px !important;
+      border-radius: 25px !important;
+      width: auto !important;
+      color: white !important;
+      font-size: 6px !important;
+      font-family: "Anton", sans-serif !important;
+      font-weight: bold !important;
+      font-style: italic !important;
+    }
+    .gridContainer-mob {
+      padding: 5px;
+      width: auto;
+      height: auto; /* Adjusted for mobile */
+      border-radius: 12px;
+      background-color: #2d2859;
+    }
+    
+    .select-mob {
+      background-color: #2d2859 !important;
+      width: auto !important;
+      height: 30px !important;
+      border-radius: 10px !important;
+      color: white !important;
+      font-size: 6px !important;
+      font-family: "Anton, sans-serif" !important;
+      font-weight: bold !important;
+      font-style: italic !important;
+      border: none !important;
+  }
+  
+  .select-mob .MuiInputBase-root,
+  .select-mob .MuiOutlinedInput-input {
+      padding-right: 15px !important; /* Adjust the value as needed */
+  }
+  
+  .select-mob .MuiSelect-icon {
+      color: white !important;
+      font-size: 8px !important;
+  }
+  
+  .select-mob .MuiOutlinedInput-notchedOutline {
+      border: none !important;
+  }
+  
+    .dropdown-mob, .input-group-mob {
+      font-size: 6px !important;
+      background-color: #2d2859 !important;
+    }
+
+    .button-36-mob {
+      padding: 8px 18px !important; /* Reduced padding */
+      border: 0 !important;
+      /* margin-bottom: 10px !important; */
+      font-size: 8px !important; /* Optional: reduce font size */
+      transition: all 150ms ease-in-out !important;
+      border-radius: 20px !important;
+      color: #fff !important;
+      font-weight: bold !important;
+      background: #C052E3 !important;
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0, inset 0px -4px 0px rgba(0, 0, 0, 0.1), inset 0px -1px 0px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    #input-mob {
+      color: #000 !important;
+      background-color: #f7f4cd !important;
+      border-radius: 4px !important;
+    }
+
+    .select-category-mob {
+      background-color: #2d2859 !important;
+      border-radius: 3px !important; /* Reduced border-radius */
+      font-size: 5px !important; /* Reduced font-size */
+      width: 90px !important;
+      height: 25px !important;
+      color: white !important;
+      font-family: "Anton, sans-serif" !important;
+      font-weight: bold !important;
+      font-style: italic !important;
+      border: none !important;
+    }
+
+    .select-category-mob .MuiInputBase-root,
+    .select-category-mob .MuiOutlinedInput-input {
+      padding-right: 1px !important; /* Adjust the value as needed */
+    }
+    
+    .select-category-mob .MuiSelect-icon {
+      color: white !important;
+      font-size: 10px !important;
+    }
+    
+    .select-category-mob .MuiOutlinedInput-notchedOutline {
+      border: none !important;
+    }
+}
+
+
+
+ 
+  
+  #Topbutton-mob {
+    background-color: #C052E3;
+    width: auto;
+    color: white;
+    font-size: 9px;
+    border-radius: 20px;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    transition: background-color 0.3s;
+  }
+  
+  #Topbutton-mob:hover {
+    background-color: #C052E3;
+  }
+
+  .gridContainer-mob {
+    padding: 5px;
+    width: 100%;
+    height: auto; /* Adjusted for mobile */
+    border-radius: 12px;
+    background-color: #2d2859;
+  }
+  
+  .select-mob {
+    background-color: #2d2859 !important;
+    width: auto !important;
+    height: 30px !important;
+    border-radius: 10px !important;
+    color: white !important;
+    font-size: 8px !important;
+    font-family: "Anton, sans-serif";
+    font-weight: bold;
+    font-style: italic;
+    border: none;
+  }
+  
+  .select-mob .MuiSelect-icon {
+    color: white;
+  }
+  
+  .select-mob .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+  
+
+  #titletext-mob {
+    color: red;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #mid-button-mob {
+    background-color: #2d2859;
+    height: 25px;
+    border-radius: 25px;
+    width: 100px;
+    color: white;
+    font-size: 8px;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#mid-button-mob:hover {
+    background-color: #2d2859;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+#social-icon-mob {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+#social-icon-mob:hover {
+  transform: scale(1.15);
+}
+
+#social-icon-mob + Grid {
+  margin-left: 16px;
+}
+
+
+.select-category-mob {
+  background-color: #2d2859;
+  border-radius: 12px!important;
+  font-size: 11px !important;
+  width: auto;
+  height: 25px!important;
+  color: white!important;
+  font-family: "Anton, sans-serif"!important;
+  font-weight: bold !important;
+  font-style: italic !important;
+  border: none;
+}
+
+.select-category-mob .MuiSelect-icon {
+  color: white;
+}
+
+.select-category-mob .MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.search-paper-mob {
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  width: 280px;
+  height: 30px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+
+.search-input-mob {
+  margin-left: 1px;
+  flex: 1;
+}
+
+.search-button-mob {
+  padding: 10px;
+}
+
+#titletext {
+  color: red;
+  font-size: 25px;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#social-icon{
+  width: 30px;
+  height: 30px;
+}
+
+.logo-container {
+  text-align: center;          /* Center text within the container */
+  position: relative;          /* Establish a positioning context for child elements */
+}
+
+.logo {
+  width: 150px;               /* Set logo width */
+  height: 150px;              /* Set logo height */
+  position: relative;          /* Relative positioning for the logo */
+  cursor: pointer;            /* Pointer cursor on hover */
+  z-index: 1;                 /* Ensures the logo appears above other elements */
+}
+
+.title-text {
+  font-weight: bold;          /* Bold text */
+  color: red;                 /* Text color */
+  margin-top: 8px;           /* Margin at the top */
+}
+
+
+.select-custom {
+  background-color: #C052E3;
+  border-radius: 12px !important ;
+  width: 120px;
+  height: 40px;
+  color: white;
+  font-size: 13px !important ;
+  margin-left: 7px;
+  border: none; 
+}
+
+.select-custom .MuiSelect-icon {
+  color: white;
+}
+
+.select-custom .MuiOutlinedInput-notchedOutline {
+  border: none; /* Ensures the outline is removed when focused */
+}
+
+.select-icon{
+  font-size: 17px !important ;
+  margin-right: 5px !important ;
+}
+
+#mid-button {
+  background-color: #2d2859;
+  border-radius: 12px;
+  color: #fff;
+  width: 130px; 
+  max-width: 130px; 
+  height: 40px;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 13px !important;  
+}
+
+@media (min-width: 600px) {
+  #mid-button, #end-button {
+    font-size: 9px !important; 
+    max-width: 75px !important; 
+  }
+  .test-btn {
+    font-size: 10px !important; 
+    max-width: 75px !important; 
+  }
+  .button-container {
+    max-width: 80px !important;
+  }
+  .select-custom {
+    width: 80px !important; 
+  }
+  .select-icon{
+    font-size: 14px !important ;
+    margin-right: 3px !important ;
+  }
+}
+
+/* Media query for min-width: 730px */
+@media (min-width: 730px) {
+  #mid-button, #end-button {
+    font-size: 10px !important; 
+    max-width: 90px !important; 
+  }
+  .test-btn {
+    font-size: 12px !important; 
+    max-width: 90px !important; 
+  }
+  .button-container {
+    max-width: 90px !important;
+  }
+  .select-custom {
+    width: 90px !important; 
+  }
+}
+
+/* Media query for min-width: 950px */
+@media (min-width: 950px) {
+  #mid-button, #end-button {
+    font-size: 13px !important; 
+    max-width: 125px !important;
+  }
+  .test-btn {
+    font-size: 15px !important;
+    max-width: 125px !important;
+  }
+  .button-container {
+    max-width: 125px !important;
+  }
+  .select-custom {
+    width: 120px !important;
+  }
+}
+
+/* Media query for min-width: 1200px */
+@media (min-width: 1200px) {
+  #mid-button {
+    font-size: 13px !important;
+    max-width: 110px !important; 
+  }
+  #end-button {
+    font-size: 11px !important; 
+    max-width: 110px !important; 
+  }
+}
+
+
+#mid-button:hover {
+  background-color: #2d2859;
+}
+
+#end-button {
+  background-color: #C052E3;
+  border-radius: 12px;
+  height: 40px;
+  color: #fff;
+  width: 130px; 
+  max-width: 130px; 
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 13px ; 
+}
+
+.button-container {
+  background-color: #C052E3;  
+  border-radius: 12px;        
+  width: 130px !important ;                
+  height: 40px;                
+  display: flex;               
+  justify-content: center;     
+  align-items: center;        
+}
+
+/* styles.css */
+.icon-button {
+  color: #f7f4cd !important ; 
+}
+
+.icon-button .MuiSvgIcon-root {
+  font-size: 20px; /* Default size for larger screens */
+}
+
+/* Responsive font sizes */
+@media (max-width: 600px) {
+  .icon-button .MuiSvgIcon-root {
+    font-size: 16px; /* Size for extra small devices */
+  }
+}
+
+@media (min-width: 600px) and (max-width: 950px) {
+  .icon-button .MuiSvgIcon-root {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 950px) {
+  .icon-button .MuiSvgIcon-root {
+    font-size: 20px; 
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  /*========== Colors ==========*/
+  --first-color: hsl(293, 89%, 39%);
+  --first-color-alt: hsl(290, 79%, 32%);
+  --text-color: hsl(240, 97%, 42%);
+  --body-color: hsl(56, 60%, 83%);
+}
+
+
+
+.button__loader {
+  border: none;
+  outline: none;
+  position: relative;
+  padding: 10px 15px;
+  background-color: var(--first-color);
+  color: var(--text-color);
+  font-size: 20px;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: .5rem;
+  box-shadow: 0 18px 40px hsla(59, 75%, 76%, 0.3);
+  overflow: hidden;
+  cursor: wait;
+}
+
+.button__loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 100%;
+  background: repeating-linear-gradient(60deg, 
+              transparent, 
+              transparent 0.75rem, 
+              var(--first-color-alt) 0.75rem, 
+              var(--first-color-alt) 1.5rem);
+  animation: load 1s infinite linear;
+}
+
+.button__text {
+  position: relative;
+}
+
+/* Loading button animation */
+@keyframes load {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1.75rem);
+  }
+}
+
+#end-button:hover {
+  background-color: #2d2859;
+}
+
+.button-36-mob {
+  padding: 8px 18px !important; /* Reduced padding */
+  border: 0 !important;
+  font-size: 6px !important; /* Optional: reduce font size */
+  transition: all 150ms ease-in-out !important;
+  border-radius: 20px !important;
+  color: #fff !important;
+  font-weight: bold !important;
+  background: #C052E3 !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0, inset 0px -4px 0px rgba(0, 0, 0, 0.1), inset 0px -1px 0px rgba(0, 0, 0, 0.15) !important;
+}
+
+@media (max-width: 375px) {
+  .button-36-mob {
+    width: 100% !important;
+    font-size: 7px !important;
+  }
+  .social-icon{
+    width: 18px;
+    height: 18px;
+  }
+}
+
+
+.button-36-mob:hover {
+  filter: brightness(0.98);
+  background: #C052E3;
+}
+
+.button-36-mob:active {
+  filter: brightness(0.97);
+  padding: 6px 16px; /* Adjusted active padding */
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0, inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Initiate Auto-Pulse animations */
+.button-36-mob.pulse-button {
+  animation:  borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in;
+}
+
+/* Initiate color change for pulse-on-hover */
+.button-36-mob.pulse-button-hover {
+  animation:  colorShift 10000ms infinite ease-in;
+}
+
+/* Continue animation and add shine on hover */
+.button-36-mob:hover,
+.button-36-mob:focus,
+.button-36-mob:active {
+  animation:  borderPulse 1000ms infinite ease-out, hoverShine 200ms;
+}
+
+.button-36 {
+  padding: 10px 15px;
+  padding-bottom: 10px;
+  border: 0;
+  font-size: 15px;
+  transition: all 150ms ease-in-out;
+  width:"150px" !important;
+  border-radius: 12px !important;
+  font-family: "Anton", sans-serif !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+  color: #fff !important;
+  background: #C052E3 !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0, inset 0px -6px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.button-36:hover {
+  filter: brightness(0.98);
+}
+
+.button-36:active {
+  filter: brightness(0.97);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0, inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Initiate Auto-Pulse animations */
+/* .button-36.pulse-button {
+  animation: tilt-shaking 0.3s infinite, borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in;
+} */
+
+/* Initiate color change for pulse-on-hover */
+.button-36.pulse-button-hover {
+  animation: tilt-shaking 0.3s infinite, colorShift 10000ms infinite ease-in;
+}
+
+/* Continue animation and add shine on hover */
+.button-36:hover,
+.button-36:focus {
+  animation: tilt-shaking 0.3s infinite,borderPulse 1000ms infinite ease-out, hoverShine 200ms;
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+@keyframes borderPulse {
+  0% {
+    box-shadow: inset 0px 0px 0px 5px rgba(255, 255, 255,.4), 0px 0px 0px 0px rgba(255,255,255,1);
+  }
+  100% {
+    box-shadow: inset 0px 0px 0px 3px rgba(117, 117, 255,.2), 0px 0px 0px 10px rgba(255,255,255,0);
+  }
+}
+
+
+@keyframes hoverShine {
+  0%{
+    background-image: linear-gradient(135deg, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
+  }
+  50%{
+    background-image: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 50%, rgba(255,255,255,0) 100%);
+  }
+  100%{
+    background-image: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,.4) 100%);
+  }
+}
+
+/* for search bar */
+
+
+
+.custom-search-form {
+  position: relative;
+  width: 20rem;
+  background: var(--color-brand);
+  border-radius: var(--rad);
+}
+
+.custom-search-form input, .custom-search-form button {
+  height: var(--height);
+  font-family: var(--font-fam);
+  border: 0;
+  color: var(--color-dark);
+  font-size: 1 rem;
+}
+
+.custom-search-form input[type="search"] {
+  outline: none; /* Consider removing this for better accessibility */
+  width: 100%;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  appearance: none; /* Fixes iOS input[type="search"] roundedness issue */
+  transition: all var(--dur) var(--bez);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+}
+
+.custom-search-form button {
+  display: none; /* Prevent tabbing to it */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--color-brand);
+  border-radius: 0 var(--rad) var(--rad) 0;
+}
+
+.custom-search-form input:not(:placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+}
+
+.custom-search-form input:not(:placeholder-shown) + button {
+  display: block;
+}
+
+.custom-search-form label {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+
+:root {
+  --rad: .7rem;
+  --dur: .3s;
+  --color-dark: #fff;
+  --color-light: #fff;
+  --color-brand: #C052E3;
+  --font-fam: '"Anton", sans-serif';
+  --height: 3rem;
+  --btn-width: 3rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
+
+.test-btn {
+  font-size: 15px; 
+  border: 2px solid #C052E3;
+  border-radius: 12px;
+  color: #FFF;
+  display: block;
+  width: 100%; 
+  max-width: 130px; 
+  height: 40px;
+  font-family: "Anton", sans-serif !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+  background: #C052E3;
+  transition: 0.2s ease-in-out;
+}
+
+  .test-btn:hover{
+     cursor: pointer;
+     transform: scale(1.15);
+     background: #C052E3;
+     color: #fff;
+     }
+
+
+     .social {
+      position: fixed ;
+      top: 140px;
+      left: 6px;
+      z-index: 1; /* Lower than nav and tabs section */
+      width: 5%;
+    }
+    .social a:hover,
+    .social a:focus {
+        color: #000; /* Change color to #000 on hover or focus */
+        text-decoration: none !important; /* Optionally maintain no underline on hover/focus */
+    }
+    .social ul {
+      padding: 0;
+      transform: translate(-270px, 0);
+    }
+    .social ul li:hover .social-icon {
+      /* transform: rotate(180deg); */
+      transition: transform 0.5s; /* Adjust the duration as needed */
+    }
+    .social ul li {
+      display: block;
+      margin: 5px;
+      background: #C052E3;
+      width: 295px;
+      text-align: right;
+      padding: 8px 4px 7px 4px;
+      border-radius: 0 30px 30px 0;
+      transition: all 1s;
+    }
+    
+    .social ul li:hover {
+      transform: translate(110px, 0) !important;
+      background: #C052E3;
+    }
+    .social ul li a {
+      color: #000 !important;
+      text-decoration: none !important;
+    }
+    
+    .social ul li:hover a {
+      color: #000 !important;
+      text-decoration: none !important;
+    }
+    
+    .social ul li .social-icon {
+      margin-left: 10px;
+      color: #000;
+      background: #fff;
+      padding: 7px;
+      border-radius: 50%;
+      width: 31px;
+      height: 31px;
+      font-size: 17px;
+      transition: transform 0.5s;
+    }
+    
+    /* .social ul li:hover .social-icon {
+      transform: rotate(180deg) !important;
+    } */
+    
+    @media (max-width:991px){
+    
+      .social ul {
+        padding: 0;
+        transform: translate(-263px, 0);
+      }
+      .social ul li .social-icon {
+          margin-left: 10px;
+          color: #000;
+          background: #fff;
+          padding: 5px;
+          border-radius: 50%;
+          width: auto !important;
+          height: auto !important;
+          font-size: 16px;
+          transition: transform 0.5s; /* Ensure smooth transition for the icon */
+        }
+        .social ul li {
+          display: block;
+          margin: 3px;
+          background: rgba(0, 0, 0, 0.36);
+          width: 280px;
+          text-align: right;
+          padding: 6px 2px 6px 4px;
+          border-radius: 0 30px 30px 0;
+          transition: all 1s;
+        }
+        .social {
+          position: fixed ;
+          top: 140px;
+          left: 15px;
+          z-index: 999;
+        }
+       
+    }
+    
+    @media (max-width:991px){
+     
+        .social ul li {
+          display: block;
+          margin: 3px;
+          background: rgba(0, 0, 0, 0.36);
+          width: 280px;
+          text-align: right;
+          padding: 6px 2px 6px 4px;
+          border-radius: 0 30px 30px 0;
+          transition: all 1s;
+        }
+        .social {
+          position: fixed ;
+          top: 140px;
+          left: 15px;
+          z-index: 999;
+        }
+    }
+    
+
+    
+    

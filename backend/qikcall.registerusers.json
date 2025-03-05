@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "66c44ef21307a583761d8071"
+  },
+  "username": "testing001",
+  "email": "testin32g@gmail.com",
+  "password": "$2b$10$.UTLsNwMTKUKoF7ob4rJ4eg8qB4IPN1Lrkk8f.NBw6MEdjTtGVLt2",
+  "phonenumber": "1234567880",
+  "address": "sdfdfdgdfgfhfghfghfgh",
+  "role": "freelancer",
+  "aadharnumber": "45879632541",
+  "pannumber": "4587963254123",
+  "earning": "fjdkgdjkfghsdlghld",
+  "alterphonenumber": {
+    "$numberLong": "9876443210"
+  },
+  "createdAt": {
+    "$date": "2024-08-20T08:08:18.427Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-20T08:08:18.427Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c450501307a583761d8077"
+  },
+  "username": "Tamil",
+  "email": "testing@gmail.com",
+  "password": "$2b$10$xzRal7vkzUoqijAE2F.wQ.qun/Hk6mVVjNjxm2QOgb7Q5DNufglLq",
+  "phonenumber": "1234567870",
+  "address": "12345678",
+  "role": "customer",
+  "createdAt": {
+    "$date": "2024-08-20T08:14:08.870Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-20T08:14:08.870Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c48c90145439c61a74eaea"
+  },
+  "username": "ajay",
+  "email": "dfbdfb",
+  "password": "$2b$10$2RYANCK5rwYltaZ1xowPPuI.slRzWKsfevwK6UI9qCPHHaVu1OiTO",
+  "phonenumber": "2589631470",
+  "role": "businessman",
+  "pannumber": "7896541230",
+  "servicename": "tyurtuyt",
+  "servicetype": "ytuytururtu",
+  "servicecategory": "ghfghfghfgh",
+  "websitelink": "gdhfghfghfg",
+  "addimages1": [
+    "blob:http://localhost:3000/60b58f42-2fb8-42d5-88db-1ef4171cf539",
+    "blob:http://localhost:3000/df592354-8fb9-4d56-875f-0b7f2eb5207d"
+  ],
+  "taxnumber": "1236547896",
+  "gstnumber": "123654789632",
+  "upload": [
+    {}
+  ],
+  "addressline1": "fddfsdf",
+  "addressline2": "sdfsdfsdf",
+  "landmark": "fsdfsdfsd",
+  "alterphonenumber": {
+    "$numberLong": "9873214560"
+  },
+  "city": "hjghjghj",
+  "state": "jgjyjyjyuuu",
+  "pincode": "bnmbnm",
+  "createdAt": {
+    "$date": "2024-08-20T12:31:12.972Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-20T12:31:12.972Z"
+  },
+  "__v": 0
+}]

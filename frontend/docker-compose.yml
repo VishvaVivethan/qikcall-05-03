@@ -1,0 +1,15 @@
+version: "3"
+services:
+  qikcall_ui:
+    build:
+      dockerfile: "Dockerfile"
+      context: "."
+    volumes:
+      - ./build:/app/build
+    restart: unless-stopped
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: qik

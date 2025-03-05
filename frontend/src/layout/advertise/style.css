@@ -1,0 +1,21 @@
+#button-ads {
+    background-color: #2d2859;
+    border-radius: 15px;
+    font-size: 18px;
+    width: 200px !important;
+    height: 50px !important;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#button-ads-mob {
+    background-color: #2d2859;
+    border-radius: 15px;
+    font-size: 12px;
+    width: 150px !important;
+    height: 40px !important;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}

@@ -1,0 +1,221 @@
+#container-mob {
+    max-width: 1200px;
+    margin-top: 15px;
+    background-color: #2d2859;
+    height: 150px;
+  }
+  
+  #centerBox-mob {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  #typography-mob {
+    color: #fff;
+    font-family: "Anton, sans-serif";
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  #item-mob {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  #grid-mob {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #001858;
+    margin-bottom: 1px;
+  }
+
+  #icon-mob {
+    font-size: 20px;
+    color: #001858;
+  }
+
+  .header-mob {
+    font-size: 15px;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+    color: #2d2859;
+  }
+
+  .text-mob {
+    font-size: 6px;
+    color: #2d2859;
+    text-align: center;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #form-head-mob {
+    font-size: 30px;
+    color: #2d2859;
+    text-align: center;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #form-text-mob {
+    font-size: 10px;
+    color: #2d2859;
+    text-align: center;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #input-text-mob {
+    font-size: 15px;
+    color: #2d2859;
+    text-align: left;
+    font-family: 'Anton, sans-serif';
+    font-style: italic;
+  }
+
+  #button-mob {
+    background-color: #2d2859;
+    border-radius: 34px;
+    color: #fff;
+    width: 100px;
+    height: auto;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  #button-mob:hover {
+    background-color: #1c1b34; 
+  }
+
+  #container {
+    margin-top: 15px;
+    background-color: #2d2859;
+    height: 250px;
+  }
+
+  #centerBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  #typography {
+    color: #fff;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #card {
+    border: 1px solid #00ffff;
+    width: 300px;
+    height: 300px;
+    border-radius: 18px;
+  }
+
+  #cardcontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #001858;
+    margin-bottom: 16px;
+  }
+
+  #icon {
+    font-size: 60px;
+    color: #001858;
+  }
+
+  #header {
+    font-size: 30px;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+    color: #2d2859;
+  }
+
+  #text {
+    font-size: 12px;
+    color: #2d2859;
+    text-align: center;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #form-head {
+    font-size: 30px;
+    color: #2d2859;
+    text-align: center;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  #form-text {
+    font-size: 10px;
+    color: #2d2859;
+    text-align: center;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  #input-text {
+    font-size: 15px;
+    color: #2d2859;
+    text-align: left;
+    font-family: 'Anton, sans-serif';
+    font-style: italic;
+  }
+
+  #button {
+    background-color: #2d2859;
+    border-radius: 34px;
+    color: #fff;
+    width: 100px;
+    height: auto;
+    font-family: 'Anton, sans-serif';
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  #button:hover {
+    background-color: #1c1b34; /* Optional: a different color for the hover effect */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

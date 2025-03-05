@@ -1,0 +1,130 @@
+#header-mob {
+    color: black !important;
+    font-size: 25px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+#subheader-mob {
+    color: black !important;
+    font-size: 15px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7b6;
+    padding: 16px;
+    width: 800px;
+}
+
+.product-image-mob {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 16px;
+}
+
+.product-details {
+    flex: 1 0 auto;
+    padding: 0 !important;
+}
+
+.product-availability {
+    color: green;
+}
+
+.rating-box {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.buttons-box {
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-cart-button-mob {
+    background-color: #1c305c !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    border-radius: 20px !important;
+    width:90px!important;
+}
+
+.delete-button {
+    border-color: #1c305c !important;
+    color: #1c305c !important;
+    font-size: 10px !important;
+}
+
+#rate-mob {
+    font-size: 10px;
+}
+
+#rate {
+    font-size: 20px;
+}
+
+#text-mob {
+    color: black !important;
+    font-size: 10px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+#header {
+    color: #1c305c!important;
+    font-size: 40px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+#subheader {
+    color: #1c305c !important;
+    font-size: 25px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+.product-image{
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: contain;
+}
+
+#text {
+    color: black !important;
+    font-size: 12px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+    text-align: left !important;
+}
+
+#text-head{
+    color: black !important;
+    font-size: 20px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
+.add-cart-button{
+    background-color: #1c305c !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    border-radius: 20px !important;
+    width:100px!important; 
+}
