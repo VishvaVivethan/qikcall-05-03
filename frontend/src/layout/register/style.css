@@ -1,0 +1,21 @@
+#button-go{
+    background-color: #2d2859;
+    border-radius: 15px;
+    font-size: 12px;
+    width: 120px !important;
+    height: 40px !important;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#upload-btn{
+    background-color: #2d2859;
+    border-radius: 10px;
+    font-size: 15px;
+    width: 300px;
+    height: auto;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}

@@ -1,0 +1,93 @@
+#content-text-mob{
+    font-size: 10px;
+    color: #000;
+    font-family: "Anton", sans-serif;
+    font-style: italic;
+    text-align: left;
+}
+
+#content-head-mob {
+    font-size: 20px;
+    color: #000;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    text-align: left;
+}
+
+#content-img-mob {
+    width: 130px;
+    height: 130px;
+}
+
+#image-style-mob{
+    width: 100px;
+    height: 100px;
+}
+
+@media (max-width: 320px) {
+    #image-style-mob {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+
+#head-text-mob {
+    position: absolute;
+    color: #2d2859 !important;
+    width: 200px;
+    border-radius: 15px;
+    background-color: #fff !important;
+    padding: 5px;
+    text-align: center;
+    z-index: 1 !important;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#head-text {
+    position: absolute;
+    color: #2d2859;
+    width: 400px;
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 5px;
+    text-align: center;
+    z-index: 1;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#image-style{
+    width: 250px;
+    height: 250px;
+}
+
+#content-img {
+    width: 350px;
+    height: 350px;
+}
+
+#content-head {
+    font-size: 30px;
+    color: #000;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    text-align: left;
+}
+
+#content-text {
+    font-size: 15px;
+    color: #000;
+    font-family: "Anton", sans-serif;
+    font-style: italic;
+    text-align: left;
+}
+
+
+
+

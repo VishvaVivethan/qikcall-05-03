@@ -1,0 +1,234 @@
+#header-mob{
+  color: #282866 !important;
+  font-size: 35px !important;
+  font-family: 'Anton', sans-serif !important;
+  font-style: italic !important;
+}
+
+#head-button-mob{
+  background-color: #282866;
+  border-radius: 20px;
+  font-size: 10px !important;
+  height: 40px;
+  width:70px;
+  color: #fff;
+  
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.container-mob {
+padding: 10px;
+border: 1px solid #000;
+border-radius: 4px;
+background-color: #fffbda;
+}
+
+
+
+
+.custom-select {
+  width: 100px;
+  height: 5 !important;
+  border-radius: 50px!important;
+  text-align: center;
+ 
+}
+
+.custom-select .MuiSelect-select {
+  padding: 8px 16px;
+  border-color: #4caf50;
+}
+
+.custom-select .MuiOutlinedInput-notchedOutline {
+  border-color: #4caf50;
+}
+
+.custom-select:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #388e3c;
+}
+
+.drop-mob {
+  max-width: 8em;
+  margin: 5px auto 5px;
+  position: relative;
+  width: 100%;
+}
+
+.drop-mob-btn {
+  background: #282866;
+  font-size: 13px !important ;
+  width: 100% !important;
+  border: none !important ;
+  color: #fff !important;
+  display: flex !important ;
+  justify-content: center!important;
+  align-items: center!important;
+  padding: 0.7em 0.5em!important;
+  border-radius: 20px!important;
+  cursor: pointer!important;
+  font-family: "Anton", sans-serif!important;
+  font-weight: bold!important;
+  font-style: italic!important;
+}
+
+.arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #fff;
+  transition: transform ease-in-out 0.3s;
+}
+
+.drop-mob-content {
+  list-style: none;
+  position: absolute;
+  top: 3em;
+  width: 100%;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.drop-mob-content li {
+  background: #282866;
+  border-radius: 20px;
+  position: relative;
+  left: 100%;
+  transition: 0.5s;
+  transition-delay: calc(60ms * var(--delay));
+}
+
+.drop-mob-btn:focus + .drop-mob-content li {
+  left: 0;
+}
+
+.drop-mob-btn:focus + .drop-mob-content {
+  visibility: visible;
+}
+
+.drop-mob-btn:focus > .arrow {
+  transform: rotate(180deg);
+}
+
+.drop-mob-content li:hover {
+  background: #1d1f24;
+}
+
+.drop-mob-content li a {
+  display: block;
+  padding: 0.7em 0.5em;
+  color: #fff;
+  margin: 0.1em 0;
+  text-decoration: none;
+  font-size: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#header{
+  color: #282866 !important;
+  font-size: 50px !important;
+  font-family: 'Anton', sans-serif !important;
+  font-style: italic !important;
+}
+
+#head-button{
+  background-color: #282866;
+  border-radius: 20px;
+  font-size: 20px !important;
+  height: 40px;
+  width:70px;
+  color: #fff;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#All{
+  color: #282866 !important;
+  font-size: 25px !important;
+  font-family: 'Anton', sans-serif !important;
+  font-style: italic !important; 
+}
+
+.drop {
+  max-width: 10em;
+  margin:  auto 5px;
+  position: relative;
+  width: 100%;
+}
+
+.drop-btn {
+  background: #282866;
+  font-size: 15px;
+  width: 100%;
+  border: none;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6em 0.5em;
+  border-radius: 18px;
+  cursor: pointer;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #fff;
+  transition: transform ease-in-out 0.3s;
+}
+
+.drop-content {
+  list-style: none;
+  position: absolute;
+  top: 3em;
+  width: 150px;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.drop-content li {
+  background: #282866;
+  border-radius: 20px;
+  position: relative;
+  left: 100%;
+  transition: 0.5s;
+  transition-delay: calc(60ms * var(--delay));
+}
+
+.drop-btn:focus + .drop-content li {
+  left: 0;
+}
+
+.drop-btn:focus + .drop-content {
+  visibility: visible;
+}
+
+.drop-btn:focus > .arrow {
+  transform: rotate(180deg);
+}
+
+.drop-content li:hover {
+  background: #2d2859;
+}
+
+.drop-content li a {
+  display: block;
+  padding: 0.7em 0.5em;
+  color: #fff;
+  margin: 0.1em 0;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}

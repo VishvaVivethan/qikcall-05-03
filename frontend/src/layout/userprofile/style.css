@@ -1,0 +1,410 @@
+#header-mob{
+    color: black !important;
+    font-size: 30px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+#user-img-mob {
+    width: 100px;  /* Adjust the width as needed */
+    height: 100px;  /* Adjust the height as needed */
+}
+
+#name-mob{
+    color: black !important;
+    font-size: 25px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+    font-weight: "bold";
+}
+
+#title-mob{
+    color: #282866;
+    font-size: 20px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+}
+
+#head-mob{
+    color: #282866;
+    font-size: 15px !important;
+    font-family: 'Anton', sans-serif !important;
+   font-weight: bold !important;
+    font-style: italic !important;
+}
+
+#text-mob{
+    color: #282866;
+}
+
+/* AccountDetails.css */
+
+.account-details-container {
+    padding: 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background-color: #f7f4cd;
+  }
+  
+  .account-details-title {
+    color: #282866;
+    text-align: center;
+    margin-bottom: 16px !important;
+    font-size: 20px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+  }
+  
+  .account-details-label {
+    color: #282866;
+    font-size: 15px !important;
+    font-family: 'Anton', sans-serif !important;
+   font-weight: bold !important;
+    font-style: italic !important;
+  }
+
+  /* Settings.css */
+
+.settings-container {
+    padding: 16px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background-color: #f7f4cd;
+  }
+  
+  .settings-title {
+    color: #282866;
+    text-align: center;
+    margin-bottom: 16px !important;
+    font-size: 20px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+  }
+  
+  .settings-option {
+    text-align: center;
+    color: #282866;
+    font-size: 12px !important;
+    font-family: 'Anton', sans-serif !important;
+   font-weight: bold !important;
+    font-style: italic !important;
+    cursor: pointer;
+  }
+
+  .settings-option a {
+    text-decoration: none;
+    color: #282866;
+  }
+
+  #mg-head-mob{
+    text-align: center;
+    color: #282866;
+    font-size: 20px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+  }
+
+  .mg-main-mob{
+    text-align: center;
+    color: #282866;
+    font-size: 30px !important;
+    font-family: 'Anton', sans-serif !important;
+    font-style: italic !important;
+  }
+
+  #mg-button-mob{
+    background-color: #C052E3;
+    width: 90px;
+    color: white;
+    font-size: 15px;
+    border-radius: 20px;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    transition: background-color 0.3s;
+  }
+
+  .mg-custom-textfield-mob {
+    & .MuiOutlinedInput-input {
+      color: #000; /* Text color */
+      height: 40px; /* Adjust height */
+      width: 300px; /* Width of the input */
+      box-sizing: border-box; /* Ensure padding and border are included in the width */
+    }
+  }
+  
+  .mg-custom-textfield-mob .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #282866; /* Change the border color */
+    border-radius: 12px; /* Change the border radius */
+  }
+  
+  .mg-custom-textfield-mob .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #282866; /* Border color on hover */
+  }
+  
+  .mg-custom-textfield-mob .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #282866; /* Border color when focused */
+  }
+
+  .mg-custom-textfield-mob .MuiInputLabel-root {
+    color: #282866; /* Change the label color */
+  }
+  
+  .mg-custom-textfield-mob .MuiInputLabel-root.Mui-focused {
+    color: #282866; /* Change the label color when focused */
+  }
+  
+/* Default styles for the card and media */
+.custom-card {
+  max-width: 300px !important;
+  margin: 0 auto; /* Centers the card horizontally */
+}
+
+.custom-card-media {
+  width: 300px !important;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 320px) {
+  .custom-card {
+    max-width: 210px !important;
+  }
+
+  .custom-card-media {
+    width: 210px;
+    margin: 0 auto;
+  }
+}
+
+/* Styles for 385px wide screens */
+@media only screen and (max-width: 385px) {
+  .custom-card {
+    max-width: 260px;
+  }
+
+  .custom-card-media {
+    width: 260px !important;
+    margin: 0 auto;
+  }
+}
+
+/* Styles for 425px wide screens */
+@media only screen and (min-width: 425px) {
+  .custom-card {
+    max-width: 425px;
+  }
+
+  .custom-card-media {
+    width: 425px;
+  }
+}
+
+/* Larger screen styles can remain the same */
+@media only screen and (min-width: 600px) {
+  .custom-card {
+    max-width: 300px;
+  }
+
+  .custom-card-media {
+    width: 300px;
+  }
+}
+
+/* Default styles */
+body {
+  font-family: "Anton, sans-serif" !important;
+  color: #000 !important;
+}
+
+/* Typography styles */
+.typography-custom {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+}
+
+/* Media query for max-width 425px */
+@media (max-width: 425px) {
+  .typography-custom {
+    font-size: 18px;
+  }
+}
+
+/* Media query for max-width 375px */
+@media (max-width: 375px) {
+  .typography-custom {
+    font-size: 16px;
+  }
+}
+
+/* Media query for max-width 320px */
+@media (max-width: 320px) {
+  .typography-custom {
+    font-size: 14px;
+  }
+}
+
+/* Optional padding adjustments for smaller screens */
+@media (max-width: 425px) {
+  .grid-container {
+    padding: 5px;
+  }
+  .typography-custom {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .grid-container {
+    padding: 2px;
+  }
+}
+
+/* Default styles for larger screens */
+.typography-phone,
+.typography-email,
+.typography-address,
+.typography-membership,
+.typography-alternative,
+.typography-landmark {
+  font-size: 14px !important;
+  color: #282866 !important;
+  font-family: "Anton, sans-serif" !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+}
+
+.typography-content {
+  font-size: 10px !important;
+  color: #000 !important;
+  font-family: "Anton, sans-serif" !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+  text-align: center;
+}
+
+/* Media queries for smaller screens */
+
+/* For screens with a max-width of 425px */
+@media (max-width: 425px) {
+  .typography-phone,
+  .typography-email,
+  .typography-address,
+  .typography-membership,
+  .typography-alternative,
+  .typography-landmark {
+    font-size: 10px; /* Reduced font size */
+  }
+
+  .typography-content {
+    font-size: 8px; /* Reduced font size */
+  }
+}
+
+/* For screens with a max-width of 375px */
+@media (max-width: 375px) {
+  .typography-phone,
+  .typography-email,
+  .typography-address,
+  .typography-membership,
+  .typography-alternative,
+  .typography-landmark {
+    font-size: 12px !important; /* Further reduced font size */
+  }
+
+  .typography-content {
+    font-size: 10px !important; /* Further reduced font size */
+  }
+}
+
+/* For screens with a max-width of 320px */
+@media (max-width: 320px) {
+  .typography-phone,
+  .typography-email,
+  .typography-address,
+  .typography-membership,
+  .typography-alternative,
+  .typography-landmark {
+    font-size: 10px !important; /* Smallest font size */
+  }
+
+  .typography-content {
+    font-size: 8px !important; /* Smallest font size */
+  }
+}
+
+/* Default styles for larger screens */
+.settings-container-mob {
+  padding: 20px  !important;
+  background-color: #f7f4cd  !important;
+  border-radius: 8px !important;
+  border: 1px solid black;
+}
+
+.settings-title-mob {
+  font-size: 18px  ;
+  font-family: "Anton, sans-serif"  !important;
+  font-weight: bold  !important;
+  color: #282866  !important;
+  text-align: center !important;
+}
+
+.settings-option-mob {
+  font-size: 12px ;
+  font-family: "Anton, sans-serif"  !important;
+  font-weight: bold  !important;
+  color: #000  !important;
+  text-align: center  !important;
+  padding: 5px !important;
+  cursor: pointer;
+  background-color: #f7f4cd  !important;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.settings-option-mob:hover {
+  background-color: #d0d0d0;
+}
+
+/* Media queries for smaller screens */
+
+/* For screens with a max-width of 425px */
+@media (max-width: 425px) {
+  .settings-title-mob {
+    font-size: 18px !important;
+  }
+
+  .settings-option-mob {
+    font-size: 12px !important;
+    padding: 8px;
+  }
+}
+
+/* For screens with a max-width of 375px */
+@media (max-width: 375px) {
+  .settings-title-mob {
+    font-size: 15px !;
+  }
+
+  .settings-option-mob {
+    font-size: 10px;
+    padding: 6px;
+  }
+}
+
+/* For screens with a max-width of 320px */
+@media (max-width: 320px) {
+  .settings-title-mob {
+    font-size: 15px !important;
+  }
+
+  .settings-option-mob {
+    font-size: 10px !important;
+    padding: 5px;
+  }
+}
+
+
+
+  

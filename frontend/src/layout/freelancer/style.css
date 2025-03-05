@@ -1,0 +1,231 @@
+.ezy__comingsoon8_w2RBJjPU {
+  /* Bootstrap variables */
+  --bs-body-color: #262830;
+  --bs-body-bg: #fff;
+
+  /* Easy Frontend variables */
+  --ezy-theme-color: rgb(13, 110, 253);
+  --ezy-theme-color-rgb: 13, 110, 253;
+  --ezy-svg-color: #e5f4f6;
+
+  background-color: var(--bs-body-bg);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Gray Block Style */
+.gray .ezy__comingsoon8_w2RBJjPU,
+.ezy__comingsoon8_w2RBJjPU.gray {
+  /* Bootstrap variables */
+  --bs-body-bg: rgb(246, 246, 246);
+}
+
+/* Dark Gray Block Style */
+.dark-gray .ezy__comingsoon8_w2RBJjPU,
+.ezy__comingsoon8_w2RBJjPU.dark-gray {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(30, 39, 53);
+
+  /* Easy Frontend variables */
+  --ezy-svg-color: rgb(11, 23, 39);
+}
+
+/* Dark Block Style */
+.dark .ezy__comingsoon8_w2RBJjPU,
+.ezy__comingsoon8_w2RBJjPU.dark {
+  /* Bootstrap variables */
+  --bs-body-color: #ffffff;
+  --bs-body-bg: rgb(11, 23, 39);
+
+  /* Easy Frontend variables */
+  --ezy-svg-color: rgb(30, 39, 53);
+}
+
+/* Heading and sub-heading */
+.ezy__comingsoon8_w2RBJjPU-heading {
+  font-weight: 500;
+  line-height: 1;
+  color: var(--bs-body-color);
+}
+
+@media (min-width: 768px) {
+  .ezy__comingsoon8_w2RBJjPU-heading {
+    font-size: 45px;
+  }
+}
+
+.ezy__comingsoon8_w2RBJjPU-sub-heading {
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--bs-body-color);
+  opacity: 0.8;
+}
+
+.ezy__comingsoon8_w2RBJjPU svg {
+  display: none;
+  z-index: -1;
+  color: var(--ezy-svg-color);
+}
+
+@media (min-width: 991px) {
+  .ezy__comingsoon8_w2RBJjPU svg {
+    display: block;
+  }
+}
+
+body {
+  font-size: 16px;
+  background-color: #f7f4cd;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: block; 
+    padding: 15px; 
+  }
+  
+}
+
+#header-mob {
+  color: #000;
+  font-family: "Anton", sans-serif;
+  font-style: italic;
+  text-align: center;
+}
+
+#text-mob {
+  color: #000;
+  font-size: 8px;
+  font-family: "Anton", sans-serif;
+  
+  font-style: italic;
+  text-align: center;
+}
+
+#image-mob {
+  width: 120px;
+  height: 250px;
+}
+
+#work-head-mob {
+  font-size: 20px;
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#work-icon-mob {
+  color: #2d2859;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+#work-text-mob {
+  font-family: "Anton", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 9px;
+  padding: 3px;
+}
+
+#image-border{
+  border: 5px outset #06caec;
+  padding: 5px;
+  border-radius: 12px;
+}
+
+/* Container and grid styles */
+.container-main {
+  background-color: #D1EDEE;
+  border-radius: 18px;
+  padding: 16px;
+}
+
+/* Image border styles */
+/* #image-border {
+  border: 2px solid #000;
+  border-radius: 8px;
+} */
+
+/* Typography styles for title and body */
+.typography-title {
+  color: #000;
+  font-family: 'Flama Bold Italic';
+  font-size: 20px;
+  text-align: center;
+  margin-top: 12px !important;
+}
+
+.typography-body {
+  color: #000;
+  font-family: 'Flama Bold Italic';
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px !important;
+}
+
+/* Media query to reduce the font size for screens with a width of 600px or less */
+@media (max-width: 600px) {
+  .typography-title {
+    font-size: 16px;
+  }
+
+  .typography-body {
+    font-size: 10px;
+  }
+}
+
+/* styles.css */
+.container-main {
+  background-color: #D1EDEE;
+  margin-top: 20px;
+}
+
+
+
+.text-mob {
+  font-size: 13px; /* Default font size */
+  color: #000;
+  font-family: 'Anton', sans-serif;
+  font-style: italic;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Media query for mobile view */
+@media (max-width: 425px) {
+  #image-border {
+      width: 70px; /* Reduced image size */
+      height: 70px; /* Reduced image size */
+  }
+
+  .text-mob {
+      font-size: 9px !important; /* Reduced font size */
+  }
+
+  #text-mob{
+    font-size: 6px !important;
+  }
+
+  .container-main{
+    height: 500px !important;
+  }
+
+  /* Optional: Reduce the margin for better spacing on small screens */
+  /* .mt-2, .mt-3, .mb-3 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+  } */
+}
+
+

@@ -1,0 +1,45 @@
+Mobile view Banner size (Width (416), Height (101))
+Major Categories Post Image size (Width (416), Height (193))
+Categories icon size with blue Box (width (55.39), Height (62.19)) [icon size (w: 45.18, H: 45.18)]
+2nd icons size with blue circle (W:113.88),(H:113.88) [icon size (W:88),(H:88)
+Social media icons with Box size (W:267),(H:35.94) [icon size (W:14.4),(H:14.4)]
+
+Hotels view page:
+card Size with box (W:419),(H:123) [that image size (W:108),(H:123)]
+like Icon size (W:15.02),(H:13.78)
+Share icon size (W:16)(H:16)
+
+Hotels Booking page:
+Small photos size (W:99),(H:105)
+Big photo size (W:201),(H:222)
+Star Icons (W:89),(H:13)
+
+Business login page
+Image size (W:430),(H:135)
+upload image size (W:98.4),(H:92.82)
+
+Contact us page 
+Location Icon with cicle (W:32.38)(H:32.38)
+
+Our mission and vision page
+image size (W:126),(H:119)
+
+Benifits work 
+Image size (W:134),(H:205)
+Work from Icon with box (W:62),(H:65) Corner radius (10.46) icon size (Same size width and height (38))
+
+Menu Bar icons size (44)
+Search icon size (W & H same size (18.78))
+Like, Notification,Profile icons (same size W & H (18))
+
+Logo size (W&H (88))
+logo name size (W:75),(H:30)
+
+Arrow icons (W:11.93) (H:7.22)
+
+Upload icons size (W:18) (H:22)
+
+Refer Icon size (W&H same size (30))
+
+Near 50km location icon size (W:21.26), (H: 30.36)
+

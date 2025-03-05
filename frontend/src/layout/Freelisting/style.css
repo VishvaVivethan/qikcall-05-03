@@ -1,0 +1,57 @@
+/* Default styles for the card and media */
+.custom-card {
+    max-width: 300px !important;
+    margin: 0 auto; /* Centers the card horizontally */
+  }
+  
+  .custom-card-media {
+    width: 300px !important;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  @media only screen and (max-width: 320px) {
+    .custom-card {
+      max-width: 210px !important;
+    }
+  
+    .custom-card-media {
+      width: 210px;
+      margin: 0 auto;
+    }
+  }
+  
+  /* Styles for 385px wide screens */
+  @media only screen and (max-width: 385px) {
+    .custom-card {
+      max-width: 260px;
+    }
+  
+    .custom-card-media {
+      width: 260px !important;
+      margin: 0 auto;
+    }
+  }
+  
+  /* Styles for 425px wide screens */
+  @media only screen and (min-width: 425px) {
+    .custom-card {
+      max-width: 425px;
+    }
+  
+    .custom-card-media {
+      width: 425px;
+    }
+  }
+  
+  /* Larger screen styles can remain the same */
+  @media only screen and (min-width: 600px) {
+    .custom-card {
+      max-width: 300px;
+    }
+  
+    .custom-card-media {
+      width: 300px;
+    }
+  }
+  

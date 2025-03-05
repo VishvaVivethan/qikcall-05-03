@@ -1,0 +1,66 @@
+Web view Home Page:
+Banner 1 size (W:848.24) (H:344.86)
+Banner 2 size (W: 402.93) (H: 165.26)
+
+Categories ICons size with blue box(W: 105.68) (H:118.66)
+Icon size (Same size W&H (86.21))
+
+Image size (W:616.48),(H:355.05)
+
+Location Icon (W:22.79) (H:32.56)
+
+Like,Notification,profile icon (same size W&H (22.83))
+
+Location search Icon size (Same size W&H (23.8))
+
+Search icon size (Same size W&H (20.14))
+
+Social media icons with box (W:60) (H:396) Social media icons size (Same size W&H (22.44))
+
+Daily needs icons:
+with blue circle (Same size W&H (158.49)) Icons size (Same size W&H (116.89))
+
+logo size (W:160.86) (H:148.12)
+logo name size (W:146) (H:38)
+
+
+Categories page:
+card size (W:609.08) (H:207.73) inside image size (W:170.33) (H:187.47) Corner radius(5.82)
+Like icon size (W:15.02) (H:13.78)
+Phone ring Icon size (Same size W&H (12.6))
+Share icon Size (Same size W&H (18.4))
+check icon size (Same size W&H (12.09))
+
+Banner size (W:1219.07) (H: 249.5)
+
+Categories details:
+image size(W:382.23),(H:281.45) Big image size (W:469.39), (H:570.16)
+Star icon size (Same size W&H (16.97))
+
+
+Free lisitng page:
+Image size (W:569.29) (H:576.51)
+Bulb image size (Same size W&H (207)) [Transparent level 10% Using color burn]
+
+Busniess page: 
+Image size (W:1468),(H:492)
+Refer icon size (Same size W&H (77.62))
+Upload icon size (W:22.82) (H:35)
+Upload images size (W:332.57) (H:182.54)
+
+Contact us page:
+Contact us box size (W:1440) (H:271)
+Icons size with round (Same size W&H (98.78)) icon size (W:53.55),(H:53.55)
+Side map size (W:400.62) (H:624.6)
+
+About us:
+First image banner size (W:1799) (H:537)
+Team image size (W:282.82),(H:266.76)
+Our mission and vision image size (W:423),(H:388.59)
+
+Free lancer page:
+First image banner size (W:1472) (H:523)
+Icons Size with box (W:177.07) (H:185.93) Icon size (Same size W&H (136.02))
+Benefit work image size (W: 401.78) (H: 385.62)
+
+
