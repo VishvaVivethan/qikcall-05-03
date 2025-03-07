@@ -75,34 +75,9 @@ body{
   font-style: italic;
 }
 
-
-
-
-  
-  .categories-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 20px;
+@media screen and (min-width:0px) and (max-width:320px) {
+  .css-1t0mlpl{
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px; 
   }
-  
-  .category-item {
-    flex: 0 0 calc(100% / 8); /* 5 items per row */
-    margin: 8px 0;
-    text-align: center;
-  }
-
-  .categories-list-mob {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 5px;
-  }
-  
-  .category-item-mob {
-    flex: 0 0 calc(100% / 5); /* 5 items per row */
-    margin: 5px 0;
-    text-align: center;
-  }
-  
- 
+}

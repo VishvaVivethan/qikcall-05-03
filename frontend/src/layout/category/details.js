@@ -406,9 +406,7 @@ const getWishlistById = (userid) => {
         if (result.status_code === 200) {
           console.log("Wishlist data", result.data.data[0]);
           const wishlistData = result.data.data[0]; // Store fetched wishlist data
-          setDatabyId(wishlistData); // Store fetched data
-
-          // Assuming wishlistData is an object, compare storeId directly
+          setDatabyId(wishlistData);
           if (wishlistData && wishlistData.wishlist && wishlistData.wishlist.storeId === cdata[0]?._id) {
             console.log("Item is in the wishlist");
             setIsFavorite(true); 
@@ -427,11 +425,6 @@ const getWishlistById = (userid) => {
     console.log("Error fetching wishlist", error);
   }
 };
-
-
-
-
-// Function to save or remove from wishlist
 const saveWishlist = async () => {
   try {
     const myHeaders = new Headers();
@@ -576,12 +569,6 @@ useEffect(() => {
 });
 
 console.log('Matching services found:', filteredData);
-  
-  
-  
-  
-
-  
   return (
    <>
     {isMobile ? (
@@ -635,80 +622,13 @@ console.log('Matching services found:', filteredData);
             zIndex: 10, // Ensure this is above the image
             padding: '10px', // Optional: padding around the text
           }}>
-            + 200 Photos
           </div>
         </Grid>
       </Grid>
     </Grid>
     </Grid>
     </Container>
-    <Container >
-    <Grid mt={5}   sx={{ border: '1px solid #000', padding: 2,  }}>
-      <Grid container  direction="row"   spacing={2}>
-        <Grid container  direction="row" justifyContent="space-between"  alignItems="left" item xs={12} md={6} >
-          <Grid  item xs={4}>
-            <img
-              src="https://via.placeholder.com/100" // Replace with actual logo URL
-              alt="GRT Hotels"
-              style={{ maxWidth: '100%' }}
-            />
-          </Grid>
-          <Grid item xs={7} justifyContent="center" alignItems="center">
-            <Typography mt={3} sx={{fontSize:"30px"}} fontWeight="bold">
-              GRT HOTELS
-            </Typography>
-            <Typography sx={{fontSize:"20px"}} variant="body2">★★★★☆</Typography>
-            <Typography className='mt-2' fontWeight="bold" sx={{fontSize:"10px"}} variant="body2" color="textSecondary">
-              <span style={{ marginRight: 8 }}>📍</span>
-              GRT HOTEL, Palanganatham Madurai
-            </Typography>
-            <Grid container spacing={1} alignItems="center" sx={{ marginTop: 1 }}>
-              <Grid item>
-                <Button variant="outlined" startIcon={<PhoneIcon />}>
-                  9075642376
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="outlined" startIcon={<ShareIcon />}>
-                  Share
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button  startIcon={<FavoriteBorderIcon />} />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid container
-  direction="column"
-  justifyContent="space-evenly"
-  alignItems="flex-start" item xs={12} md={4}>
-          <Typography className='mt-4' sx={{fontSize:"15px"}}  variant="body2">
-            <strong>GST:</strong> AMJ5678
-          </Typography>
-          <Typography className='mt-4' sx={{fontSize:"15px"}}  variant="body2">
-            <strong>SMS:</strong>
-          </Typography>
-          <Typography className='mt-4' sx={{fontSize:"15px"}}  variant="body2">
-            <strong>Website:</strong> www.grthotel.com
-          </Typography>
-          <Typography className='mt-4' sx={{fontSize:"15px"}}  variant="body2">
-            <strong>Mail id:</strong> grt@com
-          </Typography>
-          <Typography className='mt-4' sx={{fontSize:"15px"}}  variant="body2">
-            <strong>Types of Rooms:</strong> 4
-          </Typography>
-          <Typography className='mt-4' sx={{fontSize:"15px"}}  variant="body2">
-            <strong>Check out:</strong> 24 Hrs
-          </Typography>
-        </Grid>
-      </Grid>
-    </Grid>
-    </Container>
     </>
-    
-
-
 <Footer/>
     </>
   ):(
@@ -722,8 +642,8 @@ console.log('Matching services found:', filteredData);
       <Grid item xs={12} md={6} container alignItems="flex-start">
         <Grid item xs={4}>
           <img
-            src={cdata.logo} // Replace with actual logo URL
-            alt="GRT Hotels"
+            // src={cdata.logo} 
+            // alt="GRT Hotels"
             style={{ width: '120px', borderRadius: '4px' }}
           />
         </Grid>

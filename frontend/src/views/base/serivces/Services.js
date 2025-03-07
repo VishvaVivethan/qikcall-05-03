@@ -1233,7 +1233,7 @@ const handleEditUpdate =()=>{
               <CardMedia
                 component="img"
                 height="140"
-                image={image || 'default-image-placeholder.jpg'} // Show existing or updated image
+                image={image || 'default-image-placeholder.jpg'}
                 alt={`Edit Image ${index + 1}`}
                 sx={{ cursor: 'pointer', width: '100%' }}
               />

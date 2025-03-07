@@ -257,8 +257,8 @@ const Location = (props) => {
     <>
       {isMobile ? (
         <>
-        <Typography variant="h5" className=" mb-1 title-mob">Major Locations</Typography>
-         <Container>
+        {/* <Typography variant="h5" className=" mb-1 title-mob">Major Locations</Typography> */}
+         {/* <Container>
          
          <Grid container spacing={1} style={{ flexWrap: 'wrap' }}>
   {getDistrict.map((item, index) => (
@@ -282,13 +282,13 @@ const Location = (props) => {
     </React.Fragment>
   ))}
 </Grid>
-        </Container>
+        </Container> */}
         </>
       ) : (
         <>
         <Container>
-        <Typography variant="h5" className="mb-3 mt-5">Major Locations</Typography>
-         <Grid container spacing={1} style={{ flexWrap: 'wrap' }}>
+        {/* <Typography variant="h5" className="mb-3 mt-5">Major Locations</Typography> */}
+         {/* <Grid container spacing={1} style={{ flexWrap: 'wrap' }}>
   {getDistrict.map((item, index) => (
     <React.Fragment key={index}>
       <Grid item>
@@ -309,7 +309,7 @@ const Location = (props) => {
       )}
     </React.Fragment>
   ))}
-</Grid>
+</Grid> */}
         </Container>
         </>
       )}
@@ -480,18 +480,17 @@ const MidCategories = () => {
         </>
       ) : (
         <>
-         
-         <Typography variant="h4" className="title mt-5">Categories</Typography>
+<Typography variant="h4" className="title mt-5">Categories</Typography>
 <Box mt={4} mb={4} sx={{ flexGrow: 1, backgroundColor: '#f7f4cd', padding: '20px' }}>
   <Grid container spacing={3}>
-    {getData.map((category, index) => (
-      <Grid 
-        item 
-        container 
-        direction="column" 
-        justifyContent="space-evenly" 
-        alignItems="center" 
-        xs={6} sm={2.4} md={2} lg={2} xl={1.5} 
+    {getData.slice(0, 11).map((category, index) => ( 
+      <Grid
+        item
+        container
+        direction="column"
+        justifyContent="space-evenly"
+        alignItems="center"
+        xs={6} sm={2.4} md={2} lg={2} xl={1.5}
         key={index}
       >
         <Paper
@@ -520,6 +519,7 @@ const MidCategories = () => {
         >
           <img src={category.addimages} alt="category" style={{ width: '100%', height: 'auto' }} />
         </Paper>
+        
         <Typography 
           variant="body1" 
           sx={{ 
@@ -535,8 +535,7 @@ const MidCategories = () => {
         </Typography>
       </Grid>
     ))}
-    
-    {categories.map((category, index) => (
+    {categories.slice(0, 10).map((category, index) => (
       <Grid 
         item 
         container 
@@ -570,7 +569,7 @@ const MidCategories = () => {
           }}
           onClick={handleClickOpen}
         >
-          {category.icon} 
+          {category.icon}
         </Paper>
         <Typography 
           variant="body1" 
@@ -627,7 +626,6 @@ const MidCategories = () => {
                 p: '2px 4px',
                 display: 'flex',
                 alignItems: 'center',
-                width: '100%',
                 height: isMobile ? '35px' : '40px',
                 fontFamily: 'Anton, sans-serif',
                 fontWeight: 'bold',
@@ -639,7 +637,7 @@ const MidCategories = () => {
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search"
                 value={searchTerm}
-                onChange={handleSearchChange} // Handle search input changes
+                onChange={handleSearchChange}
               />
               <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                 <SearchIcon />
@@ -650,10 +648,10 @@ const MidCategories = () => {
       </DialogTitle>
       <DialogContent
         sx={{
-          minHeight: '300px', // Minimum height for content
-          minWidth: '100%',   // Minimum width for content
-          maxHeight: '600px', // Set a maximum height to handle overflow
-          overflowY: 'auto',  // Allow scrolling if content exceeds max height
+          minHeight: '300px', 
+          minWidth: '100%', 
+          maxHeight: '500px', 
+          overflowY: 'auto',
         }}
       >
         <DialogContentText>
@@ -713,28 +711,6 @@ const MidCategories = () => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#00bfff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-//   display: 'flex',
-//   flexDirection: 'column',
-//   alignItems: 'center'
-// }));
 
 function HomePage() {
 
@@ -1248,9 +1224,9 @@ function HomePage() {
       <Grid 
         item 
         key={index} 
-        xs={12}  // Full width for extra-small screens
-        sm={6}   // Half width for small screens
-        md={3}   // One-third width for medium screens and above
+        xs={12}
+        sm={6}
+        md={3}  
         sx={{ mt: 3 }}
       >
         <Grid 
@@ -1424,7 +1400,8 @@ function HomePage() {
                     className="d-block w-100"
                     src={cat6}
                     alt="slide 1"
-                    style={{ height: '200px', objectFit: 'cover' }}
+          
+                  style={{ height: '200px', objectFit: 'cover' }}
                   />
                 </CCarouselItem>
                 <CCarouselItem>

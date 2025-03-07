@@ -207,18 +207,16 @@ const [filterPincode, setFilterPincode] = useState('');
   const handleNavigate = (category) => {
     navigate(`/categorieslist/${category}`)
   }
-
+useEffect(() => {
+    GetCategory()
+  }, [])
   const handleBizsales = () => {
     navigate(`/bizsales`)
   }
 
   const handleJobs = () => {
-    navigate(`/jobs`)
+    navigate(`/jobs`);
   }
-
-  useEffect(() => {
-    GetCategory()
-  }, [])
 
   const GetCategory = () => {
     try {
@@ -423,6 +421,7 @@ const [filterPincode, setFilterPincode] = useState('');
         area: name, 
         pincodename: pincodedata
       });
+      
   
       const requestOptions = {
         method: "POST",
@@ -584,11 +583,7 @@ const [filterPincode, setFilterPincode] = useState('');
     <>
 
       {isMobile ? (
-
         <>
-
-
-
           <Grid xs={12} sm={12} >
             <nav >
               <Grid  item xs={12} sm="auto" container direction={{ xs: 'column', sm: 'row' }} justifyContent="center" alignItems="center" mt={1} >
@@ -625,7 +620,7 @@ const [filterPincode, setFilterPincode] = useState('');
                         color: "white"
                       },
                     }}
-                  // inputProps={{ 'aria-label': 'Without label' }}
+                
                   >
                     <MenuItem value="EN">
                       <LanguageIcon id="selct-text-mob" sx={{ fontSize: "10px", marginRight: "5px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }} /> EN
@@ -637,30 +632,25 @@ const [filterPincode, setFilterPincode] = useState('');
                   </Select>
                 </Grid>
                 <Grid item xs={mobileView ? 3 : 2.4} container justifyContent="center" alignItems="center">
-      <Select
-        value={categorylist}
-        sx={{
-          backgroundColor: "#000080",
-          borderRadius: "12px",
-          fontSize: mobileView ? "8px" : "8px",  
-            width: mobileView ? "100%" : "80px",    
-            height: "25px",
-          color: "white",
-          fontFamily: "Anton, sans-serif", 
-          fontWeight: "bold", 
-          fontStyle: "italic",
-          '.MuiSelect-icon': { color: "white" },
-          '.MuiOutlinedInput-notchedOutline': { border: "none" },
-        }}
-      >
-        <MenuItem sx={{ textAlign: "center" }} value="category">Jobs</MenuItem>
-        {Array.isArray(getData) && getData.map((category, index) => (
-          <MenuItem key={index} onClick={() => handleNavigate(getData[index]._id)} value={category}>
-            {category.categoryname}
-          </MenuItem>
-        ))}
-      </Select>
+                <Button
+      onClick={handleJobs}
+      sx={{
+        backgroundColor: "#2d2859",
+        borderRadius: "12px",
+        fontFamily: "Anton, sans-serif",
+        fontWeight: "bold",
+        fontStyle: "italic",
+        fontSize: mobileView ? "7px" : "8px",
+        width: mobileView ? "70px" : "80px",
+        height: "25px",
+        "&:hover": { backgroundColor: "#2d2859" }
+      }}
+      variant="contained"
+    >
+      Jobs
+    </Button>
     </Grid>
+    
                 <Grid item xs={3}  sm="auto" container direction="row" justifyContent="space-evenly" alignItems="center"  >
                   <Grid  container direction="row" justifyContent="center" alignItems="center" sx={{ backgroundColor: "#2D2859", height: "25px", borderRadius: "20px", width: "90px" }} >
                   <Grid >
@@ -721,48 +711,6 @@ const [filterPincode, setFilterPincode] = useState('');
                   </Grid>
                 </Grid>
               </Grid>
-
-              {/* <Grid container direction="row" justifyContent="space-evenly" alignItems="center"> */}
-                {/* <Grid mb={1}>
-                  <Button onClick={handleOffer} className="button-36-mob">
-                    <span className="text">Today Offers</span>
-                  </Button>
-                </Grid> */}
-                {/* <Box sx={{
-  width: "267px",
-  height: "auto",
-  padding: "8px",
-  borderRadius: "8px",
-  border: "1px solid #ddd",
-  backgroundColor: "#f7f4cd",
-  
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center"
-}}>
-  <Grid container spacing={2} justifyContent="space-between" alignItems="center">
-    <Grid item>
-      <img src={Twitter} alt="Twitter" className="social-icon" />
-    </Grid>
-    <Grid item>
-      <img src={Whatsapp} alt="Whatsapp" className="social-icon" />
-    </Grid>
-    <Grid item>
-      <img src={Fb} alt="Facebook" className="social-icon" />
-    </Grid>
-    <Grid item>
-      <img src={Linkedin} alt="LinkedIn" className="social-icon" />
-    </Grid>
-    <Grid item>
-      <img src={Instagram} alt="Instagram" className="social-icon" />
-    </Grid>
-    <Grid item>
-      <img src={Telegram} alt="Telegram" className="social-icon" />
-    </Grid>
-   
-    
-  </Grid>
-</Box> */}
   <Grid container direction="column" alignItems="flex-end" mt={2}>
             <nav className="social">
               <ul>
@@ -811,7 +759,7 @@ const [filterPincode, setFilterPincode] = useState('');
           >
             <InputBase
               sx={{ ml: 1, flex: 1,fontSize:"10px" }}
-              placeholder="Search by city, servicename, or number"
+              placeholder="Search by city, servicename, or number Pincode "
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -845,7 +793,7 @@ const [filterPincode, setFilterPincode] = useState('');
         </Button>
     </Grid>
       {/* Pincode Search */}
-      <Grid xs={mobileView ? 5 : 5} container direction="row" justifyContent="center" alignItems="center">
+      {/* <Grid xs={mobileView ? 5 : 5} container direction="row" justifyContent="center" alignItems="center">
         <Paper sx={{ backgroundColor: "#2d2859", height: "30px" }}>
           <Stack direction="row" alignItems="center" sx={{ height: "100%" }}>
             <TextField
@@ -869,7 +817,7 @@ const [filterPincode, setFilterPincode] = useState('');
         </IconButton>
           </Stack>
         </Paper>
-      </Grid>
+      </Grid> */}
 
       {/* Category Select */}
       <Grid item xs={mobileView ? 3 : 2.5} container direction="row" justifyContent="center" alignItems="center">
@@ -1093,12 +1041,10 @@ const [filterPincode, setFilterPincode] = useState('');
         Biz-Sales
       </Button>
     </Grid>
-
-    {/* Select Category Dropdown */}
     <Grid item xs={12} sm={1} md={1.5} lg={1.5} container justifyContent="center" alignItems="center">
-      <Button
+      <Button 
         sx={{
-          backgroundColor: "#000080",
+          backgroundColor: "#2d2859",
           borderRadius: "12px",
           fontSize: { xs: "10px", sm: "10px", md: "15px", lg: "16px" }, 
           width: { xs: "100px", sm: "80px", md: "130px" }, 
@@ -1109,7 +1055,7 @@ const [filterPincode, setFilterPincode] = useState('');
           fontStyle: "italic",
           '.MuiSelect-icon': { color: "white" },
           '.MuiOutlinedInput-notchedOutline': { border: "none" },
-          '&:hover':{backgroundColor:"#000080"}
+          '&:hover':{backgroundColor:"#2d2859"}
         }}
         onClick={handleJobs}
       >
@@ -1136,7 +1082,7 @@ const [filterPincode, setFilterPincode] = useState('');
       >
         <InputBase
           sx={{ ml: 1, flex: 1, fontSize: { xs: "10px", sm: "10px", md: "13px", lg: "15px" } }}
-          placeholder="Search by city, servicename, or number"
+          placeholder="Search by city, servicename, or numbe Pincoder "
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -1175,7 +1121,7 @@ const [filterPincode, setFilterPincode] = useState('');
 
     {/* Search by Pincode */}
    
-
+{/* 
     <Grid item xs={12} sm={3} md={2.5} lg={2.5} container justifyContent="center">
   <Paper sx={{ backgroundColor: "#2d2859", width: "100%", height: { xs: "40px", sm: "40px", md: "50px" } }}>
     <Stack direction="row" alignItems="center" sx={{ width: '100%' }}>
@@ -1222,7 +1168,7 @@ const [filterPincode, setFilterPincode] = useState('');
     </Stack>
   </Paper>
 </Grid>
-
+ */}
 
 </Grid>
 </Grid>
