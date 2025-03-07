@@ -1084,7 +1084,7 @@ useEffect(() => {
           sx={{ ml: 1, flex: 1, fontSize: { xs: "10px", sm: "10px", md: "13px", lg: "15px" } }}
           placeholder="Search by city, servicename, or numbe Pincoder "
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => SetSearch(e.target.value)}
         />
         <IconButton type="submit" disabled={!search} onClick={handleClickOpen} sx={{ p: '5px' }} aria-label="search">
           <SearchIcon />
