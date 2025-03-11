@@ -30,7 +30,6 @@ import BusinessDetails from './layout/Buisness/details';
 import PrivacySetting from './layout/userprofile/privacy';
 import FreelancerDetails from './layout/Buisness/freelancer';
 import Userdetails from './layout/userprofile/param';
-
 import Login from './views/pages/login/Login';
 import DefaultLayoutAdmin from './adminlayout/DefaultLayout';
 

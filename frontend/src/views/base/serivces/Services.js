@@ -413,7 +413,6 @@ try{
 
   const uploadimages = async () => {
     try {
-      // Convert files to an array
       const filesArray = Array.from(files); 
   
       const uploadedImageUrls = await Promise.all(filesArray.map(async (file) => {
@@ -451,7 +450,6 @@ try{
       target: { value },
     } = event;
     setType(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
@@ -461,7 +459,6 @@ try{
       target: { value },
     } = event;
     setEType(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
@@ -496,8 +493,9 @@ try{
 
   const handleClickOpen = async () => {
     if (selectedServiceId) {
+       setDetailsOpen(true);
       await getServiceById(selectedServiceId);
-      setDetailsOpen(true);
+     
     }
   };
 
@@ -508,8 +506,9 @@ try{
 
   const handleDeleteOpen = async () => {
     if (selectedServiceId) {
-      await getServiceById(selectedServiceId);
       setDeleteOPen(true);
+      await getServiceById(selectedServiceId);
+     
     }
   };
 
@@ -517,14 +516,21 @@ try{
     setDeleteOPen(false);
   };
 
-  const handleEditOpen =  () => {
+  const handleEditOpen = () => {
     if (selectedServiceId) {
-      getServiceById(selectedServiceId);
+      setEditopen(true);  
+      setEditServiceId(selectedServiceId);  
       console.log(selectedServiceId, "id coming in handleEditOpen");
-      setEditopen(true);
-      setEditServiceId(selectedServiceId);  // Ensure you are saving the serviceId somewhere
+      
+      getServiceById(selectedServiceId);
     }
   };
+  useEffect(() => {
+    if (selectedServiceId) {
+      getServiceById(selectedServiceId);
+    }
+  }, [selectedServiceId]);
+  
   
   const handleEditClose = () => {
     setEditopen(false);
@@ -539,8 +545,8 @@ const handleEditUpdate =()=>{
 
   const handleDelete = () => {
     if (selectedServiceId) {
-      userDelete(selectedServiceId); // Delete by selectedServiceId
       setDeleteOPen(false);
+      userDelete(selectedServiceId); // Delete by selectedServiceId
       handleMenuClose()
       
     }
@@ -598,9 +604,7 @@ const handleEditUpdate =()=>{
             </FormControl>
 
             <FormControl fullWidth margin="normal">
-            {/* <InputLabel id="demo-multiple-chip-number">Mobile Number</InputLabel> */}
               <TextField
-              // labelId="demo-multiple-chip-number"
                 id="service-number"
                 variant="outlined"
                 value={number}
@@ -1207,7 +1211,6 @@ const handleEditUpdate =()=>{
                 }}
               />
             </FormControl>
-
             <Typography
               variant="h6"
               align="center"
@@ -1215,7 +1218,6 @@ const handleEditUpdate =()=>{
             >
               Add Images
             </Typography>
-
             <Grid container spacing={2} justifyContent="center" alignItems="center">
   <Grid container item xs={12} spacing={2} justifyContent="space-evenly" alignItems="center">
     {eimages.slice(0, 2).map((image, index) => (
@@ -1244,7 +1246,6 @@ const handleEditUpdate =()=>{
     ))}
   </Grid>
 </Grid>
-              
              <Grid  mt={4} container direction="row" justifyContent="flex-end" alignItems="center">
              <Typography>Approve</Typography>
              <Switch
@@ -1271,72 +1272,6 @@ const handleEditUpdate =()=>{
           <Button
             variant="contained"
             onClick={()=>{
-              // if(!name){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!number){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(number.length!==10){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Phone Number have 10 number');
-              //   return
-              // }
-              // if(!type){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!images){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!addressLine1){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!addressLine2){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!area){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!city){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!state){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
-              // if(!pincode){
-              //   setOpen(true);
-              //   setColor('error');
-              //   setMsg('Address required');
-              //   return
-              // }
               handleEditUpdate()
             
             }}
@@ -1344,19 +1279,8 @@ const handleEditUpdate =()=>{
           >
            Submit
           </Button>
-         
           </Grid>
         </DialogContent>
-        {/* <DialogActions>
-          <Grid container direction="row" justifyContent="space-between"alignItems="center" >
-          <Button  onClick={handleEditClose}>
-           No
-          </Button>
-          <Button onClick={handleDelete} s>
-            Yes
-          </Button>
-          </Grid>
-        </DialogActions> */}
       </Dialog>
               </Card>
             </Grid>
@@ -1368,5 +1292,174 @@ const handleEditUpdate =()=>{
     </>
   );
 };
-
 export default Collapses;
+
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
+// const ServiceList = () => {
+//   const [services, setServices] = useState([]);
+//   const [categories, setCategories] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState('');
+//   const [showForm, setShowForm] = useState(false);
+//   const [editingServiceId, setEditingServiceId] = useState(null);
+//   const [newService, setNewService] = useState({
+//     servicename: '',
+//     servicedescription: '',
+//     servicetype: [],
+//     categories: [],
+//     addressline1: '',
+//     addressline2: '',
+//     city: '',
+//     state: '',
+//     pincode: '',
+//     number: '',
+//     logo: null,
+//     addimages: []
+//   });
+
+//   useEffect(() => {
+//     fetchServiceLists();
+//     fetchCategories();
+//   }, []);
+
+//   const fetchServiceLists = async () => {
+//     try {
+//       const response = await axios.get('http://localhost:2525/api/servicelists');
+//       if (response.data.status === 200) {
+//         setServices(response.data.data);
+//       } else {
+//         setError('No services found.');
+//       }
+//     } catch (err) {
+//       setError('Failed to fetch services.');
+//       console.error(err);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const fetchCategories = async () => {
+//     try {
+//       const response = await axios.get('http://localhost:2525/api/categories');
+//       if (response.status === 200) {
+//         setCategories(response.data);
+//       }
+//     } catch (err) {
+//       console.error('Failed to fetch categories:', err);
+//     }
+//   };
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setNewService({ ...newService, [name]: value });
+//   };
+
+//   const handleCategoryChange = (e) => {
+//     const options = Array.from(e.target.selectedOptions, option => option.value);
+//     setNewService({ ...newService, categories: options });
+//   };
+
+//   const handleFileChange = (e) => {
+//     const { name, files } = e.target;
+//     if (name === 'addimages') {
+//       setNewService({ ...newService, addimages: Array.from(files) });
+//     } else {
+//       setNewService({ ...newService, [name]: files[0] });
+//     }
+//   };
+
+//   const handleFormSubmit = async (e) => {
+//     e.preventDefault();
+//     const formData = new FormData();
+//     for (const key in newService) {
+//       if (key === 'addimages') {
+//         newService.addimages.forEach((file) => formData.append('addimages', file));
+//       } else if (key === 'categories') {
+//         newService.categories.forEach((category) => formData.append('categories', category));
+//       } else {
+//         formData.append(key, newService[key]);
+//       }
+//     }
+
+//     try {
+//       const url = editingServiceId
+//         ? `http://localhost:2525/api/serviceupdate?id=${editingServiceId}`
+//         : 'http://localhost:2525/api/service';
+
+//       const method = editingServiceId ? 'put' : 'post';
+//       const response = await axios[method](url, formData, {
+//         headers: { 'Content-Type': 'multipart/form-data' },
+//       });
+
+//       if (response.status === 200) {
+//         fetchServiceLists();
+//         setShowForm(false);
+//         setEditingServiceId(null);
+//       }
+//     } catch (err) {
+//       console.error('Failed to submit service:', err);
+//     }
+//   };
+
+//   const openEditForm = (service) => {
+//     setNewService({
+//       ...service,
+//       categories: service.categories || [],
+//       addimages: [],
+//       logo: null
+//     });
+//     setEditingServiceId(service._id);
+//     setShowForm(true);
+//   };
+
+//   if (loading) return <p>Loading services...</p>;
+//   if (error) return <p>{error}</p>;
+
+//   return (
+//     <div className="p-4">
+//       <h1 className="text-xl font-bold mb-4">Service List</h1>
+//       <button onClick={() => { setShowForm(true); setEditingServiceId(null); }} className="bg-blue-500 text-white px-4 py-2 rounded">
+//         Add Service
+//       </button>
+
+//       {services.map(service => (
+//   <div key={service._id} className="relative mt-2 p-4 border rounded">
+//     <button 
+//       onClick={() => openEditForm(service)} 
+//       className="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded">
+//       Edit
+//     </button>
+//     <p><strong>Name:</strong> {service.servicename}</p>
+//     <p><strong>Description:</strong> {service.servicedescription}</p>
+//     <p><strong>Categories:</strong> {service.categories?.join(', ') || 'No Categories'}</p>
+//     <p><strong>Phone:</strong> {service.number}</p>
+//     <p><strong>Address:</strong> {`${service.addressline1 || ''}, ${service.addressline2 || ''}, ${service.city || ''}, ${service.state || ''}, ${service.pincode || ''}`}</p>
+//   </div>
+// ))}
+
+
+//       {showForm && (
+//         <form onSubmit={handleFormSubmit} className="mt-4 p-4 border rounded" encType="multipart/form-data">
+//           <input name="servicename" placeholder="Service Name" value={newService.servicename} onChange={handleInputChange} required className="border p-2 mb-2 w-full" />
+//           <textarea name="servicedescription" placeholder="Service Description" value={newService.servicedescription} onChange={handleInputChange} required className="border p-2 mb-2 w-full" />
+          
+//           <select multiple value={newService.categories} onChange={handleCategoryChange} className="border p-2 mb-2 w-full">
+//             {categories.map(category => (
+//               <option key={category._id} value={category._id}>{category.name}</option>
+//             ))}
+//           </select>
+
+//           <input name="number" placeholder="Phone Number" value={newService.number} onChange={handleInputChange} required className="border p-2 mb-2 w-full" />
+//           <input type="file" name="logo" accept="image/*" onChange={handleFileChange} className="border p-2 mb-2 w-full" />
+//           <input type="file" name="addimages" accept="image/*" multiple onChange={handleFileChange} className="border p-2 mb-2 w-full" />
+
+//           <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">{editingServiceId ? 'Update' : 'Submit'}</button>
+//           <button type="button" onClick={() => setShowForm(false)} className="ml-2 bg-red-500 text-white px-4 py-2 rounded">Cancel</button>
+//         </form>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ServiceList;

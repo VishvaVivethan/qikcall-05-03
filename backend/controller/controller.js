@@ -569,7 +569,6 @@ module.exports.serviceUpdate = async function (req, res, next) {
   }
 };
 
-
 module.exports.getServicelists = async function (req, res, next) {
    try {
      var formresponce = await userConnector.getServicelists();
