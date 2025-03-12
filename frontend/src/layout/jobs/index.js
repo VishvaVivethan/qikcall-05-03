@@ -630,148 +630,311 @@ const handleUploadedClick = () => {
    <>
    {isMobile ? (
    <>
-     <NavBar/>
-     {/* AppBar for mobile view */}
-     <AppBar position="static" color="primary">
-       <Toolbar>
-         <Button variant="contained" color="secondary" onClick={handleCreateOpen}>
-           Register BizSales
-         </Button>
-         <Box ml={2}>
-           <TextField
-             label="Category"
-             variant="outlined"
-             size="small"
-            //  onChange={handleCategoryChange}
-           />
+   <NavBar/>
+    
+    <Container>
+ <Grid
+   container
+   direction="row"
+   justifyContent="space-between"
+   alignItems="center"
+   sx={{
+     mt: 2,
+     p: 2,
+     bgcolor: "#f7f4cd",
+     
+     borderRadius: "12px",
+   }}
+ >
+   {/* First section: Category, Location, and Filter Button */}
+   <Grid item>
+     <Grid container direction="row" alignItems="center" spacing={3}>
+       <Grid item>
+         <FormControl
+           fullWidth
+           sx={{
+             minWidth: 200,
+             "& .MuiInputBase-input": {
+               color: "#333",
+               backgroundColor: "#fff",
+               p: 1,
+               fontSize: "14px",
+               textAlign: "center",
+               borderRadius: "8px",
+             },
+             "& .MuiOutlinedInput-root": {
+               borderRadius: "8px",
+               "& fieldset": {
+                 borderColor: "#b0a9f7",
+               },
+               "&:hover fieldset": {
+                 borderColor: "#8275e3",
+               },
+               "&.Mui-focused fieldset": {
+                 borderColor: "#574bd5",
+                 boxShadow: "0 0 5px rgba(87, 75, 213, 0.5)",
+               },
+             },
+           }}
+         >
+           <Select
+             id="demo-multiple-select"
+             displayEmpty
+             value={filterCategory}
+             onChange={handleCategoryChange}
+             input={<OutlinedInput id="select-multiple" />}
+             renderValue={(selected) => (selected ? selected : "Category")}
+           >
+             <MenuItem disabled value="">
+               <em>Business Category</em>
+             </MenuItem>
+             {Array.isArray(getData) &&
+               getData.map((category) => (
+                 <MenuItem key={category._id} value={category.categoryname}>
+                   {category.categoryname}
+                 </MenuItem>
+               ))}
+           </Select>
+         </FormControl>
+       </Grid>
+
+       <Grid item>
+         <TextField
+           placeholder="Location"
+           variant="outlined"
+           size="small"
+           value={filterCity}
+           onChange={handleCityChange}
+           sx={{
+             width: 200,
+             "& .MuiOutlinedInput-root": {
+               borderRadius: "8px",
+               backgroundColor: "#fff",
+               fontSize: "14px",
+               "& fieldset": {
+                 borderColor: "#b0a9f7",
+               },
+               "&:hover fieldset": {
+                 borderColor: "#8275e3",
+               },
+               "&.Mui-focused fieldset": {
+                 borderColor: "#574bd5",
+                 boxShadow: "0 0 5px rgba(87, 75, 213, 0.5)",
+               },
+             },
+           }}
+         />
+       </Grid>
+
+       <Grid item>
+         <Box sx={{ mt: 0.5, ml: 3, display: 'flex', gap: 1 }}>
+           <Button
+             variant="contained"
+             color="success"
+             onClick={applyFilters}
+             sx={{
+               fontSize: "13px",
+               textTransform: "capitalize",
+               px: 3,
+               py: 1,
+               borderRadius: "20px",
+               bgcolor: "#4caf50",
+               "&:hover": {
+                 bgcolor: "#45a049",
+               },
+             }}
+           >
+             Filter
+           </Button>
+           <Button
+             variant="contained"
+             color="error"
+             onClick={clearFilters}
+             sx={{
+               fontSize: "13px",
+               textTransform: "capitalize",
+               px: 3,
+               py: 1,
+               borderRadius: "20px",
+               bgcolor: "#f44336",
+               "&:hover": {
+                 bgcolor: "#e53935",
+               },
+             }}
+           >
+             Clear
+           </Button>
          </Box>
-         <Box ml={2}>
-           <TextField
-             label="Location"
-             variant="outlined"
-             size="small"
-            //  onChange={handleLocationChange}
-           />
-         </Box>
-         <Button variant="contained" color="secondary" 
-        //  onClick={handleFilterBizSales} 
-         ml={2}>
-           Filter
-         </Button>
-       </Toolbar>
-     </AppBar>
+       </Grid>
+     </Grid>
+   </Grid>
 
-     <Container>
-       <Grid mt={5} container>
-         <Grid container direction="row" justifyContent="flex-start" alignItems="center" item xs={12}>
-         {Array.isArray(data) && data.map((offer, index) => (
-  offer.isapprove === true && (
-    <Grid 
-      container
-      
-      item 
-      xs={12} 
-      direction="row" 
-      justifyContent="flex-start" 
-      alignItems="flex-start" 
-      
-    >
-      <Grid mb={2}   item xs={12} spacing={2}  >   
-        <Card
-         
-          style={{
-            display: 'flex',
-            backgroundColor: '#ffffe0',
-            borderRadius: '15px',
-            padding: 2,
-            width: "100%",
-            height: "auto",
-          }}
-        >
-          {/* Image */}
-          <CardMedia
-            component="img"
-            sx={{ width: 150, borderRadius: '10px' }}
-            src={offer.addimages}
-            alt="banner"
-          />
+   {/* Second section: Register BizSales button */}
+   <Grid item mt={2}>
+     <Button
+       variant="contained"
+       color="secondary"
+       onClick={handleDetailsOpen}
+       sx={{
+         fontSize: "9px",
+         textTransform: "capitalize",
+         px: 2,
+         py: 1.5,
+         borderRadius: "20px",
+         bgcolor: "#6c63ff",
+         color: "#fff",
+         boxShadow: "0px 4px 8px rgba(108, 99, 255, 0.3)",
+         "&:hover": {
+           bgcolor: "#574bd5",
+         },
+       }}
+     >
+       Register BizSales
+     </Button>
+   </Grid>
+ </Grid>
+</Container>
+    <Container>
+    <Grid mt={5} container>
+ <Grid container direction="row" justifyContent="space-around" alignItems="center" item xs={12}>
+   {Array.isArray(filteredSearchData) && filteredSearchData.length > 0 ? (
+     filteredSearchData.map((offer) => (
+         <Grid 
+           container 
+           item 
+           xs={12} sm={5.5} md={5.5} lg={5}
+           direction="row" 
+           justifyContent="space-evenly" 
+           alignItems="center" 
+           key={offer._id}
+         >
+           <Grid mb={2} item xs={12} display="flex" justifyContent="center">
+           <Card
+ style={{
+   display: 'flex',
+   background: 'linear-gradient(135deg, #f8f8f8, #e0e4ff)',
+   borderRadius: '20px',
+   padding: 16,
+   width: "100%",
+   height: "300px",
+   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+   position: "relative",
+   overflow: "hidden",
+ }}
+>
+ <Grid
+   item
+   
+   
+   container
+   direction="column"
+   justifyContent="space-evenly"
+   alignItems="flex-start"
+   mt={2}
+ >
+   <Typography  sx={{ fontWeight: "bold", color: "#282866", fontSize: { xs: "16px", md: "18px",lg:"20px" } }}>
+     {offer.title}
+   </Typography>
 
-          {/* Content */}
-          <Grid 
-            item xs={12} 
-            sx={{ padding: 2 }} 
-            container 
-            direction="column" 
-            justifyContent="space-evenly" 
-            alignItems="flex-start"
-          >
-            <Typography component="div" variant="h6">
-              {offer.title}
-            </Typography>
+   <Typography className='mt-1'  sx={{ fontWeight: "bold", color: "#bdb7ef", fontSize: { xs: "13px", md: "15px",lg:"17px" } }}>
+     Company Name: {offer.companyname}
+   </Typography>
 
-            <Typography className='mt-1' color="secondary" component="div" sx={{ fontSize: "13px" }}>
-              {offer.jobdescription}
-            </Typography>
+   <Grid mt={1}  container direction="column" >
+     <Typography component="div" sx={{ fontSize: { xs: "10px", md: "12px",lg:"15px" }, color: "#444" }}>
+       Desciption: <span style={{  fontWeight: "500" }}>{offer.jobdescription}</span>
+     </Typography>
+     <Typography className='mt-1' component="div" sx={{ fontSize: { xs: "10px", md: "12px",lg:"15px" }, color: "#444" }}>
+      Salary: <span style={{ fontWeight: "500" }}>{offer.salary}</span>
+     </Typography>
+     <Typography className='mt-1' component="div" sx={{ fontSize: { xs: "10px", md: "12px",lg:"15px" }, color: "#444" }}>
+      Experiance: {offer.experiance}
+     </Typography>
+     <Typography className='mt-1' component="div" sx={{ fontSize: { xs: "10px", md: "12px",lg:"15px" }, color: "#444" }}>
+      Company Details: {offer.companydetails}
+     </Typography>
+     <Typography className='mt-1' component="div" sx={{ fontSize: { xs: "10px", md: "12px",lg:"15px" }, color: "#444" }}>
+     Location: {offer.location},{offer.city},{offer.state}
+     </Typography>
+   </Grid>
 
-            <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-              <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
-                Offer starts on:{" "}
-                <span style={{ color: "green" }}>
-                  {new Date(offer.startdate).toLocaleDateString()}
-                </span>
-              </Typography>
-              <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
-                Offer ends on:{" "}
-                <span style={{ color: "red" }}>
-                  {new Date(offer.enddate).toLocaleDateString()}
-                </span>
-              </Typography>
-            </Grid>
+   <Button
+     variant="contained"
+     startIcon={<GoUpload />}
+     sx={{
+       marginTop: "8px",
+       borderRadius: "10px",
+       color: 'white',
+       backgroundColor: "#5050A5",
+       fontSize: { xs: "10px", md: "12px",lg:"15px" },
+       padding: "6px 12px",
+       textTransform: "uppercase",
+       '&:hover': {
+         backgroundColor: "#282866",
+         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+       },
+     }}
+     onClick={() =>  handleCreateOpen()}
+   >
+    Apply
+   </Button>
+ </Grid>
+ <Typography
+   component="div"
+   sx={{
+     fontSize: "8px",
+     position: "absolute",
+     top: "12px",
+     right: "12px",
+     padding: "3px 8px",
+     backgroundColor: "#f3f3f3",
+     borderRadius: "12px",
+     color: "#282866",
+     fontWeight: "600",
+     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.15)",
+   }}
+ >
+   Category: {offer.category}
+ </Typography>
+</Card>
 
-            <Button
-              variant="contained"
-              startIcon={<LocationOn />}
-              sx={{
-                marginTop: "10px",
-                borderColor: 'white',
-                color: 'white',
-                backgroundColor: "#282866"
-              }}
-            >
-              Visit Store
-            </Button>
-          </Grid>
-        </Card>
+           </Grid>
+         </Grid>
+       // )
+     ))
+   ) : (
+     <Grid mb={5} container direction="row" justifyContent="center" alignItems="center">
+       <Typography variant="h6" sx={{ textAlign: "center", marginTop: "20px", color: "#000", backgroundColor: "#ffe", padding: 2, borderRadius: "10px" }}>
+         No data found
+       </Typography>
+     </Grid>
+   )}
+ </Grid>
+</Grid>
+    </Container>
+
+    <Container>
+      <Grid container direction="row" justifyContent="center" alignItems="center" mt={3}>
+        <Grid item xs={12}>
+          <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+            <CCarousel controls transition="crossfade" style={{ height: '140px', width: "100%" }}>
+              <CCarouselItem>
+                <CImage className="d-block w-100" src={ad1} alt="slide 1" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
+              </CCarouselItem>
+              <CCarouselItem>
+                <CImage className="d-block w-100" src={ad1} alt="slide 2" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
+              </CCarouselItem>
+              <CCarouselItem>
+                <CImage className="d-block w-100" src={ad1} alt="slide 3" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
+              </CCarouselItem>
+            </CCarousel>
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
-  )
-))}
-         </Grid>
-       </Grid>
-     </Container>
+    </Container>
 
-     <Container>
-       <Grid container direction="row" justifyContent="center" alignItems="center" mt={3}>
-         <Grid item xs={12}>
-           <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-             <CCarousel controls transition="crossfade" style={{ height: '140px', width: "100%" }}>
-               <CCarouselItem>
-                 <CImage className="d-block w-100" src={ad} alt="slide 1" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
-               </CCarouselItem>
-               <CCarouselItem>
-                 <CImage className="d-block w-100" src={ad1} alt="slide 2" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
-               </CCarouselItem>
-               <CCarouselItem>
-                 <CImage className="d-block w-100" src={ad} alt="slide 3" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
-               </CCarouselItem>
-             </CCarousel>
-           </Box>
-         </Grid>
-       </Grid>
-     </Container>
-
-     <Foot/>
-   </>
+    <Foot/>
+  </>
 ) : (
    <>
      <NavBar/>

@@ -525,123 +525,205 @@ const handleUploadedClick = () => {
    <>
    {isMobile ? (
    <>
-     <NavBar/>
-     {/* AppBar for mobile view */}
-     <AppBar position="static" color="primary">
-       <Toolbar>
-         <Button variant="contained" color="secondary" onClick={handleCreateOpen}>
-           Register BizSales
-         </Button>
-         <Box ml={2}>
-           <TextField
-             label="Category"
-             variant="outlined"
-             size="small"
-            //  onChange={handleCategoryChange}
-           />
-         </Box>
-         <Box ml={2}>
-           <TextField
-             label="Location"
-             variant="outlined"
-             size="small"
-            //  onChange={handleLocationChange}
-           />
-         </Box>
-         <Button variant="contained" color="secondary" 
-        //  onClick={handleFilterBizSales} 
-         ml={2}>
-           Filter
-         </Button>
-       </Toolbar>
-     </AppBar>
+      <NavBar/>
+     <Container  >
+     <Grid 
+  container 
+  direction="row" 
+  justifyContent="space-between" 
+  alignItems="center" 
+  sx={{ 
+    marginTop: "15px", 
+    backgroundColor: "#f7f4cd", 
+    padding: "10px 20px",
+    borderRadius: "8px",
+    boxShadow: "0px 4px 10px #aaa673"
+  }}
+>
+  <Grid item>
+    <Grid container direction="row" alignItems="center" spacing={2}>
+      <Grid item>
+        <FormControl
+          fullWidth
+          sx={{
+            marginTop: '5px',
+            minWidth: 200,
+            minHeight: 20,
+            borderColor: '#2d2859',
+            '& .MuiInputBase-input': {
+              color: "#000",
+              backgroundColor: "white",
+              padding: '5px',
+              minHeight: '30px',
+              fontSize: "15px",
+              textAlign: "center",
+              borderColor: '#2d2859'
+            },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#2d2859',
+              },
+              '&:hover fieldset': {
+                borderColor: '#2d2859',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#2d2859',
+              },
+            },
+          }}
+        >
+          <Select
+            id="demo-multiple-select"
+            displayEmpty
+            value={filterCategory}
+            onChange={handleCategoryChange}
+            input={<OutlinedInput id="select-multiple" />}
+            renderValue={(selected) => (selected ? selected : "Category")}
+          >
+            <MenuItem disabled value="">
+              <em>Business Category</em>
+            </MenuItem>
+            {Array.isArray(getData) && getData.map((category) => (
+              <MenuItem key={category._id} value={category.categoryname}>
+                {category.categoryname}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Grid>
+      <Grid item>
+        <TextField
+          placeholder="Location"
+          variant="outlined"
+          size="small"
+          value={filterCity}
+          onChange={handleCityChange}
+          sx={{
+            width: 200,
+            marginTop: '5px',
+            color: "#000",
+            backgroundColor: "white",
+            fontSize: "15px",
+            textAlign: "center",
+            borderColor: '#2d2859',
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: "#2d2859",
+              },
+              '&:hover fieldset': {
+                borderColor: '#2d2859',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#2d2859',
+              },
+            },
+          }}
+          InputLabelProps={{
+            style: { color: "#000" },
+          }}
+        />
+      </Grid>
+
+      <Grid item>
+        <Box sx={{ mt: 1, ml: 2 }}>
+          <Button variant="contained" color="success" onClick={applyFilters}>
+            Filter
+          </Button>
+          <Button variant="contained" color="error" sx={{ ml: 2 }} onClick={clearFilters}>
+            Clear
+          </Button>
+        </Box>
+      </Grid>
+    </Grid>
+  </Grid>
+  <Grid item mt={-5}sx={{ ml: 25}} >
+    <Button variant="contained" color="secondary" onClick={handleCreateOpen}>
+      Register BizSales
+    </Button>
+  </Grid>
+</Grid>
+     </Container>
 
      <Container>
        <Grid mt={5} container>
          <Grid container direction="row" justifyContent="flex-start" alignItems="center" item xs={12}>
-         {Array.isArray(data) && data.map((offer, index) => (
-  offer.isapprove === true && (
-    <Grid 
-      container
-      
-      item 
-      xs={12} 
-      direction="row" 
-      justifyContent="flex-start" 
-      alignItems="flex-start" 
-      
-    >
-      <Grid mb={2}   item xs={12} spacing={2}  >   
-        <Card
-         
-          style={{
-            display: 'flex',
-            backgroundColor: '#ffffe0',
-            borderRadius: '15px',
-            padding: 2,
-            width: "100%",
-            height: "auto",
-          }}
-        >
-          {/* Image */}
-          <CardMedia
-            component="img"
-            sx={{ width: 150, borderRadius: '10px' }}
-            src={offer.addimages}
-            alt="banner"
-          />
+         {Array.isArray(filteredSearchData) && filteredSearchData.length > 0 ? (
+        filteredSearchData.map((offer, index) => (
+          offer.isapprove === true && (
+            <Grid container item xs={12} direction="row" justifyContent="flex-start" alignItems="flex-start" key={offer._id}>
+              <Grid mb={2} item xs={6} spacing={2}>
+                <Card style={{ display: 'flex', backgroundColor: '#ffffe0', borderRadius: '15px', padding: 2, width: "200%", height: "auto", position: "relative" }}>
+                  <CardMedia
+                    component="img"
+                    sx={{ width: "180px", borderRadius: '10px', objectFit: "cover" }}
+                    src={offer.addimages}
+                    alt="banner"
+                  />
+                  <Grid item xs={6} sx={{ padding: 2 }} container direction="column" justifyContent="space-evenly" alignItems="flex-start">
+                    <Typography component="div" variant="h6">
+                      {offer.title}
+                    </Typography>
+                   
+                    <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
+                      <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
+                        Offer starts on: <span style={{ color: "green" }}>{new Date(offer.startdate).toLocaleDateString()}</span>
+                      </Typography>
+                      <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
+                        Offer ends on: <span style={{ color: "red" }}>{new Date(offer.enddate).toLocaleDateString()}</span>
+                      </Typography>
+                      <Typography className='mt-2'   component="div" sx={{ fontSize: "13px" }}>
+                       <b style={{color:"#282866"}} > Location:</b> {offer.location}
+                      </Typography>
+                    </Grid>
+                    <Button
+  variant="contained"
+  startIcon={<IoIosMenu />}
+  sx={{
+    marginTop: "10px",
+    borderColor: 'white',
+    color: 'white',
+    backgroundColor: "#282866",
+    fontSize: "10px",
+    '&:hover': {
+      backgroundColor: "#5050A5",
+    }
+  }}
+  onClick={() => handleDetailsOpen(offer._id)}
+>
+  More Details
+</Button>
 
-          {/* Content */}
-          <Grid 
-            item xs={12} 
-            sx={{ padding: 2 }} 
-            container 
-            direction="column" 
-            justifyContent="space-evenly" 
-            alignItems="flex-start"
-          >
-            <Typography component="div" variant="h6">
-              {offer.title}
-            </Typography>
-
-            <Typography className='mt-1' color="secondary" component="div" sx={{ fontSize: "13px" }}>
-              {offer.description}
-            </Typography>
-
-            <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-              <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
-                Offer starts on:{" "}
-                <span style={{ color: "green" }}>
-                  {new Date(offer.startdate).toLocaleDateString()}
-                </span>
-              </Typography>
-              <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
-                Offer ends on:{" "}
-                <span style={{ color: "red" }}>
-                  {new Date(offer.enddate).toLocaleDateString()}
-                </span>
-              </Typography>
+                  </Grid>
+                  <Typography
+                    component="div"
+                    sx={{
+                      fontSize: "10px",
+                      position: "absolute",
+                      top: "10px",
+                      right: "10px",
+                      padding: "5px 10px",
+                      backgroundColor: "#f0f0f0",
+                      borderRadius: "5px",
+                      color: "#333",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Category: {offer.category}
+                  </Typography>
+                </Card>
+              </Grid>
             </Grid>
+          )
+        ))
+      ) : (
+        <Grid mb={5}  container direction="row" textAlign="center" justifyContent="center"  >
+          <Typography variant="h6" sx={{ textAlign: "center", marginTop: "20px", color: "#000",backgroundColor:"#ffe",padding:2,borderRadius:"10px" }}>
+          No data found
+        </Typography>
+        </Grid>
+      )}
 
-            <Button
-              variant="contained"
-              startIcon={<LocationOn />}
-              sx={{
-                marginTop: "10px",
-                borderColor: 'white',
-                color: 'white',
-                backgroundColor: "#282866"
-              }}
-            >
-              Visit Store
-            </Button>
-          </Grid>
-        </Card>
-      </Grid>
-    </Grid>
-  )
-))}
-         </Grid>
+</Grid>
        </Grid>
      </Container>
 
@@ -651,13 +733,13 @@ const handleUploadedClick = () => {
            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
              <CCarousel controls transition="crossfade" style={{ height: '140px', width: "100%" }}>
                <CCarouselItem>
-                 <CImage className="d-block w-100" src={ad} alt="slide 1" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
+                 <CImage className="d-block w-100" src={ad1} alt="slide 1" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
                </CCarouselItem>
                <CCarouselItem>
                  <CImage className="d-block w-100" src={ad1} alt="slide 2" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
                </CCarouselItem>
                <CCarouselItem>
-                 <CImage className="d-block w-100" src={ad} alt="slide 3" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
+                 <CImage className="d-block w-100" src={ad1} alt="slide 3" style={{ height: '140px', width: "100%", objectFit: 'cover' }} />
                </CCarouselItem>
              </CCarousel>
            </Box>
@@ -792,10 +874,6 @@ const handleUploadedClick = () => {
     </Button>
   </Grid>
 </Grid>
-
-
-
-
      </Container>
 
      <Container>
@@ -846,7 +924,6 @@ const handleUploadedClick = () => {
 >
   More Details
 </Button>
-
                   </Grid>
                   <Typography
                     component="div"

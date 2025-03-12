@@ -26,8 +26,6 @@ import { FormControl, InputLabel, Select, OutlinedInput, Chip } from '@mui/mater
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
 import Cookies from 'js-cookie';
-
-
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -38,7 +36,6 @@ const MenuProps = {
     },
   },
 };
-
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -47,7 +44,6 @@ function getStyles(name, personName, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
-
 const Collapses = () => {
   const [store, setStore] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -59,22 +55,16 @@ const Collapses = () => {
   const [color, setColor] = useState('');
   const [open, setOpen] = useState(false);
   const [msg, setMsg] = useState('');
-
   const navigate = useNavigate('')
-
   useEffect(() => {
     const token = Cookies.get('token');
-    
     if (!token) {
       navigate('/');
       return;
     }
-
     try {
       const decodedToken = jwtDecode(token);
       const currentTime = Date.now() / 1000;
-
-      // If token is expired, remove the token and navigate to homepage
       if (decodedToken.exp < currentTime) {
         Cookies.remove('token');
         navigate('/');
@@ -96,7 +86,7 @@ const Collapses = () => {
       const response = await fetch("/api/servicelists", { method: "GET", redirect: "follow" });
       if (response.ok) {
         const result = await response.json();
-        setStore(result.data); // Adjust based on your API response
+        setStore(result.data);
       } else {
         console.error('Unexpected Error', response.status);
       }
@@ -104,7 +94,6 @@ const Collapses = () => {
       console.error('Error fetching services:', error);
     }
   };
-
   const getServiceById = async (serviceId) => {
     try {
       const response = await fetch(`/api/servicedata?id=${serviceId}`, { method: "GET", redirect: "follow" });
@@ -125,7 +114,6 @@ const Collapses = () => {
         setEImages(result.data.addimages)
         setChecked(result.data.isapprove)
         setListed(result.data.freelisting)
-
         console.log(result.data,"dtat coming")
       } else {
         console.error('Unexpected Error', response.status);
@@ -134,7 +122,6 @@ const Collapses = () => {
       console.error('Error fetching service details:', error);
     }
   };
-
   const [editdata,setEditdata] = useState('')
   const [ename, setEName] = useState('');
   const [enumber, setENumber] = useState('');
@@ -150,39 +137,28 @@ const [estate, setEState] = useState('');
   const [eimages, setEImages] = useState(['', '', '', '']);
   const [check, setChecked] = React.useState(false); 
   const [list, setListed] = React.useState(false); 
-
   const handleApproveChange = (event) => {
     console.log(event.target.checked,"event.target.checked")
     setChecked(event.target.checked);  
   };
-
   const handleApproveList = (event) => {
     console.log(event.target.checked,"event.target.Listed")
     setListed(event.target.checked);  
   };
-
   const serviceUpdate = async () => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-  
       let uploadedImageUrl = [];
-  
-      // Only upload images if new images were selected
       if (files.length > 0) {
         uploadedImageUrl = await uploadimages();
       }
-  
-      console.log(editServiceId, "id coming in serviceUpdate");  // Log the serviceId being used
-  
+      console.log(editServiceId, "id coming in serviceUpdate");
       if (!editServiceId) {
         console.error('No serviceId available');
         return;
       }
-  
-      // Use existing image URLs if no new images were uploaded
-      const finalImageUrls = uploadedImageUrl.length > 0 ? uploadedImageUrl : eimages; // `eimages` holds existing images
-  
+      const finalImageUrls = uploadedImageUrl.length > 0 ? uploadedImageUrl : eimages;
       const raw = JSON.stringify({
         servicename: ename,
         isapprove: check,
@@ -199,14 +175,12 @@ const [estate, setEState] = useState('');
         websitelink: elink,
         addimages: finalImageUrls  
       });
-  
       const requestOptions = {
         method: "PUT",
         headers: myHeaders,
         body: raw,
         redirect: "follow",
       };
-  
       fetch(`/api/serviceupdate?id=${editServiceId}`, requestOptions)
         .then(async (response) => {
           if (response.status === 200 || response.status === 400) {
@@ -231,9 +205,7 @@ const [estate, setEState] = useState('');
         method: "DELETE",
         redirect: "follow",
       };
-      
-      const response = await fetch(`/api/delete_service?id=${serviceId}`, requestOptions);
-      
+      const response = await fetch(`/api/delete_service?id=${serviceId}`, requestOptions);  
       if (response.ok) {
         const result = await response.json();
         setDelete(result);
@@ -246,7 +218,6 @@ const [estate, setEState] = useState('');
       console.error("Error deleting service:", error);
     }
   };
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [type, setType] = useState([]);
@@ -262,23 +233,17 @@ const [state, setState] = useState('');
   const [images, setImages] = useState(['', '', '', '']);
   const [newcheck, setNewChecked] = React.useState(false); 
   const [newlist, setNewListed] = React.useState(false); 
-  
   const handleApproveNew = (event) => {
     console.log(event.target.checked,"event.target.checked")
     setNewChecked(event.target.checked);  
   };
-
   const handleListNew = (event) => {
     console.log(event.target.checked,"event.target.Listed")
     setNewListed(event.target.checked);  
   };
-  
   const handleService = async () => {
     try {
-        
         const uploadedImageUrl = await uploadimages();
-
-        // Prepare the request data
         const raw = JSON.stringify({
             "servicename": name,
             "number": number,
@@ -295,31 +260,24 @@ const [state, setState] = useState('');
             "isapprove":newcheck,
             "freelisting":newlist 
         });
-
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
-
-        // Make the service request
         const response = await fetch("/api/service", requestOptions);
         const result = {
             status_code: response.status,
             data: await response.json()
         };
         console.log(result.data,"++++++++++")
-
-        // Handle the response
         if (result.status_code === 200) {
             setOpen(true);
             getServices();
-            setColor('success');
-            
+            setColor('success');          
             setMsg(result.data.msg );
         } else if (result.status_code === 400) {
             setOpen(true);
@@ -333,18 +291,15 @@ const [state, setState] = useState('');
         console.error(error);
     }
 };
-
 useEffect(()=>{
   GetCategory()
 },[])
-
 const GetCategory= ()=>{
 try{
   const requestOptions = {
     method: "GET",
     redirect: "follow"
-  };
-  
+  }; 
   fetch("/api/categorylist", requestOptions)
   .then(async (response) => {
     if (response.status === 200 || response.status === 400) {
@@ -361,28 +316,22 @@ try{
 }catch(error){
   console.log('error', error)
 }
-
 }
-
   const handledClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
-
   const[files,setFiles] = useState('')
-
   const handleImageChange = (index, event) => {
     const file = event.target.files[0];
     if (file) {
       if (file.type.startsWith('image/')) {
         const newImages = [...images];
-        newImages[index] = URL.createObjectURL(file); // Show the image preview
+        newImages[index] = URL.createObjectURL(file);
         setImages(newImages);
         setEImages(newImages);
-        
-        // Save the file object in state for later uploading
         const newFiles = [...files];
         newFiles[index] = file;
         setFiles(newFiles);
@@ -391,42 +340,33 @@ try{
       }
     }
   };
-
   const handleEditImageChange = (index, event) => {
     const file = event.target.files[0];
     if (file) {
       if (file.type.startsWith('image/')) {
         const newEImages = [...eimages];
-        newEImages[index] = URL.createObjectURL(file); // Show the image preview
-        setEImages(newEImages); // Set edited images for preview
-  
+        newEImages[index] = URL.createObjectURL(file); 
+        setEImages(newEImages);
         const newFiles = [...files];
-        newFiles[index] = file; // Save the file object for later upload
+        newFiles[index] = file;
         setFiles(newFiles);
       } else {
         alert('Please select a valid image file.');
       }
     }
   };
-
-  
-
   const uploadimages = async () => {
     try {
       const filesArray = Array.from(files); 
-  
       const uploadedImageUrls = await Promise.all(filesArray.map(async (file) => {
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'ae1kvvqp');
-  
         const response = await fetch('https://api.cloudinary.com/v1_1/qikcall/image/upload', {
           method: 'POST',
           body: formData,
         });
-  
         const data = await response.json();
-  
         if (data.secure_url) {
           console.log(data.secure_url, "data")
           return data.secure_url;
@@ -434,17 +374,14 @@ try{
           throw new Error('Failed to upload image.');
         }
       }));
-  
       return uploadedImageUrls;
     } catch (error) {
       console.error('Error uploading images:', error);
       throw error;
     }
   };
-
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
-
   const handleChange = (event) => {
     const {
       target: { value },
@@ -453,7 +390,6 @@ try{
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-
   const handleEditChange = (event) => {
     const {
       target: { value },
@@ -462,66 +398,50 @@ try{
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-
-  
   const [create,setCreate]=useState('')
   const [editopen,setEditopen] = useState('')
   const [editServiceId,setEditServiceId] = useState('')
-
   const handleNewRegister =()=>{
     handleService()
     handleCreateClose()
   }
-
   const handleCreateOpen = async () => {
     setCreate(true)
   };
-
   const handleCreateClose = () => {
     setCreate(false); 
   };
-  
-
   const handleMenuOpen = (event, serviceId) => {
     setAnchorEl(event.currentTarget);
     setSelectedServiceId(serviceId);
   };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
   const handleClickOpen = async () => {
     if (selectedServiceId) {
        setDetailsOpen(true);
-      await getServiceById(selectedServiceId);
-     
+      await getServiceById(selectedServiceId); 
     }
   };
-
   const handleClose = () => {
     setDetailsOpen(false);
     setAnchorEl(null);
   };
-
   const handleDeleteOpen = async () => {
     if (selectedServiceId) {
       setDeleteOPen(true);
-      await getServiceById(selectedServiceId);
-     
+      await getServiceById(selectedServiceId); 
     }
   };
-
   const handleDeleteClose = () => {
     setDeleteOPen(false);
   };
-
   const handleEditOpen = () => {
     if (selectedServiceId) {
       setEditopen(true);  
       setEditServiceId(selectedServiceId);  
       console.log(selectedServiceId, "id coming in handleEditOpen");
-      
       getServiceById(selectedServiceId);
     }
   };
@@ -530,28 +450,21 @@ try{
       getServiceById(selectedServiceId);
     }
   }, [selectedServiceId]);
-  
-  
   const handleEditClose = () => {
     setEditopen(false);
   };
-
 const handleEditUpdate =()=>{
   serviceUpdate();
   handleEditClose();
   handleMenuClose()
   }
-  
-
   const handleDelete = () => {
     if (selectedServiceId) {
       setDeleteOPen(false);
-      userDelete(selectedServiceId); // Delete by selectedServiceId
-      handleMenuClose()
-      
+      userDelete(selectedServiceId);
+      handleMenuClose()  
     }
   };
-
   const menuopen = Boolean(anchorEl);
 
   return (
@@ -652,9 +565,7 @@ const handleEditUpdate =()=>{
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-            {/* <InputLabel id="demo-multiple-chip-number">Mobile Number</InputLabel> */}
               <TextField
-              // labelId="demo-multiple-chip-number"
                 id="service-description"
                 variant="outlined"
                 value={description}
@@ -908,8 +819,8 @@ const handleEditUpdate =()=>{
                     <CardMedia
                       component="img"
                       sx={{ width: "100%", height: "200%" }}
-                      image={item.addimages[0]} // Your image source here from item
-                      alt={item.servicename} // Your alt text
+                      image={item.addimages[0]}
+                      alt={item.servicename}
                     />
                   </Grid>
                   <Grid item xs={6} container direction="column" justifyContent="space-evenly" alignItems="flex-start">
@@ -919,7 +830,7 @@ const handleEditUpdate =()=>{
                     <Typography sx={{ fontSize: "15px", marginTop: "8px" }}><b>Address:</b> {item.addressline1}, {item.addressline2}, {item.city}, {item.pincode}</Typography>
                   </Grid>
                 </Grid>
-                <IconButton sx={{ position: 'absolute', top: 8, right: 8 }} onClick={(event) => handleMenuOpen(event, item._id)}>
+                <IconButton sx={{ position: 'absolute', top: 8, right: 10 }} onClick={(event) => handleMenuOpen(event, item._id)}>
                   <MoreVertIcon />
                 </IconButton>
                 <Menu
@@ -965,8 +876,6 @@ const handleEditUpdate =()=>{
           <b>Area:</b> {selectedServiceDetails.area}
         </Typography>
       </Grid>
-
-      {/* Right Column */}
       <Grid item xs={6} container direction="column" alignItems="flex-start">
       <Typography  sx={{ fontSize: "12px" }} align="left">
          <b> Phone:</b> {selectedServiceDetails.number}
@@ -982,15 +891,13 @@ const handleEditUpdate =()=>{
         </Typography>
       </Grid>
     </Grid>
-
-    {/* Centered Image */}
     <Typography align='left' className='mt-2' sx={{ fontSize: "20px",fontWeight:"bold" }}>Gallery</Typography>
     <Grid item xs={8} >
       <CardMedia
         component="img"
         sx={{ width: "100%", height: "auto" }}
-        image={selectedServiceDetails.addimages[0]} // Image source here
-        alt={selectedServiceDetails.servicename} // Alt text
+        image={selectedServiceDetails.addimages[0]}
+        alt={selectedServiceDetails.servicename}
       />
     </Grid>
   </Grid>
@@ -1043,7 +950,6 @@ const handleEditUpdate =()=>{
             >
               Service Profile
             </Typography>
-
             <FormControl fullWidth margin="normal">
               <TextField
                 id="service-name"
@@ -1059,11 +965,8 @@ const handleEditUpdate =()=>{
                 }}
               />
             </FormControl>
-
             <FormControl fullWidth margin="normal">
-            {/* <InputLabel id="demo-multiple-chip-number">Mobile Number</InputLabel> */}
               <TextField
-              // labelId="demo-multiple-chip-number"
                 id="service-number"
                 variant="outlined"
                 value={enumber}
@@ -1079,7 +982,6 @@ const handleEditUpdate =()=>{
                 }}
               />
             </FormControl>
-
             <FormControl fullWidth margin="normal" >
         <InputLabel id="demo-multiple-chip-label">Category</InputLabel>
         <Select
@@ -1109,7 +1011,6 @@ const handleEditUpdate =()=>{
           ))}
         </Select>
       </FormControl>
-
       <FormControl fullWidth margin="normal">
   <TextField
     id="service-description"
@@ -1118,7 +1019,7 @@ const handleEditUpdate =()=>{
     label="Service Description"
     onChange={(e) => setEDescription(e.target.value)}
     InputLabelProps={{
-      shrink: true,  // This will shrink the label
+      shrink: true,
     }}
     InputProps={{
       style: {
@@ -1140,7 +1041,6 @@ const handleEditUpdate =()=>{
                 onChange={(e)=>{
                   setEAddressLine1(e.target.value)
                 }}
-
               />
               <TextField
                 label="Street/Colony"
@@ -1192,7 +1092,6 @@ const handleEditUpdate =()=>{
                   setEState(e.target.value)
                 }}
               />
-
             <FormControl fullWidth margin="normal">
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                 <Typography variant="body2" sx={{ color: '#333366' }}>*Optional</Typography>
