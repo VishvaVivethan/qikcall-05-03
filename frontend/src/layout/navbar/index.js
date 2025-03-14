@@ -593,14 +593,6 @@ useEffect(() => {
                     <Typography className="mb-2" id="titletext-mob" sx={{ color: "red", fontSize: "25px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }}>Qik Call</Typography>
                   </div>
                 </Grid>
-                {/* <Grid container xs={12} direction='row' justifyContent="space-evenly" alignItems="center" mt={1} >
-                  <Grid container className='mb-1' item xs={6} sm="auto" justifyContent="space-around" alignItems="center">
-                    <Button id='Topbutton-mob' > Business Login/signup</Button>
-                  </Grid>
-                  <Grid container className='mb-1' item xs={6} sm="auto" justifyContent="space-around" alignItems="center">
-                    <Button id='Topbutton-mob' >Always Free Ads(T&C)</Button>
-                  </Grid>
-                </Grid> */}
               </Grid>
 
               <Grid mb={1} container xs={12} mt={0.5} direction="row" justifyContent="space-evenly" alignItems="center">
@@ -1172,9 +1164,6 @@ useEffect(() => {
 
 </Grid>
 </Grid>
-
-
-          
                 <Dialog
                   fullScreen
                   open={open}

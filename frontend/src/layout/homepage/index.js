@@ -84,14 +84,7 @@ import cat5 from '../../assets/image/carwash.png'
 import cat6 from '../../assets/image/papad.png'
 import cat7 from '../../assets/image/icecream.png'
 import cat8 from '../../assets/image/ad.png'
-
-
-
-
-
-
 const DownCard = (props) => {
-  // const names = Array(24).fill('Ambulance Service');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const [getData, setGetData] = useState([]);
 
@@ -202,10 +195,7 @@ const DownCard = (props) => {
     </>
   )
 }
-
-
 const Location = (props) => {
-  // const names = Array(24).fill('Ambulance Service');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const [getDistrict, setDistrict] = useState([]);
 
@@ -257,68 +247,16 @@ const Location = (props) => {
     <>
       {isMobile ? (
         <>
-        {/* <Typography variant="h5" className=" mb-1 title-mob">Major Locations</Typography> */}
-         {/* <Container>
-         
-         <Grid container spacing={1} style={{ flexWrap: 'wrap' }}>
-  {getDistrict.map((item, index) => (
-    <React.Fragment key={index}>
-      <Grid item>
-        <Typography
-          onClick={() => handleNavigate(item._id)}
-          variant="body1"
-          component="span"
-          style={{ whiteSpace: 'nowrap',cursor:"pointer",fontSize:"10px" }}
-          
-        >
-          {item.district}
-        </Typography>
-      </Grid>
-      {index < getDistrict.length - 1 && (
-        <Grid item>
-           <Divider orientation="vertical" variant="middle" flexItem />
-        </Grid>
-      )}
-    </React.Fragment>
-  ))}
-</Grid>
-        </Container> */}
         </>
       ) : (
         <>
         <Container>
-        {/* <Typography variant="h5" className="mb-3 mt-5">Major Locations</Typography> */}
-         {/* <Grid container spacing={1} style={{ flexWrap: 'wrap' }}>
-  {getDistrict.map((item, index) => (
-    <React.Fragment key={index}>
-      <Grid item>
-        <Typography
-          onClick={() => handleNavigate(item._id)}
-          variant="body1"
-          component="span"
-          style={{ whiteSpace: 'nowrap',cursor:"pointer" }}
-          
-        >
-          {item.district}
-        </Typography>
-      </Grid>
-      {index < getDistrict.length - 1 && (
-        <Grid item>
-           <Divider orientation="vertical" variant="middle" flexItem />
-        </Grid>
-      )}
-    </React.Fragment>
-  ))}
-</Grid> */}
         </Container>
         </>
       )}
     </>
   )
 }
-
-
-
 const MidCategories = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const navigate = useNavigate();
@@ -369,7 +307,7 @@ const MidCategories = () => {
   };
 
   const handleClickOpen = () => {
-    console.log("Opening dialog");  // Debug to check if this function gets called
+    console.log("Opening dialog");
     setOpen(true);
   };
 
@@ -384,14 +322,10 @@ const MidCategories = () => {
     }
   ];
 
-  const [searchTerm, setSearchTerm] = useState(''); // State for search input
-
-  // Function to handle search input changes
+  const [searchTerm, setSearchTerm] = useState('');
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
-
-  // Function to filter the data based on the search term
   const filteredData = getData.filter((category) =>
     category.categoryname.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -455,7 +389,7 @@ const MidCategories = () => {
             backgroundColor: "#00bfff",
             cursor: 'pointer'
           }}
-          onClick={handleClickOpen} // Ensuring this is bound properly
+          onClick={handleClickOpen}
         >
           {category.icon}
         </Box>
@@ -600,12 +534,12 @@ const MidCategories = () => {
       aria-labelledby="responsive-dialog-title"
       sx={{
         '& .MuiDialog-paper': {
-          margin: isMobile ? 0 : undefined, // Remove margin on mobile
+          margin: isMobile ? 0 : undefined,
           position: 'absolute',
           right: 0,
           top: 0,
-          width: isMobile ? '100%' : '80vw', // Maintain consistent width
-          height: isMobile ? '100%' : '80vh', // Maintain consistent height
+          width: isMobile ? '100%' : '80vw',
+          height: isMobile ? '100%' : '80vh',
         },
       }}
     >

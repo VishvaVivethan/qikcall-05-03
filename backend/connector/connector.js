@@ -503,13 +503,12 @@ module.exports.getwishlistdata = async function (userId) {
 
 
 
-
 module.exports.Deletewishlist = async function (id) {
   try {
     const wishlist = await wishlistRegister.findByIdAndDelete(id);
 
     if (!wishlist) {
-      return returnResponseJson('wishlist not found', 404, null);
+      return returnResponseJson('Wishlist not found', 404, null);
     }
 
     return returnResponseJson('Delete successful', 200, wishlist);
@@ -518,6 +517,7 @@ module.exports.Deletewishlist = async function (id) {
     return returnResponseJson('Server Error', 500, error.message);
   }
 };
+
 
 
 // module.exports.getwishlistdata = async function (req, res, next) {

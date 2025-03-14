@@ -17,19 +17,6 @@ import Cookies from 'js-cookie';
 import Sign from '../../assets/img/image5.jpeg'
 import Footer from '../footer';
 import  Navbar  from '../navbar';
-
-
-
-
-
-
-
-
-
-
-
-
-
 function Signin() {
 
   // const [value, setValue] = useState('');
@@ -44,10 +31,6 @@ function Signin() {
   const [color, setColor] = useState('')
   const [msg, setMsg] = useState('')
   const navigate = useNavigate();
-
-
-
-
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -241,7 +224,7 @@ fetch("/api/verifyemail", requestOptions)
       </Typography>
       <Typography 
         sx={{ 
-          fontSize: { xs: "18px", sm: "25px" }, // Adjust font size for mobile
+          fontSize: { xs: "18px", sm: "25px" },
           fontWeight: "bold" 
         }}
       >
@@ -260,7 +243,6 @@ fetch("/api/verifyemail", requestOptions)
         onChange={(e) => {
           setEmail(e.target.value)
         }}
-        // inputProps={{ maxLength: 10 }}
         sx={{
           '& .MuiInputBase-root': {
             borderRadius: '20px',
@@ -269,7 +251,6 @@ fetch("/api/verifyemail", requestOptions)
           },
         }}
       />
-
       <Typography className='mt-4' sx={{ fontSize: { xs: "10px", sm: "10px" } }}>
         This will allow us to verify your identity and grant
       </Typography>

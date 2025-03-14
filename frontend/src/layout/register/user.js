@@ -500,7 +500,7 @@ fetch("/api/verifyemail", requestOptions)
               value={city}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setCity(e.target.value)}
-              InputProps={{ readOnly: true }}
+              // InputProps={{ readOnly: true }}
               error={!!errors.city}
               helperText={errors.city}
             />
@@ -512,7 +512,7 @@ fetch("/api/verifyemail", requestOptions)
               value={state}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setState(e.target.value)}
-              InputProps={{ readOnly: true }}
+              // InputProps={{ readOnly: true }}
               error={!!errors.state}
               helperText={errors.state}
             />
@@ -744,7 +744,7 @@ handleSave()
               value={city}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setCity(e.target.value)}
-              InputProps={{ readOnly: true }}
+              // InputProps={{ readOnly: true }}
               error={!!errors.city}
               helperText={errors.city}
             />
@@ -756,7 +756,7 @@ handleSave()
               value={state}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setState(e.target.value)}
-              InputProps={{ readOnly: true }}
+              // InputProps={{ readOnly: true }}
               error={!!errors.state}
               helperText={errors.state}
             />
@@ -798,18 +798,7 @@ handleSave()
         <Typography className='mt-3' align='center' fontSize="15px">
             If you have already a account, 
             <Button onClick={handleClickOpen} >Sign in</Button>
-        </Typography>
-        {/* <Grid >
-                   <Typography className='mt-5' style={{ color: '#2c2c4b',fontSize:"20px" }}>What are Terms and Conditions Agreements?</Typography>
-                   <Typography className='mt-3' style={{ color: '#2c2c4b' }}>
-                     A Terms and Conditions agreement acts as a legal contract between you (the company) and the user.
-                     It's where you maintain your rights to exclude users from your app in the event that they abuse your website/app,
-                     set out the rules for using your service, and note other important details and disclaimers.
-                   </Typography>
-                  
-                 </Grid> */}
-                
-               
+        </Typography>             
       </Grid>
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
         <Alert
@@ -828,14 +817,13 @@ handleSave()
     
 </>
 )}
-
     <Dialog
       open={dialogopen}
       onClose={handleClickClose}
       aria-labelledby="responsive-dialog-title"
-      fullScreen={fullScreen} // Fullscreen on small screens
-      maxWidth="xs" // Max width for smaller screens
-      fullWidth={true} // Allows content to take full width
+      fullScreen={fullScreen}
+      maxWidth="xs"
+      fullWidth={true}
     >
       <DialogContent
         sx={{

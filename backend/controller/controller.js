@@ -306,25 +306,28 @@ module.exports.userUpdate = async function (req, res, next) {
      return res.status(500).send(returnResponseJson('Server Error', 500, error.message));
    }
  };
-
  module.exports.Deletewishlist = async function (req, res, next) {
   try {
-    var Delete = await userConnector.Deletewishlist(req.query.id);
-    console.log(Delete, "User Data");
+      const { id } = req.body; // Get id from the body
+      console.log("Deleting wishlist with ID:", id);
 
-    if (Delete) {
-      return res.status(Delete.status).send(Delete);
-    }
+      if (!id) {
+          return res.status(400).send(returnResponseJson('ID is required', 400));
+      }
 
-    return res.status(400).send(returnResponseJson('Delete Error', 400));
+      const deleteResult = await userConnector.Deletewishlist(id);
+      console.log(deleteResult, "Delete Result");
+
+      if (deleteResult) {
+          return res.status(deleteResult.status).send(deleteResult);
+      }
+
+      return res.status(400).send(returnResponseJson('Delete Error', 400));
   } catch (error) {
-    console.error(error);
-    return res.status(500).send(returnResponseJson('Server Error', 500));
+      console.error('Error deleting wishlist item:', error);
+      return res.status(500).send(returnResponseJson('Server Error', 500));
   }
 };
-
- 
-
 
  module.exports.ratingRegister = async function (req, res, next) {
    try {
