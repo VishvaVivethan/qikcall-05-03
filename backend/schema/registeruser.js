@@ -99,6 +99,8 @@ module.exports.UserRegister = new mongoose.Schema({
     fcmToken:{ 
         type:String,
         required:false},
+        resetOtp: { type: String },
+        otpExpiry: { type: Date }
     
 }, { timestamps: true });
 

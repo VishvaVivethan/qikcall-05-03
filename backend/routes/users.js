@@ -13,7 +13,8 @@ const{emailVerificationLimit} = require('../emailsender/sender');
 router.post('/register', controller.registerUser);
 
 router.post('/login', controller.userlogin);
-
+router.post('/forgot-password', controller.forgotPassword);
+router.post('/reset-password', controller.resetPassword);
 router.post('/verifyemail',emailVerificationLimit, controller.LoginbyEmail);
 
 router.put('/user_update', controller.userUpdate);
@@ -161,8 +162,5 @@ router.get('/getappliedjobs', controller.getAppliedPost);
 router.post('/applyjobs', controller.ApplyJobs);
 
 router.get('/getapplyjobs', controller.getApplyJobs);
-
-
-
 
 module.exports = router;

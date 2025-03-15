@@ -31,6 +31,7 @@ const postJobs = mongoose.model("JobPost",JobPost)
 const ApplyJob = require('../schema/jobapplying').JobApplyingSchema
 const jobApply = mongoose.model("ApplyJob",ApplyJob)
 const ObjectId = mongoose.Types.ObjectId;
+const bcrypt = require('bcrypt');
 
 
 
@@ -119,7 +120,21 @@ module.exports.userlogin = async function (value) {
   }
 }
 
+module.exports.setResetOtp = async (email, otp, expiry) => {
+  const user = await registerUser.findOneAndUpdate({ email }, { resetOtp: otp, otpExpiry: expiry });
+  return user ? returnResponseJson('OTP Set', 200) : returnResponseJson('Email not found', 400);
+};
 
+module.exports.resetPassword = async (email, otp, newPassword) => {
+  const user = await registerUser.findOne({ email, resetOtp: otp, otpExpiry: { $gt: new Date() } });
+  if (!user) return returnResponseJson('Invalid or expired OTP', 400);
+
+  user.password = await bcrypt.hash(newPassword, 10);
+  user.resetOtp = null;
+  user.otpExpiry = null;
+  await user.save();
+  return returnResponseJson('Password reset successful', 200);
+};
 
 module.exports.LoginbyEmail = async function (emailId) {
   try {

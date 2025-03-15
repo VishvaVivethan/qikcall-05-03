@@ -846,19 +846,15 @@ handleSave()
             To login, please enter your registered email id
           </Typography>
           <TextField
-            placeholder="Enter your email id"
-            className="mt-4"
-            value={email}
-            // onChange={handleValidation}
-            // inputProps={{ maxLength: 10 }}
-            sx={{
-              '& .MuiInputBase-root': {
-                borderRadius: '20px',
-                width: { xs: "100%", sm: "350px" }, // Full width on mobile
-                height: "60px",
-              },
-            }}
-          />
+              label="Email"
+              variant="outlined"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={!!errors.email}
+              helperText={errors.email}
+              fullWidth
+              margin="normal"
+            />
           <Typography className="mt-5" sx={{ fontSize: { xs: "8px", sm: "10px" } }}>
             This will allow us to verify your identity and grant access to your account.
           </Typography>

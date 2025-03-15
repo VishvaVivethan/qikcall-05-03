@@ -6,7 +6,7 @@ require("dotenv").config();
 const { token } = require('morgan');
 const{sendEmail} = require('../emailsender/sender')
 const{customerRegisterBody} = require('../emailsender/message')
-
+const nodemailer = require('nodemailer');
 
 module.exports.registerUser = async function (req, res, next) {
    try {
@@ -101,6 +101,41 @@ module.exports.userlogin = async function (req, res, next) {
 
  }
  };
+ module.exports.forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiry = new Date(Date.now() + 10 * 60000);
+
+    const response = await userConnector.setResetOtp(email, otp, expiry);
+    if (response.status === 200) {
+      await sendEmail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Password Reset OTP",
+        text: `Your OTP for password reset is ${otp}. It will expire in 10 minutes.`,
+      }, 'OTP sent successfully.');
+
+      res.status(200).send(returnResponseJson('OTP sent to email', 200));
+    } else {
+      res.status(400).send(returnResponseJson('Email not found', 400));
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(returnResponseJson('Server Error', 500));
+  }
+};
+
+module.exports.resetPassword = async (req, res) => {
+  try {
+      const { email, otp, newPassword } = req.body;
+      const response = await userConnector.resetPassword(email, otp, newPassword);
+      res.status(response.status).send(response);
+  } catch (error) {
+      console.error(error);
+      res.status(500).send(returnResponseJson('Server Error', 500));
+  }
+};
 
  module.exports.LoginbyEmail = async function (req, res) {
    try {
@@ -175,8 +210,6 @@ module.exports.userlogin = async function (req, res, next) {
    }
  };
  
- 
-
  module.exports.getuserdataById = async function (req, res, next) {
    try {
      var formresponce = await userConnector.getuserdataById( req.query.userid,);
