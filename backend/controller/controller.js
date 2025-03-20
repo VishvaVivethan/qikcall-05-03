@@ -381,6 +381,36 @@ module.exports.userUpdate = async function (req, res, next) {
    }
 };
 
+
+// module.exports.getStoreDetails = async function (req, res) {
+//   try {
+//     let storename = req.params.storename;
+//     if (!storename) {
+//       return res.status(400).json(returnResponseJson("Store name is required", 400));
+//     }
+
+//     let response = await userConnector.getStoreDetails(storename);
+//     return res.status(response.status).json(response);
+//   } catch (error) {
+//     console.error("Error fetching store details:", error);
+//     return res.status(500).json(returnResponseJson("Server Error", 500));
+//   }
+// };
+module.exports.getStoreDetails = async function (req, res) {
+  try {
+    const storename = req.params.storename;
+    if (!storename) {
+      return res.status(400).json(returnResponseJson('Store name is required', 400));
+    }
+
+    const response = await userConnector.fetchStoreDetails(storename);
+    return res.status(response.status).json(response);
+  } catch (error) {
+    console.error('Error fetching store details:', error);
+    return res.status(500).json(returnResponseJson('Server Error', 500));
+  }
+};
+
 module.exports.getSearchDetails = async function (req, res, next) {
    try {
       
@@ -803,21 +833,35 @@ module.exports.advertiseUpdate = async function (req, res, next) {
   }
 };
 
-module.exports.getadvertisedataById = async function (req, res, next) {
-  try {
-    var formresponce = await userConnector.getAvertiseData( req.query.id,);
+// module.exports.getadvertisedataById = async function (req, res, next) {
+//   try {
+//     var formresponce = await userConnector.getAvertiseData( req.query.id,);
 
-    if (formresponce) {
-      return res.status(formresponce.status).send(formresponce);
-    } else {
-      return res.status(404).send(returnResponseJson('User Not Found', 404));
+//     if (formresponce) {
+//       return res.status(formresponce.status).send(formresponce);
+//     } else {
+//       return res.status(404).send(returnResponseJson('User Not Found', 404));
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).send(returnResponseJson('Server Error', 500));
+//   }
+// }
+module.exports.getAdvertiseDataById = async function (req, res) {
+  try {
+    const { id } = req.query; // Extracting id from query params
+    if (!id) {
+      return res.status(400).json(returnResponseJson('ID is required', 400, null));
     }
+
+    const formResponse = await module.exports.getAdvertiseData(id);
+
+    return res.status(formResponse.status).json(formResponse);
   } catch (error) {
     console.error(error);
-    return res.status(500).send(returnResponseJson('Server Error', 500));
+    return res.status(500).json(returnResponseJson('Server Error', 500, null));
   }
-}
-
+};
 module.exports.DeleteAdvertise = async function (req, res, next) {
   try {
     var Delete = await userConnector.DeleteAdvertise(req.query.id);
@@ -871,20 +915,20 @@ module.exports.getOffer = async function (req, res, next) {
  }
 }
 
-module.exports.getofferdata = async function (req, res, next) {
- try {
-   var formresponce = await userConnector.getOfferData( req.query.id,);
+// module.exports.getofferdata = async function (req, res, next) {
+//  try {
+//    var formresponce = await userConnector.getOfferData( req.query.id,);
 
-   if (formresponce) {
-     return res.status(formresponce.status).send(formresponce);
-   } else {
-     return res.status(404).send(returnResponseJson('User Not Found', 404));
-   }
- } catch (error) {
-   console.error(error);
-   return res.status(500).send(returnResponseJson('Server Error', 500));
- }
-}
+//    if (formresponce) {
+//      return res.status(formresponce.status).send(formresponce);
+//    } else {
+//      return res.status(404).send(returnResponseJson('User Not Found', 404));
+//    }
+//  } catch (error) {
+//    console.error(error);
+//    return res.status(500).send(returnResponseJson('Server Error', 500));
+//  }
+// }
 
 module.exports.OfferUpdate = async function (req, res, next) {
  try {
@@ -902,21 +946,50 @@ module.exports.OfferUpdate = async function (req, res, next) {
  }
 };
 
+// module.exports.getofferById = async function (req, res, next) {
+//  try {
+//    var formresponce = await userConnector.getOfferData( req.query.id,);
+
+//    if (formresponce) {
+//      return res.status(formresponce.status).send(formresponce);
+//    } else {
+//      return res.status(404).send(returnResponseJson('User Not Found', 404));
+//    }
+//  } catch (error) {
+//    console.error(error);
+//    return res.status(500).send(returnResponseJson('Server Error', 500));
+//  }
+// }
+
+module.exports.getOfferData = async function (id) {
+  try {
+    const user = await offeregister.findById(id);
+
+    if (user) {
+      return returnResponseJson('Fetch success', 200, user);
+    } else {
+      return returnResponseJson('User not found', 400, null);
+    }
+  } catch (error) {
+    console.error(error);
+    return returnResponseJson('Server Error', 500);
+  }
+};
+
 module.exports.getofferById = async function (req, res, next) {
- try {
-   var formresponce = await userConnector.getOfferData( req.query.id,);
+  try {
+    const formresponce = await userConnector.getOfferData(req.params.id); // Fixed req.query.id to req.params.id
 
-   if (formresponce) {
-     return res.status(formresponce.status).send(formresponce);
-   } else {
-     return res.status(404).send(returnResponseJson('User Not Found', 404));
-   }
- } catch (error) {
-   console.error(error);
-   return res.status(500).send(returnResponseJson('Server Error', 500));
- }
-}
-
+    if (formresponce) {
+      return res.status(formresponce.status).send(formresponce);
+    } else {
+      return res.status(404).send(returnResponseJson('User Not Found', 404));
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send(returnResponseJson('Server Error', 500));
+  }
+};
 module.exports.OfferAdvertise = async function (req, res, next) {
  try {
    var Delete = await userConnector.DeleteOffer(req.query.id);

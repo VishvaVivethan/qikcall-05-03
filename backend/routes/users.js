@@ -29,6 +29,8 @@ router.get('/useradmin',controller.userAdmin);
 
 router.post('/rating', controller.ratingRegister);
 
+router.get("/ratings/:storename", controller.getStoreDetails);
+
 router.post('/wishlist', controller.wishlistRegister);
 
 router.delete('/delete_wishlist', controller.Deletewishlist);
@@ -103,7 +105,7 @@ router.post('/offer', controller.PostOffer);
 
 router.get('/offerdetail',controller.getOffer); 
 
-router.get('/offerdata',controller.getofferById);
+router.get('/offerdata/:id',controller.getofferById);
 
 router.put('/offer_update', controller.OfferUpdate);
 

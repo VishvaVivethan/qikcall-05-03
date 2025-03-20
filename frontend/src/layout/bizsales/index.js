@@ -473,7 +473,7 @@ const handleUploadedClick = () => {
   const [filteredSearchData, setFilteredSearchData] = useState(data);
 
   useEffect(() => {
-    setFilteredSearchData(data); // Show all data by default
+    setFilteredSearchData(data);
   }, [data]);
 
   const handleCategoryChange = (event) => {
@@ -884,64 +884,100 @@ const handleUploadedClick = () => {
           offer.isapprove === true && (
             <Grid container item xs={12} direction="row" justifyContent="flex-start" alignItems="flex-start" key={offer._id}>
               <Grid mb={2} item xs={6} spacing={2}>
-                <Card style={{ display: 'flex', backgroundColor: '#ffffe0', borderRadius: '15px', padding: 2, width: "100%", height: "auto", position: "relative" }}>
-                  <CardMedia
-                    component="img"
-                    sx={{ width: "200px", borderRadius: '10px', objectFit: "cover" }}
-                    src={offer.addimages}
-                    alt="banner"
-                  />
-                  <Grid item xs={6} sx={{ padding: 2 }} container direction="column" justifyContent="space-evenly" alignItems="flex-start">
-                    <Typography component="div" variant="h6">
-                      {offer.title}
-                    </Typography>
-                   
-                    <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
-                      <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
-                        Offer starts on: <span style={{ color: "green" }}>{new Date(offer.startdate).toLocaleDateString()}</span>
-                      </Typography>
-                      <Typography className="mt-2" component="div" sx={{ fontSize: "12px" }}>
-                        Offer ends on: <span style={{ color: "red" }}>{new Date(offer.enddate).toLocaleDateString()}</span>
-                      </Typography>
-                      <Typography className='mt-2'   component="div" sx={{ fontSize: "13px" }}>
-                       <b style={{color:"#282866"}} > Location:</b> {offer.location}
-                      </Typography>
-                    </Grid>
-                    <Button
-  variant="contained"
-  startIcon={<IoIosMenu />}
-  sx={{
-    marginTop: "10px",
-    borderColor: 'white',
-    color: 'white',
-    backgroundColor: "#282866",
-    fontSize: "10px",
-    '&:hover': {
-      backgroundColor: "#5050A5",
-    }
-  }}
-  onClick={() => handleDetailsOpen(offer._id)} // Fixing the onClick syntax
->
-  More Details
-</Button>
-                  </Grid>
-                  <Typography
-                    component="div"
-                    sx={{
-                      fontSize: "10px",
-                      position: "absolute",
-                      top: "10px",
-                      right: "10px",
-                      padding: "5px 10px",
-                      backgroundColor: "#f0f0f0",
-                      borderRadius: "5px",
-                      color: "#333",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Category: {offer.category}
-                  </Typography>
-                </Card>
+
+                {data.map((offer, index) => (
+  <Card 
+    key={index} 
+    sx={{ 
+      display: 'flex', 
+      backgroundColor: '#ffffe0', 
+      borderRadius: '15px', 
+      padding: 2, 
+      width: "100%",
+      maxWidth: "400px",
+      height: "auto", 
+      position: "relative",
+      marginBottom: 2,
+      boxShadow: 3,
+      '&:hover': {
+        boxShadow: 6,
+      }
+    }}
+  >
+    <CardMedia
+      component="img"
+      sx={{ 
+        width: "120px",
+        height: "120px",
+        borderRadius: '10px', 
+        objectFit: "cover",
+        marginRight: 2,
+      }}
+      src={offer.addimages}
+      alt="banner"
+    />
+    <Grid 
+      item 
+      xs={6} 
+      sx={{ 
+        padding: 1, 
+        flexGrow: 1,
+      }} 
+      container 
+      direction="column" 
+      justifyContent="space-between" 
+      alignItems="flex-start"
+    >
+      <Typography component="div" variant="h6" sx={{ fontWeight: 'bold', fontSize: '16px' }}>
+        {offer.title}
+      </Typography>
+      <Grid container direction="column" spacing={1}>
+        <Typography component="div" sx={{ fontSize: "12px" }}>
+          Offer starts on: <span style={{ color: "green" }}>{new Date(offer.startdate).toLocaleDateString()}</span>
+        </Typography>
+        <Typography component="div" sx={{ fontSize: "12px" }}>
+          Offer ends on: <span style={{ color: "red" }}>{new Date(offer.enddate).toLocaleDateString()}</span>
+        </Typography>
+        <Typography component="div" sx={{ fontSize: "13px" }}>
+          <b style={{ color: "#282866" }}>Location:</b> {offer.location}
+        </Typography>
+      </Grid>
+      <Button
+        variant="contained"
+        startIcon={<IoIosMenu />}
+        sx={{
+          marginTop: "10px",
+          borderColor: 'white',
+          color: 'white',
+          backgroundColor: "#282866",
+          fontSize: "12px",
+          '&:hover': {
+            backgroundColor: "#5050A5",
+          }
+        }}
+        onClick={() => handleDetailsOpen(offer._id)}
+      >
+        More Details
+      </Button>
+    </Grid>
+    <Typography
+      component="div"
+      sx={{
+        fontSize: "10px",
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+        padding: "5px 10px",
+        backgroundColor: "#f0f0f0",
+        borderRadius: "5px",
+        color: "#333",
+        fontWeight: "bold",
+      }}
+    >
+      Category: {offer.category}
+    </Typography>
+  </Card>
+))}
               </Grid>
             </Grid>
           )

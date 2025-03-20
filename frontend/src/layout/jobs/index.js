@@ -72,9 +72,6 @@ function Jobs() {
 
   const navigate = useNavigate();
 
-  // const handleDetails=()=>{
-  //   navigate('/categories-details');
-  // }
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 425);
 
@@ -132,7 +129,7 @@ const [formData, setFormData] = useState({
     pincode: '',
     role: '',
     jobrole: '',
-    experience: '',
+    Experiance: '',
     uploadresume: null,
   });
 
@@ -146,7 +143,7 @@ const [formData, setFormData] = useState({
   };
 
   const handleFileChange = (event) => {
-    setFormData({ ...formData, uploadresume: event.target.files[0] });
+    setFormData({ ...formData, uploadresume: event.target.files });
   };
 
 
@@ -155,10 +152,10 @@ const [formData, setFormData] = useState({
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const jobid = data._id;
+      const jobId = data._Id;
 
       const raw = JSON.stringify({
-        jobId: jobid,
+        jobId: jobId,
         ...formData,
       });
 
@@ -224,7 +221,7 @@ const[create,setCreate]=useState('')
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify(jobDetails);
-
+    window.history.back(); 
     const requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -232,7 +229,7 @@ const[create,setCreate]=useState('')
       redirect: "follow",
     };
 
-    fetch("/api/postjobs", requestOptions)
+    fetch("/api/postjobs", requestOptions)    
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
@@ -1075,8 +1072,6 @@ const handleUploadedClick = () => {
         </Grid>
       </Grid>
     </Grid>
-
-    {/* Second section: Register BizSales button */}
     <Grid item mt={1}>
       <Button
         variant="contained"
@@ -1101,18 +1096,15 @@ const handleUploadedClick = () => {
     </Grid>
   </Grid>
 </Container>
-
-
      <Container>
      <Grid mt={5} container>
   <Grid container direction="row" justifyContent="space-around" alignItems="center" item xs={12}>
     {Array.isArray(filteredSearchData) && filteredSearchData.length > 0 ? (
       filteredSearchData.map((offer) => (
-        // offer.isapprove && (
           <Grid 
             container 
             item 
-            xs={12} sm={5.5} md={5.5} lg={5} // Responsive grid columns for different screen sizes
+            xs={12} sm={5.5} md={5.5} lg={5}
             direction="row" 
             justifyContent="space-evenly" 
             alignItems="center" 
@@ -1126,30 +1118,14 @@ const handleUploadedClick = () => {
     borderRadius: '20px',
     padding: 16,
     width: "100%",
-    height: "300px", // Set your desired height here
+    height: "300px",
     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
     position: "relative",
     overflow: "hidden",
   }}
 >
-  {/* <CardMedia
-    component="img"
-    sx={{
-      width: { xs: "100px", sm: "150px", md: "200px", lg: "250px" },
-      height: "100%", // Adjusts to fit within the card's height
-      maxHeight: "100%", // Ensures it doesn't exceed card height
-      borderRadius: '15px',
-      objectFit: "cover",
-      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-    }}
-    src={offer.addimages}
-    alt="banner"
-  /> */}
-
   <Grid
     item
-    
-    
     container
     direction="column"
     justifyContent="space-evenly"
@@ -1261,7 +1237,7 @@ const handleUploadedClick = () => {
    </>
 )}
 
-<Dialog
+{/* <Dialog
       open={create}
       onClose={handleCreateClose}
       aria-labelledby="responsive-dialog-title"
@@ -1325,7 +1301,7 @@ const handleUploadedClick = () => {
               ))}
             </Grid>
 
-            {/* Role Selection */}
+  
             <Grid container spacing={2} sx={{ paddingY: 1 }}>
               <Grid item>
                 <FormControlLabel
@@ -1357,7 +1333,7 @@ const handleUploadedClick = () => {
               </Grid>
             </Grid>
 
-            {/* Conditional Fields */}
+          
             <Grid container spacing={2}>
               {formData.role === "Experience" ? (
                 <>
@@ -1379,6 +1355,7 @@ const handleUploadedClick = () => {
                       placeholder="Job Role"
                       variant="outlined"
                     />
+                    
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -1428,7 +1405,7 @@ const handleUploadedClick = () => {
             </Grid>
           </Grid>
 
-          {/* Upload Resume Button */}
+        
           <Container sx={{ textAlign: "center", marginTop: "10px" }}>
             <Button
               variant="contained"
@@ -1462,14 +1439,103 @@ const handleUploadedClick = () => {
           Apply
         </Button>
       </DialogActions>
+    </Dialog> */}
+<Dialog open={create} onClose={handleCreateClose} maxWidth="md" fullWidth>
+      <DialogTitle sx={{ textAlign: "center", fontWeight: "bold" }}>
+        Apply for Jobs
+      </DialogTitle>
+      <DialogContent>
+        <Grid container spacing={2} sx={{ p: 2 }}>
+          {["name", "number", "email", "addressline1", "addressline2"].map((field, idx) => (
+            <Grid item xs={12} sm={6} key={idx}>
+              <TextField
+                fullWidth
+                label={field.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^\w/, (c) => c.toUpperCase())}
+                name={field}
+                value={formData[field]}
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </Grid>
+          ))}
+          {["city", "state", "pincode"].map((field, idx) => (
+            <Grid item xs={12} sm={4} key={idx}>
+              <TextField
+                fullWidth
+                label={field.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^\w/, (c) => c.toUpperCase())}
+                name={field}
+                value={formData[field]}
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </Grid>
+          ))}
+          {/* Role Selection */}
+          <Grid item xs={12}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              Select Role:
+            </Typography>
+            <FormControlLabel
+              control={<Checkbox checked={formData.role === "Fresher"} onChange={() => handleRoleChange("Fresher")} />}
+              label="Fresher"
+            />
+            <FormControlLabel
+              control={<Checkbox checked={formData.role === "Experiance"} onChange={() => handleRoleChange("Experiance")} />}
+              label="Experiance"
+            />
+          </Grid>
+          {/* Conditional Fields */}
+          {formData.role === "Experiance" ? (
+            ["jobrole", "Experiance"].map((field, idx) => (
+              <Grid item xs={12} sm={6} key={idx}>
+                <TextField
+                  fullWidth
+                  label={field.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^\w/, (c) => c.toUpperCase())}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  variant="outlined"
+                />
+              </Grid>
+            ))
+          ) : (
+            ["degree", "department", "passedout"].map((field, idx) => (
+              <Grid item xs={12} sm={6} key={idx}>
+                <TextField
+                  fullWidth
+                  label={field.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^\w/, (c) => c.toUpperCase())}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  variant="outlined"
+                />
+              </Grid>
+            ))
+          )}
+          {/* Resume Upload */}
+          <Grid item xs={12} textAlign="center">
+            <Button variant="contained" component="label" startIcon={<FileUploadIcon />}>
+              Upload Resume
+              <input type="file" hidden accept=".pdf,.doc,.docx" onChange={handleFileChange} />
+            </Button>
+          </Grid>
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleCreateClose} color="secondary" variant="outlined">
+          Cancel
+        </Button>
+        <Button onClick={handleApplyJob} color="primary" variant="contained">
+          Apply
+        </Button>
+      </DialogActions>
     </Dialog>
-
     <Dialog
   fullScreen={fullScreen}
   open={detailsopen}
   onClose={handleDetailsClose}
   aria-labelledby="responsive-dialog-title"
-  sx={{ '& .MuiDialog-paper': { width: '600px', maxHeight: '90%' } }} // Set the dialog width
+  sx={{ '& .MuiDialog-paper': { width: '600px', maxHeight: '90%' } }} 
 >
   <DialogTitle id="responsive-dialog-title">
     <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#333' }}>
@@ -1618,10 +1684,10 @@ const handleUploadedClick = () => {
             }}
           />
           <TextField
-            name="experiance"
-            label="Experience"
+            name="Experiance"
+            label="Experiance"
             variant="outlined"
-            value={jobDetails.experiance}
+            value={jobDetails.Experiance}
             onChange={handlePostChange}
             sx={{
               mb: 2,

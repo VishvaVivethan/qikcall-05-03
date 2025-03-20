@@ -571,7 +571,6 @@
 
 // export default Signin
 
-
 import { Container, Typography, Box, Grid, IconButton, Button, Divider, Link, TextField, Snackbar, Alert } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -588,14 +587,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import StoreIcon from '@mui/icons-material/Store';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Cookies from 'js-cookie';
-import Sign from '../../assets/img/image5.jpeg';
+import Sign from '../../assets/img/image5.jpeg'
 import Footer from '../footer';
-import Navbar from '../navbar';
-
+import  Navbar  from '../navbar';
 function Signin() {
   const [open, setOpen] = React.useState(false);
   const [clickOpen, setClickOpen] = React.useState(false);
+
   const [registeropen, setRegisteropen] = React.useState(false);
+
+
   const [forgotPasswordOpen, setForgotPasswordOpen] = React.useState(false);
   const [resetPasswordOpen, setResetPasswordOpen] = React.useState(false);
   const [number, setNumber] = useState('');
@@ -816,7 +817,7 @@ function Signin() {
     }
   }
 
-  const handleRegisterOpen = () => {
+ const handleRegisterOpen = () => {
     setRegisteropen(true);
   };
 
@@ -923,17 +924,41 @@ function Signin() {
                       Verify by your email
                     </Button>
                     <Typography className='mt-3' sx={{ fontSize: "10px", fontWeight: "bold" }}>
-                      Create a new account, <Link onClick={handleRegisterOpen} sx={{ color: "#C052E3", textDecoration: "none", cursor: "pointer" }}> register here</Link>
-                    </Typography>
-                  </Grid>
-                  <Grid mb={5} container direction="row" justifyContent="space-around" alignItems="center">
-                    <Button onClick={BackHome} variant='contained' sx={{ backgroundColor: "#2d2859", color: "#fff", fontSize: "10px", "&:hover": { backgroundColor: "#2d2859" } }}>Back</Button>
-                    <Button variant='contained' sx={{ backgroundColor: "#2d2859", color: "#fff", fontSize: "10px", "&:hover": { backgroundColor: "#2d2859" } }} onClick={handleClickOpen}>Try another way</Button>
-                  </Grid>
-                </Item>
-              </Grid>
-            </Grid>
-          </Container>
+          Create a new account,  
+          <Link onClick={handleRegisterOpen} sx={{ color: "#C052E3", textDecoration: "none", cursor: "pointer" }}> register here</Link>
+        </Typography>
+      </Grid>
+
+      <Grid mb={5} container direction="row" justifyContent="space-around" alignItems="center" >
+        <Button 
+          onClick={BackHome} 
+          variant='contained' 
+          sx={{ 
+            backgroundColor: "#2d2859", 
+            color: "#fff", 
+            fontSize:"10px",
+            "&:hover": { backgroundColor: "#2d2859" } 
+          }}
+        >
+          Back
+        </Button>
+        <Button 
+          variant='contained' 
+          sx={{ 
+            backgroundColor: "#2d2859", 
+            color: "#fff", 
+            fontSize:"10px",
+            "&:hover": { backgroundColor: "#2d2859" } 
+          }} 
+          onClick={handleClickOpen} 
+        >
+          Try another way
+        </Button>
+      </Grid>
+    </Item>
+  </Grid>
+</Grid>
+            </Container>
         </>
       ) : (
         <>
@@ -978,14 +1003,19 @@ function Signin() {
                     >
                       Verify by your Email
                     </Button>
-                    <Typography className='mt-3' sx={{ fontSize: "10px", fontWeight: "bold" }}>
-                      Create a new account, <Link onClick={handleRegisterOpen} sx={{ color: "#C052E3", textDecoration: "none", cursor: "pointer" }}> register here</Link>
+                  <Typography className='mt-3' sx={{ fontSize: "10px", fontWeight: "bold" }}>
+                      Create a new account,  <Link onClick={handleRegisterOpen} sx={{ color: "#C052E3", textDecoration: "none", cursor: "pointer" }}> register here</Link>
                     </Typography>
                   </Grid>
-                  <Grid mb={5} container direction="row" justifyContent="space-around" alignItems="center">
-                    <Button onClick={BackHome} variant='contained' sx={{ backgroundColor: "#2d2859", color: "#fff", "&:hover": { backgroundColor: "#2d2859" } }}>Back</Button>
-                    <Button variant='contained' sx={{ backgroundColor: "#2d2859", color: "#fff", "&:hover": { backgroundColor: "#2d2859" } }} onClick={handleClickOpen}>Try another way</Button>
+                  <Grid mb={5} container direction="row" justifyContent="space-around" alignItems="center" >
+                    <Button onClick={BackHome} variant='contained' sx={{ backgroundColor: "#2d2859", color: "#fff", "&:hover": { backgroundColor: "#2d2859" } }}>
+                      Back
+                    </Button>
+                    <Button variant='contained' sx={{ backgroundColor: "#2d2859", color: "#fff", "&:hover": { backgroundColor: "#2d2859" } }} onClick={handleClickOpen} >
+                      Try another way
+                    </Button>
                   </Grid>
+
                 </Item>
               </Grid>
             </Grid>
@@ -1142,42 +1172,6 @@ margin: 'auto',
 <DialogTitle id="forgot-password-dialog-title" sx={{ backgroundColor: "#2d2859", padding: "16px" }}>
 <Typography sx={{ fontSize: "30px", color: "#fff" }}>Forgot Password</Typography>
 </DialogTitle>
-{/* <DialogContent sx={{ width: "100%", backgroundColor: "#2d2859", padding: "20px" }}>
-<Typography sx={{ fontSize: "16px", color: "#fff" }}>Enter your email to receive a password reset OTP.</Typography>
-<TextField
-placeholder="Enter your email"
-value={email}
-onChange={(e) => setEmail(e.target.value)}
-sx={{
-'& .MuiInputBase-root': {
-borderRadius: '5px',
-width: "100%",
-maxWidth: "350px",
-height: "50px",
-color: "#fff",
-marginTop: "20px",
-},
-'& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-'& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-'& .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-}}
-/>
-<Button
-variant="contained"
-sx={{
-backgroundColor: "#f7f4cd",
-color: "#000",
-marginTop: "20px",
-"&:hover": { backgroundColor: "#f7f4cd" },
-}}
-onClick={handleForgotPassword}
-> */}
 
 <DialogContent
     sx={{
@@ -1272,67 +1266,6 @@ margin: 'auto',
 <DialogTitle id="reset-password-dialog-title" sx={{ backgroundColor: "#2d2859", padding: "16px" }}>
 <Typography sx={{ fontSize: "30px", color: "#fff" }}>Reset Password</Typography>
 </DialogTitle>
-{/* <DialogContent sx={{ width: "100%", backgroundColor: "#2d2859", padding: "20px" }}>
-<Typography sx={{ fontSize: "16px", color: "#fff" }}>Enter the OTP sent to your email and your new password.</Typography>
-<TextField
-placeholder="Enter OTP"
-value={otp}
-onChange={(e) => setOtp(e.target.value)}
-sx={{
-'& .MuiInputBase-root': {
-borderRadius: '5px',
-width: "100%",
-maxWidth: "350px",
-height: "50px",
-color: "#fff",
-marginTop: "20px",
-},
-'& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-'& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-'& .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-}}
-/>
-<TextField
-placeholder="Enter new password"
-type="password"
-value={newPassword}
-onChange={(e) => setNewPassword(e.target.value)}
-sx={{
-'& .MuiInputBase-root': {
-borderRadius: '5px',
-width: "100%",
-maxWidth: "350px",
-height: "50px",
-color: "#fff",
-marginTop: "20px",
-},
-'& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-'& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-'& .MuiOutlinedInput-notchedOutline': {
-borderColor: '#fff',
-},
-}}
-/>
-<Button
-variant="contained"
-sx={{
-backgroundColor: "#f7f4cd",
-color: "#000",
-marginTop: "20px",
-"&:hover": { backgroundColor: "#f7f4cd" },
-}}
-onClick={handleResetPassword}
-> */}
   <DialogContent
     sx={{
       backgroundColor: "#2d2859",
@@ -1444,7 +1377,53 @@ Close
 {msg}
 </Alert>
 </Snackbar>
-
+<Dialog
+  open={registeropen}
+  onClose={handleRegisterClose}
+  aria-labelledby="responsive-dialog-title"
+  sx={{
+    '& .MuiDialog-paper': {
+      width: '90%',  // Responsive width
+      maxWidth: '600px', // Max width for larger screens
+      margin: 'auto', // Centering the dialog
+    },
+  }}
+>
+  <DialogTitle id="responsive-dialog-title" sx={{ backgroundColor: "#2d2859", padding: "16px" }}>
+    <Typography sx={{ fontSize: "30px", color: "#fff" }}>Register Here !</Typography>
+    <Typography sx={{ fontSize: "10px", color: "#fff" }}>Click your role</Typography>
+  </DialogTitle>
+  <DialogContent sx={{ width: "100%", backgroundColor: "#2d2859", padding: "20px" }}>
+    <DialogContentText>
+      <Grid container direction="column" justifyContent="center" alignItems="center">
+        <Item onClick={navigateuser} className='mb-3 mt-4'>
+          <Typography sx={{ fontSize: "22px" }}><PersonIcon sx={{ fontSize: "25px" }} /> User Registration </Typography>
+        </Item>
+        <Item onClick={navigatebusiness} className='mb-3'>
+          <Typography sx={{ fontSize: "22px" }}><StoreIcon sx={{ fontSize: "25px" }} /> Business Registration </Typography>
+        </Item>
+        <Item onClick={navigatefreelancer} className='mb-3'>
+          <Typography sx={{ fontSize: "22px" }}><PersonOutlineIcon sx={{ fontSize: "25px" }} /> Freelancer Registration </Typography>
+        </Item>
+      </Grid>
+    </DialogContentText>
+  </DialogContent>
+  <DialogActions sx={{ backgroundColor: "#2d2859", padding: "16px" }}>
+    <Button sx={{ color: "#fff" }} onClick={handleRegisterClose}>
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
+<Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+<Alert
+  onClose={handleClose}
+  severity={color}
+  variant="filled"
+  sx={{ width: '100%' }}
+>
+  {msg}
+</Alert>
+</Snackbar>
 <Footer />
 </>
 );
@@ -1455,311 +1434,3 @@ export default Signin;
 
 
 
-
-// import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import Cookies from 'js-cookie';
-// import {
-//   Container,
-//   Typography,
-//   Grid,
-//   Button,
-//   Link,
-//   TextField,
-//   Snackbar,
-//   Alert,
-//   Dialog,
-//   DialogActions,
-//   DialogContent,
-//   DialogTitle,
-//   Paper,
-//   styled,
-// } from '@mui/material';
-// import GoogleIcon from '@mui/icons-material/Google';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import PersonIcon from '@mui/icons-material/Person';
-// import StoreIcon from '@mui/icons-material/Store';
-// import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-// import Navbar from '../navbar';
-// import Footer from '../footer';
-
-// // Styled Components
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#ffffe0',
-//   border: '1px solid #2d2859',
-//   padding: theme.spacing(2),
-//   textAlign: 'center',
-//   color: '#000',
-//   width: '100%',
-// }));
-
-// // Main Component
-// function Signin() {
-//   const [openSnackbar, setOpenSnackbar] = useState(false);
-//   const [snackbarMessage, setSnackbarMessage] = useState('');
-//   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
-//   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
-//   const [registerDialogOpen, setRegisterDialogOpen] = useState(false);
-//   const [forgotPasswordDialogOpen, setForgotPasswordDialogOpen] = useState(false);
-//   const [resetPasswordDialogOpen, setResetPasswordDialogOpen] = useState(false);
-//   const [email, setEmail] = useState('');
-//   const [phone, setPhone] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [otp, setOtp] = useState('');
-//   const [newPassword, setNewPassword] = useState('');
-//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-//   const navigate = useNavigate();
-
-//   // Handle window resize for mobile responsiveness
-//   useEffect(() => {
-//     const handleResize = () => setIsMobile(window.innerWidth <= 768);
-//     window.addEventListener('resize', handleResize);
-//     return () => window.removeEventListener('resize', handleResize);
-//   }, []);
-
-//   // Snackbar Handlers
-//   const handleSnackbarClose = () => setOpenSnackbar(false);
-//   const showSnackbar = (message, severity = 'success') => {
-//     setSnackbarMessage(message);
-//     setSnackbarSeverity(severity);
-//     setOpenSnackbar(true);
-//   };
-
-//   // API Call Handlers
-//   const handleLogin = async () => {
-//     try {
-//       const response = await fetch('/api/login', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ phonenumber: phone, password }),
-//       });
-
-//       const result = await response.json();
-//       if (response.status === 200) {
-//         Cookies.set('token', result.token, { expires: 7, secure: true });
-//         showSnackbar(result.msg || 'Login successful');
-//         setTimeout(() => navigate('/'), 1000);
-//       } else {
-//         showSnackbar(result.msg || 'Login failed', 'error');
-//       }
-//     } catch (error) {
-//       showSnackbar('An error occurred', 'error');
-//       console.error(error);
-//     }
-//   };
-
-//   const handleForgotPassword = async () => {
-//     try {
-//       const response = await fetch('/api/forgot-password', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ email }),
-//       });
-
-//       const result = await response.json();
-//       if (response.status === 200) {
-//         showSnackbar(result.msg || 'OTP sent to email');
-//         setForgotPasswordDialogOpen(false);
-//         setResetPasswordDialogOpen(true);
-//       } else {
-//         showSnackbar(result.msg || 'Failed to send OTP', 'error');
-//       }
-//     } catch (error) {
-//       showSnackbar('An error occurred', 'error');
-//       console.error(error);
-//     }
-//   };
-
-//   const handleResetPassword = async () => {
-//     try {
-//       const response = await fetch('/api/reset-password', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ email, otp, newPassword }),
-//       });
-
-//       const result = await response.json();
-//       if (response.status === 200) {
-//         showSnackbar(result.msg || 'Password reset successfully');
-//         setResetPasswordDialogOpen(false);
-//       } else {
-//         showSnackbar(result.msg || 'Failed to reset password', 'error');
-//       }
-//     } catch (error) {
-//       showSnackbar('An error occurred', 'error');
-//       console.error(error);
-//     }
-//   };
-
-//   // Dialog Handlers
-//   const handleLoginDialogClose = () => setLoginDialogOpen(false);
-//   const handleRegisterDialogClose = () => setRegisterDialogOpen(false);
-//   const handleForgotPasswordDialogClose = () => setForgotPasswordDialogOpen(false);
-//   const handleResetPasswordDialogClose = () => setResetPasswordDialogOpen(false);
-
-//   // Navigation Handlers
-//   const navigateTo = (path) => navigate(path);
-
-//   // Main Render
-//   return (
-//     <>
-//       <Navbar />
-//       <Container>
-//         <Grid container justifyContent="center" alignItems="center" sx={{ my: 4 }}>
-//           <Grid item xs={12} md={8}>
-//             <Item>
-//               <Typography variant="h3" sx={{ fontWeight: 'bold' }}>Sign In</Typography>
-//               <Typography variant="h5" sx={{ fontWeight: 'bold', my: 2 }}>Log into your account</Typography>
-//               <Typography variant="body1" sx={{ my: 2 }}>To login, please enter your registered email ID</Typography>
-
-//               <TextField
-//                 fullWidth
-//                 placeholder="Enter your email ID"
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//                 sx={{ my: 2 }}
-//               />
-
-//               <Button
-//                 fullWidth
-//                 variant="contained"
-//                 sx={{ backgroundColor: '#2d2859', color: '#fff', my: 2 }}
-//                 onClick={handleForgotPassword}
-//               >
-//                 Verify by Email
-//               </Button>
-
-//               <Typography variant="body2" sx={{ my: 2 }}>
-//                 Create a new account?{' '}
-//                 <Link onClick={() => setRegisterDialogOpen(true)} sx={{ color: '#C052E3', cursor: 'pointer' }}>
-//                   Register here
-//                 </Link>
-//               </Typography>
-
-//               <Grid container justifyContent="space-between" sx={{ my: 2 }}>
-//                 <Button variant="contained" onClick={() => navigate('/')} sx={{ backgroundColor: '#2d2859', color: '#fff' }}>
-//                   Back
-//                 </Button>
-//                 <Button variant="contained" onClick={() => setLoginDialogOpen(true)} sx={{ backgroundColor: '#2d2859', color: '#fff' }}>
-//                   Try Another Way
-//                 </Button>
-//               </Grid>
-//             </Item>
-//           </Grid>
-//         </Grid>
-//       </Container>
-
-//       {/* Login Dialog */}
-//       <Dialog open={loginDialogOpen} onClose={handleLoginDialogClose}>
-//         <DialogTitle>Log into your Account</DialogTitle>
-//         <DialogContent>
-//           <TextField
-//             fullWidth
-//             placeholder="Enter your phone number"
-//             value={phone}
-//             onChange={(e) => setPhone(e.target.value)}
-//             sx={{ my: 2 }}
-//           />
-//           <TextField
-//             fullWidth
-//             placeholder="Enter your password"
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             sx={{ my: 2 }}
-//           />
-//           <Button
-//             fullWidth
-//             variant="contained"
-//             onClick={handleLogin}
-//             sx={{ backgroundColor: '#2d2859', color: '#fff', my: 2 }}
-//           >
-//             Log In
-//           </Button>
-//           <Typography variant="body2" sx={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => setForgotPasswordDialogOpen(true)}>
-//             Forgot your password?
-//           </Typography>
-//         </DialogContent>
-//       </Dialog>
-
-//       {/* Register Dialog */}
-//       <Dialog open={registerDialogOpen} onClose={handleRegisterDialogClose}>
-//         <DialogTitle>Register Here!</DialogTitle>
-//         <DialogContent>
-//           <Item onClick={() => navigateTo('/registeruser')} sx={{ my: 2 }}>
-//             <PersonIcon /> User Registration
-//           </Item>
-//           <Item onClick={() => navigateTo('/registerbusiness')} sx={{ my: 2 }}>
-//             <StoreIcon /> Business Registration
-//           </Item>
-//           <Item onClick={() => navigateTo('/registerfreelancer')} sx={{ my: 2 }}>
-//             <PersonOutlineIcon /> Freelancer Registration
-//           </Item>
-//         </DialogContent>
-//       </Dialog>
-
-//       {/* Forgot Password Dialog */}
-//       <Dialog open={forgotPasswordDialogOpen} onClose={handleForgotPasswordDialogClose}>
-//         <DialogTitle>Forgot Password</DialogTitle>
-//         <DialogContent>
-//           <TextField
-//             fullWidth
-//             placeholder="Enter your email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             sx={{ my: 2 }}
-//           />
-//           <Button
-//             fullWidth
-//             variant="contained"
-//             onClick={handleForgotPassword}
-//             sx={{ backgroundColor: '#2d2859', color: '#fff', my: 2 }}
-//           >
-//             Send OTP
-//           </Button>
-//         </DialogContent>
-//       </Dialog>
-
-//       {/* Reset Password Dialog */}
-//       <Dialog open={resetPasswordDialogOpen} onClose={handleResetPasswordDialogClose}>
-//         <DialogTitle>Reset Password</DialogTitle>
-//         <DialogContent>
-//           <TextField
-//             fullWidth
-//             placeholder="Enter OTP"
-//             value={otp}
-//             onChange={(e) => setOtp(e.target.value)}
-//             sx={{ my: 2 }}
-//           />
-//           <TextField
-//             fullWidth
-//             placeholder="Enter new password"
-//             type="password"
-//             value={newPassword}
-//             onChange={(e) => setNewPassword(e.target.value)}
-//             sx={{ my: 2 }}
-//           />
-//           <Button
-//             fullWidth
-//             variant="contained"
-//             onClick={handleResetPassword}
-//             sx={{ backgroundColor: '#2d2859', color: '#fff', my: 2 }}
-//           >
-//             Reset Password
-//           </Button>
-//         </DialogContent>
-//       </Dialog>
-
-//       {/* Snackbar */}
-//       <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={handleSnackbarClose}>
-//         <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
-//           {snackbarMessage}
-//         </Alert>
-//       </Snackbar>
-
-//       <Footer />
-//     </>
-//   );
-// }
-
-// export default Signin;

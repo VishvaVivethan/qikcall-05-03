@@ -837,55 +837,17 @@ const descriptionElementRef = React.useRef(null);
               error={!!errors.pincode}
               helperText={errors.pincode}
             />
-            {!area ? (
-  <Tooltip title="Enter Pincode First" placement="bottom">
-    <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Area</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={area}
-        InputProps={{ readOnly: true }}
-        label="Area"
-        sx={{ marginBottom: 2 }}
-        error={!!errors.area}
-        onChange={(e) => setArea(e.target.value)}
-      >
-        {pincodedata.map((postOffice, index) => (
-          <MenuItem key={index} value={postOffice.Name}>
-            {postOffice.Name}
-          </MenuItem>
-        ))}
-      </Select>
-      {errors.area && (
-        <FormHelperText sx={{ color: "red" }}>Select at least one category</FormHelperText>
-      )}
-    </FormControl>
-  </Tooltip>
-) : (
-  <FormControl fullWidth>
-    <InputLabel id="demo-simple-select-label">Area</InputLabel>
-    <Select
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
-      value={area}
-      InputProps={{ readOnly: true }}
-      label="Area"
-      sx={{ marginBottom: 2 }}
-      error={!!errors.area}
-      onChange={(e) => setArea(e.target.value)}
-    >
-      {pincodedata.map((postOffice, index) => (
-        <MenuItem key={index} value={postOffice.Name}>
-          {postOffice.Name}
-        </MenuItem>
-      ))}
-    </Select>
-    {errors.area && (
-      <FormHelperText sx={{ color: "red" }}>Select at least one category</FormHelperText>
-    )}
-  </FormControl>
-)}
+          <TextField
+              label="area"
+              variant="outlined"
+              fullWidth
+              value={area}
+              sx={{ marginBottom: 2 }}
+              onChange={(e) => setArea(e.target.value)}
+              
+              error={!!errors.area}
+              helperText={errors.area}
+            />
 
 
             <TextField
@@ -895,7 +857,7 @@ const descriptionElementRef = React.useRef(null);
               value={city}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setCity(e.target.value)}
-              InputProps={{ readOnly: true }}
+              
               error={!!errors.city}
               helperText={errors.city}
             />
@@ -907,7 +869,7 @@ const descriptionElementRef = React.useRef(null);
               value={state}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setState(e.target.value)}
-              InputProps={{ readOnly: true }}
+              
               error={!!errors.state}
               helperText={errors.state}
             />

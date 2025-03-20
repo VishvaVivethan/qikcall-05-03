@@ -42,16 +42,15 @@ module.exports.JobApplyingSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        default: 0, 
-        enum: [0,1], 
-    },
+        enum: ['Fresher', 'Experiance']
+    },    
     jobrole: {
         type: String,
         required: function() {
             return this.role === 'Experiance'; 
         }
     },
-    experiance: {
+    Experiance: {
         type: String,
         required: function() {
             return this.role === 'Experiance'; 
@@ -76,7 +75,7 @@ module.exports.JobApplyingSchema = new mongoose.Schema({
         }
      },
      uploadresume: {
-        type: Array,
+        type: String,
         required: true,
     },
 }, { timestamps: true })

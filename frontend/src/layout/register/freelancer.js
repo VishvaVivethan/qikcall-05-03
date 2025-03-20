@@ -730,7 +730,6 @@ const descriptionElementRef = React.useRef(null);
               value={city}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setCity(e.target.value)}
-              InputProps={{ readOnly: true }}
               error={!!errors.city}
               helperText={errors.city}
             />
@@ -742,7 +741,6 @@ const descriptionElementRef = React.useRef(null);
               value={state}
               sx={{ marginBottom: 2 }}
               onChange={(e) => setState(e.target.value)}
-              InputProps={{ readOnly: true }}
               error={!!errors.state}
               helperText={errors.state}
             />

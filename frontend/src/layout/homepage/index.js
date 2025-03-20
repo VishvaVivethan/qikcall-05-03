@@ -2,80 +2,38 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-// import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import '@coreui/coreui/dist/css/coreui.min.css'
 import { CCarousel, CImage, CCarouselItem } from '@coreui/react';
 import Cookies from 'js-cookie';
-// import { jwtDecode } from "jwt-decode";
-// import Paper from '@mui/material/Paper';
 import NavBar from '../navbar/index';
 import Foot from '../footer/index'
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import { Container, Grid, Typography, Button, IconButton, InputBase, Paper,Divider } from '@mui/material';
-// import { AiOutlineTable } from "react-icons/ai";
 import SearchIcon from '@mui/icons-material/Search';
-// import AcUnitIcon from '@mui/icons-material/AcUnit';
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-// import useMediaQuery from '@mui/material/useMediaQuery';
-// import { useTheme } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
-
-
 import { CgMoreVerticalO } from "react-icons/cg";
-// import { IoStorefrontOutline } from "react-icons/io5";
-
-
-// import Ambulance from '../../assets/qik call mobile view icons/ambulance1.png'
-// import Homeapp from '../../assets/qik call mobile view icons/electric-appliance1.png'
-// // import Hostel from '../../assets/qik call mobile view icons/pop.png'
-// import Furniture from '../../assets/qik call mobile view icons/furniture1.png'
-// import Homedec from '../../assets/qik call mobile view icons/strawberry1.png'
-// import Beauty from '../../assets/qik call mobile view icons/io.png'
-// import Restaraunts from '../../assets/qik call mobile view icons/strawberry1-1.png'
-// import Hotel from '../../assets/qik call mobile view icons/strawberry2.png'
-// import Theatre from '../../assets/qik call mobile view icons/theater1.png'
-// import Jewellery from '../../assets/qik call mobile view icons/jewelry1.png'
-// import Apartments from '../../assets/qik call mobile view icons/apartment1.png'
-// import AC from '../../assets/qik call mobile view icons/air-conditioner1.png'
-// import Dress from '../../assets/qik call mobile view icons/lol.png'
-// import Computer from '../../assets/img/computer.png'
-// import Dentist from '../../assets/img/dentist.png'
-// import Law from '../../assets/img/law.png'
-// import Car from '../../assets/img/maintenance.png'
-// import Event from '../../assets/img/organiser.png'
-// import Photo from '../../assets/img/photographer.png'
-// import Electric from '../../assets/img/electrician.png'
-// import Transport from '../../assets/img/delivery-truck.png'
-// import More from '../../assets/img/plus.png'
-
-
 import LoginDialog from '../../login';
 import {retrieveToken} from '../../firebase';
 import { jwtDecode } from "jwt-decode";
-
-
 import ad1 from '../../assets/image/rename.png'
 import ad2 from '../../assets/image/ganesh.png'
 import ad3 from '../../assets/image/hotel.png'
 import ad4 from '../../assets/image/pink.png'
-
 import sidead1 from '../../assets/image/sidead1.png'
 import sidead2 from '../../assets/image/sidead2.png'
 import sidead3 from '../../assets/image/sidead3.png'
 import sidead4 from '../../assets/image/sidead4.png'
-
 import mainad1 from '../../assets/image/mainad1.png'
 import mainad2 from '../../assets/image/mainad2.png'
 import mainad3 from '../../assets/image/mainad3.png'
 import mainad from '../../assets/image/mainad.png'
-
 import cat1 from '../../assets/image/smoothie.png'
 import cat2 from '../../assets/image/soda.png'
 import cat3 from '../../assets/image/pizza.png'
@@ -87,29 +45,23 @@ import cat8 from '../../assets/image/ad.png'
 const DownCard = (props) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const [getData, setGetData] = useState([]);
-
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 599);
   };
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   useEffect(() => {
     GetCategory();
   }, []);
-
   const navigate = useNavigate();
-
   const GetCategory = () => {
     try {
       const requestOptions = {
         method: "GET",
         redirect: "follow"
       };
-
       fetch("/api/categorylist", requestOptions)
         .then(async (response) => {
           if (response.status === 200 || response.status === 400) {
@@ -127,11 +79,9 @@ const DownCard = (props) => {
       console.error(error);
     }
   };
-
   const handleNavigate = (category) => {
     navigate(`/categorieslist/${category}`);
   };
-
   return (
     <>
       {isMobile ? (
@@ -198,29 +148,23 @@ const DownCard = (props) => {
 const Location = (props) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const [getDistrict, setDistrict] = useState([]);
-
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 599);
   };
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   useEffect(() => {
     GetDistrict();
   }, []);
-
   const navigate = useNavigate();
-
   const GetDistrict = () => {
     try {
       const requestOptions = {
         method: "GET",
         redirect: "follow"
       };
-
       fetch("/api/getdistrict", requestOptions)
         .then(async (response) => {
           if (response.status === 200 || response.status === 400) {
@@ -238,11 +182,9 @@ const Location = (props) => {
       console.error(error);
     }
   };
-
   const handleNavigate = (location) => {
     navigate(`/locationlist/${location}`);
   };
-
   return (
     <>
       {isMobile ? (
@@ -260,30 +202,24 @@ const Location = (props) => {
 const MidCategories = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const navigate = useNavigate();
-
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 599);
   };
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   const [getData, setGetData] = useState([]);
   const [open, setOpen] = useState(false);
-
   useEffect(() => {
     GetCategory();
   }, []);
-
   const GetCategory = () => {
     try {
       const requestOptions = {
         method: "GET",
         redirect: "follow"
       };
-
       fetch("/api/categorylist", requestOptions)
         .then(async (response) => {
           if (response.status === 200 || response.status === 400) {
@@ -301,27 +237,22 @@ const MidCategories = () => {
       console.error(error);
     }
   };
-
   const handleNavigate = (category) => {
     navigate(`/categorieslist/${category}`);
   };
-
   const handleClickOpen = () => {
     console.log("Opening dialog");
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const categories = [
     {
       icon: <CgMoreVerticalO style={{ color: "#fff", fontSize: "30px" }} />,
       label: 'More',
     }
   ];
-
   const [searchTerm, setSearchTerm] = useState('');
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -329,7 +260,6 @@ const MidCategories = () => {
   const filteredData = getData.filter((category) =>
     category.categoryname.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   return (
     <>
       {isMobile ? (
@@ -410,7 +340,6 @@ const MidCategories = () => {
     ))}
   </Grid>
 </Box>
-
         </>
       ) : (
         <>
@@ -453,7 +382,6 @@ const MidCategories = () => {
         >
           <img src={category.addimages} alt="category" style={{ width: '100%', height: 'auto' }} />
         </Paper>
-        
         <Typography 
           variant="body1" 
           sx={{ 
@@ -522,7 +450,6 @@ const MidCategories = () => {
     ))}
   </Grid>
 </Box>
-
         </>
       )}
       
@@ -639,49 +566,34 @@ const MidCategories = () => {
         </Button>
       </DialogActions>
     </Dialog>
-
     </>
   );
 };
-
-
-
 function HomePage() {
-
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const [loginopen, setLoginOpen] = useState(false)
-
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 599);
   };
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const [borderColor, setBorderColor] = useState("#af07cf");
-
   useEffect(() => {
-    const colors = ["#af07cf", "#07cfcf", "#cfaf07"]; // Array of colors to cycle through
+    const colors = ["#af07cf", "#07cfcf", "#cfaf07"];
     let index = 0;
-
     const intervalId = setInterval(() => {
-      index = (index + 1) % colors.length; // Cycle through the colors array
+      index = (index + 1) % colors.length;
       setBorderColor(colors[index]);
-    }, 2000); // Change color every 2 seconds
-
-    // Cleanup the interval on component unmount
+    }, 2000);
     return () => clearInterval(intervalId);
   }, []);
-
   let token = Cookies.get('token') ? Cookies.get('token') : undefined;
   const [decode, SetDecode] = useState(token ? jwtDecode(token) : undefined);
   console.log(decode, "killer")
   console.log(token, "Home page")
-
-
   useEffect(() => {
     if (!token) {
 
@@ -698,7 +610,6 @@ function HomePage() {
       retrieveToken(decode.user.id);
     }
   }, [decode?.user?.id]);
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -717,28 +628,17 @@ function HomePage() {
       items: 1
     }
   };
-
-  // const handleClickOpen = () => {
-  //   if (!token) {
-  //     setLoginOpen(true);
-  //   }
-  // };
-
   const handleLoginClose = () => {
     setLoginOpen(false);
   };
-
   const categories = [
     { name: 'Packers & Movers', img: cat1 },
     { name: 'Repair & Services', img: cat2 },
     { name: 'Lawyers', img: cat3 },
     { name: 'Jewellery', img: cat4 },
   ];
-
-
   return (
     <>
-
       {isMobile ? (
         <>
           <NavBar />
@@ -806,8 +706,6 @@ function HomePage() {
                             <CImage className="d-block w-100" src={cat2} alt="slide 3" style={{ height: '150px', objectFit: 'cover' }} />
                           </CCarouselItem>
                         </CCarousel>
-
-
                         <Typography sx={{ color: "#000", fontSize: "15px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", }} className='mt-3'><b>Repairs </b></Typography>
                         <Button sx={{ backgroundColor: "#f7f4cd", color: "#000", fontSize: "10px", fontFamily: "Anton, sans-serif", fontStyle: "italic", '&:hover': { backgroundColor: "#e0e0e0" } }} variant="outlined" className='mt-3 mb-2'>
                           Call Now
@@ -833,8 +731,6 @@ function HomePage() {
                             <CImage className="d-block w-100" src={cat3} alt="slide 3" style={{ height: '150px', objectFit: 'cover' }} />
                           </CCarouselItem>
                         </CCarousel>
-
-
                         <Typography sx={{ color: "#000", fontSize: "15px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", }} className='mt-3'><b>Carpenters</b></Typography>
                         <Button sx={{ backgroundColor: "#f7f4cd", color: "#000", fontSize: "10px", fontFamily: "Anton, sans-serif", fontStyle: "italic", '&:hover': { backgroundColor: "#e0e0e0" } }} variant="outlined" className=' mt-3 mb-2'>
                           Call Now
@@ -856,8 +752,6 @@ function HomePage() {
                             <CImage className="d-block w-100" src={cat4} alt="slide 3" style={{ height: '150px', objectFit: 'cover' }} />
                           </CCarouselItem>
                         </CCarousel>
-
-
                         <Typography sx={{ color: "#000", fontSize: "15px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", }} className='mt-3'><b>Lawyers</b></Typography>
                         <Button sx={{ backgroundColor: "#f7f4cd", color: "#000", fontSize: "10px", fontFamily: "Anton, sans-serif", fontStyle: "italic", '&:hover': { backgroundColor: "#e0e0e0" } }} variant="outlined" className=' mt-3 mb-2'>
                           Call Now
@@ -869,7 +763,6 @@ function HomePage() {
               </Grid>
             </Grid>
           </Container>
-
           <Container>
             <Grid container direction="row" justifyContent="center" alignItems="center" mt={3} >
               <Grid item xs={12} >
@@ -881,7 +774,6 @@ function HomePage() {
                   showDots={false}
                   transitionDuration={500}
                   removeArrowOnDeviceType={["tablet", "mobile"]}
-
                 >
                   <div><img src={sidead1} alt="Banner 1" className="carousel-image-mob" /></div>
                   <div><img src={sidead2} alt="Banner 2" className="carousel-image-mob" /></div>
@@ -915,7 +807,6 @@ function HomePage() {
               </Grid>
             </Box>
           </Container>
-
           <Container>
             <Grid container direction="row" justifyContent="center" alignItems="center" mt={3} >
               <Grid item xs={12} >
@@ -927,7 +818,6 @@ function HomePage() {
                   showDots={false}
                   transitionDuration={500}
                   removeArrowOnDeviceType={["tablet", "mobile"]}
-
                 >
                   <div><img src={sidead1} alt="Banner 1" className="carousel-image-mob" /></div>
                   <div><img src={sidead2} alt="Banner 2" className="carousel-image-mob" /></div>
@@ -948,9 +838,6 @@ function HomePage() {
               </Grid>
             </Grid>
           </Container>
-
-
-
           <Container  >
             <Grid container xs={12} direction="row" mt={1} mb={3}>
               <Typography variant="h5" className=" mb-4 title-mob">Daily Needs</Typography>
@@ -1236,18 +1123,13 @@ function HomePage() {
     ))}
   </Grid>
 </Grid>
-
     </Container>
-
-
           <Container>
       <Grid container direction="column" ml={1} mt={10} mb={3}>
         <Typography variant="h4" className="title mb-5">
           Daily Needs
         </Typography>
-
         <Grid container justifyContent="space-around" alignItems="center" spacing={2}>
-          {/* First Category */}
           <Grid
             item
             xs={12}
@@ -1315,8 +1197,6 @@ function HomePage() {
               </Typography>
             </Box>
           </Grid>
-
-          {/* Second Category */}
           <Grid
             item
             xs={12}
@@ -1546,34 +1426,10 @@ function HomePage() {
                       <DialogContent 
    sx={{backgroundColor:"#2d2859;"}}
     >
-
               <LoginDialog />
-              {/* <Grid mt={2}>
-              <Button
-  align="right"
-  variant="contained"
-  sx={{
-    backgroundColor: "red",
-    fontSize: "10px",
-    "&:hover": {
-      backgroundColor: "red", // Set hover background color to red
-    },
-  }}
-  onClick={handleLoginClose}
->
-  Close
-</Button>
-              </Grid> */}
             </DialogContent>
-            
-             
-              
-            
           </Dialog>
-
-
     </>
   );
 }
-
 export default HomePage;

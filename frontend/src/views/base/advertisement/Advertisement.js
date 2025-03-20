@@ -382,6 +382,7 @@ const [clocation, setCLocation] = useState('');
 const [cpannumber, setPannumber] = useState('');
 const [cstorename, setCStorename] = useState('');
 const [caadharnumber, setAadharnumber] = useState('');
+const [cgstnumber, setgstnumber] = useState('');
 const [cemailid, setEmailid] = useState('');
 const [ccontactnumber, setContactnumber] = useState('');
 const [cstartDate, setStartDate] = React.useState(null);
@@ -409,6 +410,7 @@ const raw = JSON.stringify({
   "location": clocation,
   "pannumber": cpannumber,
   "aadharnumber": caadharnumber,
+  "gstnumber":cgstnumber,
   "emailid": cemailid,
   "storename":cstorename,
   "contactnumber": ccontactnumber,
@@ -536,7 +538,7 @@ console.log(checked,"log")
   };
 
   const handleUploadClick = () => {
-    fileInputRef.current.click(); // Programmatically trigger the file input click
+    fileInputRef.current.click(); 
   };
 
   const[create,setCreate]=useState('')
@@ -594,6 +596,8 @@ console.log(checked,"log")
                         <TextField sx={{ marginTop: '30px', width: '100%' }} value={cadcategory} onChange={(e) => setCAdcategory(e.target.value)} placeholder="AD Category" variant="outlined" />
                         <TextField sx={{ marginTop: '30px', width: '100%' }} value={clocation} onChange={(e) => setCLocation(e.target.value)} placeholder="Location" variant="outlined" />
                         <TextField sx={{ marginTop: '30px', width: '100%' }} value={caadharnumber} onChange={(e) => setAadharnumber(e.target.value)} placeholder="Aadhar Number" variant="outlined" />
+                        <TextField sx={{ marginTop: '30px', width: '100%' }} value={cgstnumber} onChange={(e) => setgstnumber(e.target.value)} placeholder="gstnumber" variant="outlined" />
+
                         <TextField sx={{ marginTop: '30px', width: '100%' }} value={cemailid} onChange={(e) => setEmailid(e.target.value)} placeholder="Email ID" variant="outlined" />
                       </Grid>
                       <TextField sx={{ marginTop: '30px', width: '100%' }} value={cstorename} onChange={(e) => setCStorename(e.target.value)} placeholder="Storename" variant="outlined" />

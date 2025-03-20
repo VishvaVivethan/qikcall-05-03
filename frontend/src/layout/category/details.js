@@ -26,7 +26,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#ffffe0',
   ...theme.typography.body2,
@@ -41,35 +40,24 @@ const Item = styled(Paper)(({ theme }) => ({
     
   }),
 }));
-  
-
-
-
 const HotelCard = () => {
-
-  
-
   return (
     <>
-    
 <Card
       sx={{
         display: 'flex',
         backgroundColor: '#ffffe0',
         borderRadius: '15px',
         padding: '16px',
-        maxWidth: 400, // Ensures cards don't take up too much space
+        maxWidth: 400,
       }}
     >
-      {/* Image */}
       <CardMedia
         component="img"
         sx={{ width: 150, borderRadius: '10px' }}
         src='https://res.cloudinary.com/qikcall/image/upload/v1725091160/bailg9wjkq8hbfqv7ysi.jpg'
         alt="Hotel"
       />
-
-      {/* Content */}
       <Box sx={{ display: 'flex', flexDirection: 'column', marginLeft: '16px' }}>
         <CardContent sx={{ flex: '1 0 auto', paddingBottom: '8px' }}>
           {/* Star Rating */}
@@ -237,7 +225,10 @@ const{id} = useParams();
   const [databyid, setDatabyId] = useState([]);
   console.log(data,"data comming")
   const [comment, setComment] = useState('');
-
+  const { storename } = useParams();
+  const [error, setError] = useState(null);
+  const [storeDetails, setStoreDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (token) {
       try {
@@ -309,7 +300,83 @@ const{id} = useParams();
     setMsg(error.response?.data?.message || 'An Error Occurred');
   }
   };
-  const RegisterRating = async () => {
+
+// const fetchStoreDetails = async (storename) => {
+//   try {
+//     const response = await fetch(`/api/ratings/${storename}`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
+
+//     if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error('Error fetching store details:', error);
+//     throw error;
+//   }
+// };
+
+// useEffect(() => {
+//   const getStoreDetails = async () => {
+//     try {
+//       const data = await fetchStoreDetails(storename);
+//       setStoreDetails(data);
+//     } catch (error) {
+//       setError(error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   getStoreDetails();
+// }, [storename]);
+
+const fetchStoreDetails = async (storename) => {
+  try {
+    const response = await fetch(`/api/ratings/${storename}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching store details:", error);
+    throw error;
+  }
+}
+
+  // Fetch store details on component mount or when storename changes
+  useEffect(() => {
+    if (storename) {
+      const getStoreDetails = async () => {
+        try {
+          const data = await fetchStoreDetails(storename);
+          setStoreDetails(data);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      getStoreDetails();
+    }
+  }, [storename]);
+
+const RegisterRating = async () => {
   try {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -327,16 +394,16 @@ const{id} = useParams();
       return;
     }
 
-    // Check if cdata is an array and not empty
-    if (!Array.isArray(data) || data.length === 0) {
-      console.log("cdata is either not an array or is empty.");
+    // Check if cdata is an object and not empty
+    if (!cdata || typeof cdata !== 'object' || Object.keys(cdata).length === 0) {
+      console.log("cdata is either not an object or is empty.");
       setOpen(true);
       setColor('error');
       setMsg('Service data is not available');
       return;
     }
 
-    let storename = data.servicename; // Access the first item in the array
+    let storename = cdata.servicename; // Access the service name from cdata
     console.log(storename, "Store Name:");
 
     const raw = JSON.stringify({
@@ -366,6 +433,8 @@ const{id} = useParams();
           setOpen(true);
           setColor('success');
           setMsg(result.data.msg || "Rating Registered");
+          handleRateClose(); // Close the rating dialog
+          handleGetData(); // Refresh the data to show the new rating
         } else if (result.status_code === 400) {
           setOpen(true);
           setColor('error');
@@ -385,7 +454,6 @@ const{id} = useParams();
     setMsg(error.response?.data?.message || 'An Error Occurred');
   }
 };
-
 const getWishlistById = (userid) => {
   try {
     const requestOptions = {
@@ -634,6 +702,7 @@ console.log('Matching services found:', filteredData);
          ))}
        </Slider>
      </Card>
+     
    </Container>
  </React.Fragment>
 
@@ -761,6 +830,7 @@ console.log('Matching services found:', filteredData);
                    <Typography sx={{ marginTop: "10px" }}>{datas.comment}</Typography>
                  </Paper>
                </Grid>
+               
              ))
            ) : (
              <Grid mt={5} container direction="row" justifyContent="center" alignItems="center">
@@ -799,6 +869,49 @@ console.log('Matching services found:', filteredData);
            </Dialog>
          )}
        </Card>
+       <Card
+      sx={{
+        width: "100%",
+        backgroundColor: "#f7f4cd",
+        border: "1px solid #9f9c7a",
+        borderRadius: "8px",
+        boxShadow: "0 4px 12px #9f9c7a",
+        padding: 3,
+      }}
+    >
+      <Grid mt={3} container direction="row" justifyContent="space-between" alignItems="center">
+        <Typography sx={{ fontSize: "25px", marginLeft: "10px", fontWeight: "bold" }}>
+          Store Details
+        </Typography>
+      </Grid>
+
+      {/* Loading or error handling */}
+      {loading && (
+        <Grid container direction="row" justifyContent="center" alignItems="center" mt={3}>
+     
+          <Typography sx={{ marginLeft: 2 }}>Loading store details...</Typography>
+        </Grid>
+      )}
+      {error && (
+        <Grid container direction="row" justifyContent="center" alignItems="center" mt={3}>
+          <Typography color="error">Error loading store details: {error.message}</Typography>
+        </Grid>
+      )}
+
+      {/* Display store details if they exist */}
+      {storeDetails && (
+        <Grid mt={3}>
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            {storeDetails.name}
+          </Typography>
+          <Typography variant="body1" sx={{ marginTop: 2 }}>
+            {storeDetails.description}
+          </Typography>
+          {/* Render other store details as needed */}
+        </Grid>
+      )}
+    </Card>
+
      </Grid>
    </Container>
 <Container>
@@ -1122,6 +1235,49 @@ console.log('Matching services found:', filteredData);
             </Dialog>
           )}
         </Card>
+        <Card
+      sx={{
+        width: "100%",
+        backgroundColor: "#f7f4cd",
+        border: "1px solid #9f9c7a",
+        borderRadius: "8px",
+        boxShadow: "0 4px 12px #9f9c7a",
+        padding: 3,
+      }}
+    >
+      <Grid mt={3} container direction="row" justifyContent="space-between" alignItems="center">
+        <Typography sx={{ fontSize: "25px", marginLeft: "10px", fontWeight: "bold" }}>
+          Store Details
+        </Typography>
+      </Grid>
+
+      {/* Loading or error handling */}
+      {loading && (
+        <Grid container direction="row" justifyContent="center" alignItems="center" mt={3}>
+         
+          <Typography sx={{ marginLeft: 2 }}>Loading store details...</Typography>
+        </Grid>
+      )}
+      {error && (
+        <Grid container direction="row" justifyContent="center" alignItems="center" mt={3}>
+          <Typography color="error">Error loading store details: {error.message}</Typography>
+        </Grid>
+      )}
+
+      {/* Display store details if they exist */}
+      {storeDetails && (
+        <Grid mt={3}>
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            {storeDetails.name}
+          </Typography>
+          <Typography variant="body1" sx={{ marginTop: 2 }}>
+            {storeDetails.description}
+          </Typography>
+          {/* Render other store details as needed */}
+        </Grid>
+      )}
+    </Card>
+
       </Grid>
     </Container>
 <Container>

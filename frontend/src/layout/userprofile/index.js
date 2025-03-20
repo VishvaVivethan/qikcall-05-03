@@ -18,53 +18,31 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
 import Cookies from 'js-cookie';
-// import { Form } from 'react-bootstrap';
-// import GoogleIcon from '@mui/icons-material/Google';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import { styled } from '@mui/material/styles';
-// import Paper from '@mui/material/Paper';
-// import PersonIcon from '@mui/icons-material/Person';
-// import StoreIcon from '@mui/icons-material/Store';
-// import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { jwtDecode } from "jwt-decode";
 import './style.css'
 import NavBar from '../navbar';
 import Footer from '../footer';
-// import Thumbsup from '../../assets/img/thumbsup.webp'
 import Banner from '../../assets/img/Sale1.jpg'
-
-
-
-
-
 const Userprofile = () => {
-
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
-
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 599);
   };
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   const [image, setImage] = useState(null);
-
   const handleAvatarClick = () => {
     document.getElementById('file-input').click();
   };
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
@@ -77,41 +55,30 @@ const Userprofile = () => {
       alert('Please select a JPEG or PNG image.');
     }
   };
-
   const handleManageprofile = () => {
     navigate('/manageprofile');
   };
-
   const handlePricing = () => {
     navigate('/pricing');
   };
-
   const handlePrivacy = () => {
     navigate('/privacysetting');
   };
-
-  const token = jwtDecode(Cookies.get('token'));
-
+  const token = jwtDecode(Cookies.get('token'))
   console.log(token.user, "userprofile")
-
   const [data, setData] = useState([]);
-
-
   useEffect(() => {
     handelGetData()
   }, [])
-
   const handelGetData = async () => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Authorization", Cookies.get('token'));
-
       const requestOptions = {
         method: "GET",
         headers: myHeaders,
         redirect: "follow"
       };
-
       fetch(`/api/details?userid=${token ? token.user.id : undefined}`, requestOptions)
         .then(async (response) => {
           if (response.status === 200 || response.status === 400) {
@@ -130,9 +97,6 @@ const Userprofile = () => {
       console.error(error);
     }
   };
-
-
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
@@ -146,11 +110,10 @@ const Userprofile = () => {
   const [msgOpen, setMsgOpen] = useState('')
   const [color, setColor] = useState('');
   const [msg, setMsg] = useState('');
-
   useEffect(() => {
     if (data && data.length > 0) {
-      const user = data[0]; // Assuming the first item has the user data
-      setName(user.username || ''); // Set only if value exists
+      const user = data[0]; 
+      setName(user.username || '');
       setEmail(user.email || '');
       setPhonenumber(user.phonenumber || '');
       setAddressLine1(user.addressline1 || '');
@@ -160,17 +123,13 @@ const Userprofile = () => {
       setState(user.state || '');
     }
   }, [data]);
-
-
   const handleImageChange = (index, event) => {
     const file = event.target.files[0];
     if (file) {
       if (file.type.startsWith('image/')) {
         const newImages = [...images];
-        newImages[index] = URL.createObjectURL(file); // Show the image preview
+        newImages[index] = URL.createObjectURL(file);
         setImages(newImages);
-
-        // Save the file object in state for later uploading
         const newFiles = [...files];
         newFiles[index] = file;
         setFiles(newFiles);
@@ -179,21 +138,17 @@ const Userprofile = () => {
       }
     }
   };
-
   const uploadImage = async () => {
     try {
       const uploadedImageUrls = await Promise.all(files.map(async (file) => {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', 'ae1kvvqp'); // Replace with your Cloudinary upload preset
-
+        formData.append('upload_preset', 'ae1kvvqp');
         const response = await fetch('https://api.cloudinary.com/v1_1/qikcall/image/upload', {
           method: 'POST',
           body: formData,
         });
-
         const data = await response.json();
-
         if (data.secure_url) {
           console.log(data.secure_url, "poda")
           return data.secure_url;
@@ -204,7 +159,6 @@ const Userprofile = () => {
           throw new Error('Failed to upload image.');
         }
       }));
-
       return uploadedImageUrls;
     } catch (error) {
       setMsgOpen(true);
@@ -213,18 +167,13 @@ const Userprofile = () => {
       throw error;
     }
   };
-
-
-
   const EditUser = async () => {
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-
       const uploadprofile = await uploadImage();
-
       const raw = JSON.stringify({
-        "username": name || data[0]?.username,  // Use existing value if unchanged
+        "username": name || data[0]?.username,
         "email": email || data[0]?.email,
         "phonenumber": phonenumber || data[0]?.phonenumber,
         "city": city || data[0]?.city,
@@ -232,19 +181,16 @@ const Userprofile = () => {
         "pincode": pincode || data[0]?.pincode,
         "addressline1": addressLine1 || data[0]?.addressline1,
         "addressline2": addressLine2 || data[0]?.addressline2,
-        "profilepicture": uploadprofile || data[0]?.profilepicture,  // Handle image if not uploaded
+        "profilepicture": uploadprofile || data[0]?.profilepicture,
       });
-
       const requestOptions = {
         method: "PUT",
         headers: myHeaders,
         body: raw,
         redirect: "follow"
       };
-
       const response = await fetch(`/api/user_update?id=${token ? token.user.id : undefined}`, requestOptions);
       const result = await response.json();
-
       if (response.status === 200 || response.status === 400) {
         setData([result.data]);
         console.log(result.data, "Updated data");
@@ -255,40 +201,27 @@ const Userprofile = () => {
       console.error(error);
     }
   };
-
-
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleSubmit = () => {
     EditUser()
     setEdit(false);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleLogout = () => {
-
     Cookies.remove("token")
-
     navigate('/')
-
   };
-
-
-
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
         const currentTime = Date.now() / 1000;
-
         if (decodedToken.exp < currentTime) {
           Cookies.remove('token');
           navigate('/');
@@ -300,32 +233,16 @@ const Userprofile = () => {
       }
     }
   }, [navigate]);
-
-  // const handleChoose = () => {
-  //   if (token.user.role == "customer") {
-  //     handleEditOpen()
-  //   } else {
-  //     handlePricing()
-  //   }
-  // }
-
   const [edit, setEdit] = useState('')
-
   const handleEditOpen = () => {
     setEdit(true);
   };
-
   const handleEditClose = () => {
     setEdit(false);
   };
-
   const handleSnackClose = () => {
     setMsgOpen(false);
   };
-
-
-
-
   return (
     <>
       {isMobile ?
@@ -342,8 +259,7 @@ const Userprofile = () => {
                   <Stack direction="row" spacing={2}>
                   <Avatar
                               sx={{ bgcolor: '#FFD700', width: "150px", height: "150px", cursor: 'pointer' }}
-                              // onClick={handleAvatarClick}
-                              src={datas.profilepicture} // Adjust the image source
+                              src={datas.profilepicture}
                             >
                               {!datas.profilepicture && 'Logo'}
                             </Avatar>
@@ -363,9 +279,18 @@ const Userprofile = () => {
                       <Typography sx={{ fontSize: "25px", color: "#282866", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }} color="primary">
                         Contact Information
                       </Typography>
-                      {/* <IconButton onClick={handleEditOpen}>
-                        <EditIcon />
-                      </IconButton> */}
+                      <div style={{ position: 'relative' }}>
+      <IconButton
+        sx={{
+          position: 'absolute',
+          top: '-15px',
+          right: '8px',
+        }}
+        onClick={handleEditOpen} 
+      >
+        <EditIcon />
+      </IconButton>
+    </div>
                     </Grid>
                   </Grid>
                   <Grid item xs={12} sx={{ mt: 0 }} >
@@ -419,31 +344,26 @@ const Userprofile = () => {
                             justifyContent="space-evenly"
                             alignItems="center" sx={{ padding: "2px" }}>
                             <Grid item mt={3} container justifyContent="flex-start" alignItems="center">
-
                               <Grid item>
                                 <Typography variant="body1" sx={{ fontSize: "12px", color: "#282866", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }}> <PhoneIcon sx={{fontSize:"15px"}} color="#282866" /> Phone Number :</Typography>
                                 <Typography variant="body1" sx={{ fontSize: "10px", color: "#000", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }} align='center'>  {datas.phonenumber}</Typography>
                               </Grid>
-                              <Grid item>
-                                
+                              <Grid item> 
                               </Grid>
                             </Grid>
                             <Grid item mt={3} container justifyContent="flex-start" alignItems="center" >
                               <Grid item>
                                 <Typography variant="body1" sx={{ fontSize: "12px", color: "#282866", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }}><EmailIcon sx={{fontSize:"15px"}} color="#282866" /> Email Address :</Typography>
                                 <Typography variant="body1" fontWeight="bold" sx={{ fontSize: "10px", color: "#000", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }} align='center'>  {datas.email}</Typography>
-                              </Grid>
-                              
+                              </Grid>               
                             </Grid>
                             <Grid item mt={3} container justifyContent="flex-start" alignItems="center">
                               <Grid item>
                                 <Typography variant="body1" sx={{ fontSize: "12px", color: "#282866", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }}><LocationOnIcon sx={{fontSize:"15px"}} color="#282866" /> Address:</Typography>
                                 <Typography variant="body1" fontWeight="bold" sx={{ fontSize: "10px", color: "#000", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic",textAlign:"left",marginLeft:"10px" }}>{datas.addressline1},{datas.addressline2},{datas.city},{datas.state},{datas.pincode}</Typography>
                               </Grid>
-                              
                             </Grid>
                           </Grid>
-
                           <Grid xs={6} container
                             direction="column"
                             justifyContent="space-evenly"
@@ -506,7 +426,6 @@ const Userprofile = () => {
             </Grid>
           </Grid>
         </Grid>
-
         <Grid xs={6} container direction="column" justifyContent="space-evenly" alignItems="center" sx={{ padding: "10px" }}>
           <Grid item container justifyContent="flex-end" alignItems="center">
             <Grid item>
@@ -537,27 +456,29 @@ const Userprofile = () => {
     ))}
   </>
 ) : undefined}
-
                 </Grid>
               </Box>
             </Container>
-
-
             <Container>
             <Box mt={3} mb={3} className="settings-container-mob">
   <Typography variant="h6" className="settings-title-mob">
     Settings
   </Typography>
   <Grid mt={3} xs={12} container >
-    <Grid item xs={4} onClick={handleEditOpen} className="settings-option-mob">
-      Manage Profile
-    </Grid>
-    <Grid item xs={4} onClick={handlePrivacy} className="settings-option-mob">
-      Privacy Settings
-    </Grid>
-    <Grid item xs={4} onClick={handleClickOpen} className="settings-option-mob">
-      Log out
-    </Grid>
+  <Grid item>
+                </Grid>
+                <Grid item>
+                  <Button onClick={handlePrivacy} variant="contained" align="center" sx={{ fontSize: "12px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold",top: '3px',
+          right: '8px', fontStyle: "italic", textDecoration: "none", color: "#fff" }}>
+                    <IoMdSettings /> Privacy Settings
+                  </Button>
+                </Grid>
+                <Grid item onClick={handleClickOpen}>
+                  <Button align="center" variant="contained" sx={{ fontSize: "12px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold",top: '3px',
+          right: '-100px', fontStyle: "italic", textDecoration: "none", color: "#fff" }}>
+                    <IoIosLogOut /> Logout
+                  </Button>
+                </Grid>
   </Grid>
 </Box>
             </Container>
@@ -571,12 +492,8 @@ const Userprofile = () => {
                 <img src={Banner} alt="banner" width={"100%"} height={"400px"} />
               </Grid>
             </Container>
-
             <Container>
-
-
               <Box
-
                 sx={{
                   backgroundColor: '#f7f4cd',
                   border: '1px solid #000',
@@ -587,38 +504,30 @@ const Userprofile = () => {
                 }}
                 mt={5}
               >
-                <IconButton
-                 
-                  sx={{
-                    position: 'absolute',
-                    top: '8px',
-                    right: '8px',
-                  }}
-                >
-                  <EditIcon />
-                </IconButton>
-               
+                {/* <div style={{ position: 'relative' }}>
+      <IconButton
+        sx={{
+          position: 'absolute',
+          top: '8px',
+          right: '8px',
+        }}
+        onClick={handleEditOpen} 
+      >
+        <EditIcon />
+      </IconButton>
+    </div> */}
                 <>
                   {Array.isArray(data) && data.map((datas) => (
-
                     <Grid container alignItems="center" justifyContent="space-between">
                       <Grid item xs={6}>
                         <Grid container alignItems="center" spacing={2}>
                           <Grid item>
                             <Avatar
                               sx={{ bgcolor: '#FFD700', width: "150px", height: "150px", cursor: 'pointer' }}
-                              // onClick={handleAvatarClick}
-                              src={datas.profilepicture} // Adjust the image source
+                              src={datas.profilepicture}
                             >
                               {!datas.profilepicture && 'Logo'}
                             </Avatar>
-                            {/* <input
-                id="file-input"
-                type="file"
-                accept="image/jpeg, image/png"
-                style={{ display: 'none' }}
-                onChange={handleFileChange}
-              /> */}
                           </Grid>
                           <Grid item>
                             <Typography
@@ -640,15 +549,9 @@ const Userprofile = () => {
                         </Typography>
                       </Grid>
                     </Grid>
-
                   ))}</>
-
-
               </Box>
-
-
             </Container>
-
             <Container>
               <Box p={3} mt={5} height={"auto"} sx={{ border: '1px solid #000' }} bgcolor="#f7f4cd" borderRadius={2} >
                 <Grid container spacing={2}>
@@ -657,9 +560,18 @@ const Userprofile = () => {
                       <Typography sx={{ fontSize: "25px", color: "#000", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic" }} color="primary">
                         Contact Information
                       </Typography>
-                      {/* <IconButton>
-                        <EditIcon />
-                      </IconButton> */}
+                      <div style={{ position: 'relative' }}>
+      <IconButton
+        sx={{
+          position: 'absolute',
+          top: '-15px',
+          right: '8px',
+        }}
+        onClick={handleEditOpen} 
+      >
+        <EditIcon />
+      </IconButton>
+    </div>
                     </Grid>
                   </Grid>
                   <Grid item xs={12} sx={{ mt: 0 }} >
@@ -817,7 +729,6 @@ const Userprofile = () => {
                 <Typography variant="body1" className="typography-custom">{datas.membership}</Typography>
               </Grid>
             </Grid>
-
             <Grid item container justifyContent="flex-end" alignItems="center">
               <Grid item>
                 <Typography variant="body1" className="typography-custom">
@@ -828,7 +739,6 @@ const Userprofile = () => {
                 <Typography variant="body1" className="typography-custom">{datas.alterphonenumber}</Typography>
               </Grid>
             </Grid>
-
             <Grid item container justifyContent="flex-end" alignItems="center">
               <Grid item>
                 <Typography variant="body1" className="typography-custom">
@@ -848,42 +758,31 @@ const Userprofile = () => {
                 </Grid>
               </Box>
             </Container>
-
-
             <Container>
-              {/* <Box mt={4} borderRadius={2} sx={{ backgroundColor: '#f7f4cd', padding: 2, border: '1px solid #000'}}> */}
-              {/* <Typography variant="h6" sx={{ fontSize: "25px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", marginBottom: 2 }}>
-                  Settings
-                </Typography> */}
-              {/* <Grid item xs={12} sx={{ mt: 0 }} >
-                  <hr style={{ margin: '0', padding: '0', border: 'none', borderBottom: '1px solid #000' }} />
-                </Grid> */}
               <Grid mt={3} mb={5} container spacing={2} justifyContent="space-around">
                 {/* <Grid item>
-                    <Button component={Link} to="/manageprofile" variant="body1" align="center" sx={{ fontSize: "15px", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", textDecoration: "none", color: "#000" }}>
-                      Manage Profile
-                    </Button>
-                  </Grid> */}
+                <Button item xs={4} onClick={handleEditOpen} variant="contained" align="center" sx={{ fontSize: "15px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", textDecoration: "none", color: "#fff"}}className="settings-option-web">
+      Manage Profile
+    </Button>
+                </Grid> */}
                 <Grid item>
-                  <Button onClick={handlePrivacy} variant="contained" align="center" sx={{ fontSize: "15px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", textDecoration: "none", color: "#fff" }}>
+                  <Button onClick={handlePrivacy} variant="contained" align="center" sx={{ fontSize: "15px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold",top: '-15px',
+          right: '180px', fontStyle: "italic", textDecoration: "none", color: "#fff" }}>
                     <IoMdSettings /> Privacy Settings
                   </Button>
                 </Grid>
                 <Grid item onClick={handleClickOpen}>
-                  <Button align="center" variant="contained" sx={{ fontSize: "15px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold", fontStyle: "italic", textDecoration: "none", color: "#fff" }}>
+                  <Button align="center" variant="contained" sx={{ fontSize: "15px", backgroundColor: "#2d2859", fontFamily: "Anton, sans-serif", fontWeight: "bold",top: '-15px',
+          right: '-180px', fontStyle: "italic", textDecoration: "none", color: "#fff" }}>
                     <IoIosLogOut /> Logout
                   </Button>
                 </Grid>
               </Grid>
-              
-              {/* </Box> */}
             </Container>
-
             <Footer />
           </>
         )}
         <Dialog
-
 open={open}
 onClose={handleClose}
 padding="10px"
@@ -907,12 +806,10 @@ aria-labelledby="responsive-dialog-title"
 </DialogActions>
 </Dialog>
          <Dialog
-
 open={edit}
 onClose={handleEditClose}
 aria-labelledby="responsive-dialog-title"
 >
-
 <DialogContent>
   <Typography variant="h5" sx={{color:"#282866"}}>Manage your Profile</Typography>
   <Grid mt={3} mb={3} container justifyContent="center">
@@ -928,29 +825,26 @@ aria-labelledby="responsive-dialog-title"
         <Typography sx={{ fontSize: "18px" }}> Your Avatar</Typography>
         <label htmlFor={`file-input-${index}`}>
           <IconButton component="span">
-
             <Card sx={{
               width: '200px',
-              height: '200px', // Set height equal to width
-              borderRadius: '50%', // Make it circular
-              overflow: 'hidden' // Ensures the image fits within the circle
+              height: '200px',
+              borderRadius: '50%',
+              overflow: 'hidden'
             }}>
               <CardMedia
                 component="img"
-                height="200" // Set height equal to card height
+                height="200"
                 image={image}
                 sx={{
                   cursor: 'pointer',
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover' // Ensures the image covers the card without distortion
+                  objectFit: 'cover'
                 }}
               />
             </Card>
           </IconButton>
         </label>
-
-
       </Grid>
     ))}
   </Grid>
@@ -963,7 +857,7 @@ aria-labelledby="responsive-dialog-title"
         fullWidth
         sx={{ marginBottom: 2 }}
         onChange={(e) => setName(e.target.value)}
-        value={name || datas.username || ''} // Ensure value is correctly handled
+        value={name || datas.username || ''}
       />
       <TextField
         label="Email Id"
@@ -1045,7 +939,6 @@ aria-labelledby="responsive-dialog-title"
     </Button>
   </Grid>
 </DialogContent>
-
 </Dialog>
 <Snackbar open={msgOpen} autoHideDuration={2000} onClose={handleSnackClose}>
 <Alert
@@ -1060,16 +953,7 @@ aria-labelledby="responsive-dialog-title"
     </>
   )
 }
-
-
-
-
 function Login() {
-
-
-
-
-
   return (
     <>
       <Grid>
@@ -1078,5 +962,4 @@ function Login() {
     </>
   )
 }
-
 export default Login

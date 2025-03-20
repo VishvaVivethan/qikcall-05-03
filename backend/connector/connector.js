@@ -311,11 +311,6 @@ module.exports.userDelete = async function (id) {
   }
 };
 
-
-
-
-
-
 module.exports.ratingRegister = async function (data) {
   try {
 
@@ -337,7 +332,36 @@ module.exports.ratingRegister = async function (data) {
     return returnResponseJson('Server Error', 500, error.msg);
   }
 };
+// module.exports.getStoreDetails = async function (storename) {
+//   try {
+//     let store = await ratingRegister.findOne({ storename }).populate("ratings");
+//     if (!store) {
+//       return returnResponseJson("Store not found", 404);
+//     }
+//     return returnResponseJson("Store details fetched", 200, store);
+//   } catch (error) {
+//     console.error("Database Error:", error);
+//     return returnResponseJson("Server Error", 500, error.message);
+//   }
+// };
 
+module.exports.fetchStoreDetails = async function (storename) {
+  try {
+    const store = await ratingRegister.findOne({ storename }).populate({
+      path: 'ratings',
+      strictPopulate: false,
+    });
+
+    if (!store) {
+      return returnResponseJson('Store not found', 404);
+    }
+
+    return returnResponseJson('Store details fetched', 200, store);
+  } catch (error) {
+    console.error('Database Error:', error);
+    return returnResponseJson('Server Error', 500, error.message);
+  }
+};
 
 module.exports.getSearch = async function (body) {
   try {
@@ -1095,26 +1119,39 @@ module.exports.getAdvertise = async function () {
   }
 };
 
-module.exports.getAvertiseData = async function (id) {
-  try {
+// module.exports.getAvertiseData = async function (id) {
+//   try {
     
     
-      var user = await AdvertisePost.findById(id)  ;
+//       var user = await AdvertisePost.findById(id)  ;
 
-      if(user){
-        return returnResponseJson('Fetch success', 200, user );
-      }else{
-        return returnResponseJson('User not found', 400, null );
-      }
+//       if(user){
+//         return returnResponseJson('Fetch success', 200, user );
+//       }else{
+//         return returnResponseJson('User not found', 400, null );
+//       }
     
        
      
+//   } catch (error) {
+//     console.error(error);
+//     return returnResponseJson('Server Error', 500);
+//   }
+// };
+module.exports.getAdvertiseData = async function (id) {
+  try {
+    const user = await AdvertisePost.findById(id);
+
+    if (user) {
+      return returnResponseJson('Fetch success', 200, user);
+    } else {
+      return returnResponseJson('User not found', 404, null);
+    }
   } catch (error) {
     console.error(error);
-    return returnResponseJson('Server Error', 500);
+    return returnResponseJson('Server Error', 500, null);
   }
 };
-
 module.exports.advertiseUpdate = async function (update, ids) {
   try {
     var { adcategory, addescription, location, startdate, enddate, adtitle,isapprove,addimages,storename,contactnumber } = update;
@@ -1205,35 +1242,65 @@ module.exports.OfferPost = async function (data) {
   }
 };
 
+// module.exports.getOffer = async function () {
+//   try {
+
+//     const data = await offeregister.aggregate([
+//       {
+//         '$lookup': {
+//           'from': 'servicelists', 
+//           'localField': 'contactnumber', 
+//           'foreignField': 'number', 
+//           'as': 'servicelist'
+//         }
+//       }, {
+//         '$unwind': {
+//           'path': '$servicelist', 
+//           'preserveNullAndEmptyArrays': true
+//         }
+//       }
+//     ]);
+
+//     return returnResponseJson('Fetch success', 200, data );
+//   } catch (error) {
+//     console.error(error)
+//     if("E11000 duplicate key error collection"){
+//       return returnResponseJson('Already Registered', 400);
+//     }
+//     return returnResponseJson('Server Error', 500, error.msg);
+//   }
+// };
 module.exports.getOffer = async function () {
   try {
-
     const data = await offeregister.aggregate([
       {
         '$lookup': {
-          'from': 'servicelists', 
-          'localField': 'contactnumber', 
-          'foreignField': 'number', 
+          'from': 'servicelists',
+          'localField': 'contactnumber',
+          'foreignField': 'number',
           'as': 'servicelist'
         }
-      }, {
+      },
+      {
         '$unwind': {
-          'path': '$servicelist', 
+          'path': '$servicelist',
           'preserveNullAndEmptyArrays': true
         }
       }
     ]);
 
-    return returnResponseJson('Fetch success', 200, data );
+    return returnResponseJson('Fetch success', 200, data);
   } catch (error) {
-    console.error(error)
-    if("E11000 duplicate key error collection"){
+    console.error(error);
+
+    // Properly handle duplicate key errors
+    if (error.code === 11000) {
       return returnResponseJson('Already Registered', 400);
     }
-    return returnResponseJson('Server Error', 500, error.msg);
+
+    return returnResponseJson('Server Error', 500, error.message);
   }
 };
-
 module.exports.getOfferData = async function (id) {
   try {
     
@@ -1823,7 +1890,7 @@ module.exports.applyJobs = async function (data) {
     let Data = {
       jobId: data.jobId,
       name:data.name,
-      number:data.number,
+      number:data.number, 
       email:data.email,
       addressline1:data.addressline1,
       addressline2:data.addressline2,
@@ -1832,7 +1899,7 @@ module.exports.applyJobs = async function (data) {
       pincode:data.pincode,
       role:data.role,
       jobrole:data.jobrole,
-      experiance:data.experiance,
+      Experiance:data.Experiance,
       degree:data.degree,
       department:data.department,
       passedout:data.passedout,  

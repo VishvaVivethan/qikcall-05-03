@@ -179,7 +179,9 @@ function Advertise(){
 const [adtitle, setAdtitle] = useState('');
 const [addescription, setAddescription] = useState('');
 const [adcategory, setAdcategory] = useState('');
+const [storename, setstorename] = useState('');
 const [location, setLocation] = useState('');
+const [gstnumber, setgstnumber] = useState('');
 const [pannumber, setPannumber] = useState('');
 const [aadharnumber, setAadharnumber] = useState('');
 const [emailid, setEmailid] = useState('');
@@ -204,9 +206,11 @@ const [addimages, setAddimages] = useState('');
         "adtitle": adtitle,
         "addescription": addescription,
         "adcategory": adcategory,
+        "storename":storename,
         "location": location,
         "pannumber": pannumber,
         "aadharnumber": aadharnumber,
+        "gstnumber":gstnumber,
         "emailid": emailid,
         "contactnumber": contactnumber,
         "startdate": startDate,
@@ -349,11 +353,23 @@ const [addimages, setAddimages] = useState('');
                     onChange={(e)=>{
                       setAdcategory(e.target.value)
                     }}
+                    placeholder="storename" 
+                    variant="outlined" />
+                    <TextField sx={{ marginTop: '20px', width: '100%' }} 
+                    onChange={(e)=>{
+                      setstorename(e.target.value)
+                    }}
                     placeholder="Location" 
                     variant="outlined" />
                     <TextField sx={{ marginTop: '20px', width: '100%' }}
                     onChange={(e)=>{
                       setEmailid(e.target.value)
+                    }}
+                    placeholder="gstnumber" 
+                    variant="outlined" />
+                    <TextField sx={{ marginTop: '20px', width: '100%' }} 
+                    onChange={(e)=>{
+                      setgstnumber(e.target.value)
                     }}
                     placeholder="Email id" 
                     variant="outlined" />
@@ -363,6 +379,7 @@ const [addimages, setAddimages] = useState('');
                     }} 
                     placeholder="Aadhar number" 
                     variant="outlined" />
+                    
                   </Grid>
                 </Grid>
               </Box>
@@ -621,6 +638,12 @@ const [addimages, setAddimages] = useState('');
                         onChange={(e)=>{
                           setContactnumber(e.target.value)
                         }}
+                        placeholder="gstnumber" 
+                    variant="outlined" />
+                    <TextField sx={{ marginTop: '20px', width: '100%' }} 
+                    onChange={(e)=>{
+                      setgstnumber(e.target.value)
+                    }}
                         placeholder="Contact Number" variant="outlined" />
                     </Grid>
                     <Grid item sm={12} md={6} lg={4} container direction="row" justifyContent="center" alignItems="center">
@@ -633,6 +656,12 @@ const [addimages, setAddimages] = useState('');
                         onChange={(e)=>{
                           setLocation(e.target.value)
                         }}
+                        placeholder="storename" 
+                    variant="outlined" />
+                    <TextField sx={{ marginTop: '20px', width: '100%' }} 
+                    onChange={(e)=>{
+                      setstorename(e.target.value)
+                    }}
                         placeholder="Location " variant="outlined" />
                         <TextField sx={{ marginTop: '30px', width: '100%' }} 
                         onChange={(e)=>{
