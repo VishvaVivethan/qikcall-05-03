@@ -10,7 +10,12 @@ import NavBar from '../navbar/index';
 import Foot from '../footer/index'
 import { useNavigate } from 'react-router-dom';
 import './style.css';
-import { Container, Grid, Typography, Button, IconButton, InputBase, Paper,Divider } from '@mui/material';
+import { Container, Grid, Typography, Button, IconButton, Card,
+  CardContent,
+  CardMedia, InputBase, Paper,Divider } from '@mui/material';
+  import ad from '../../assets/image/sidead1.png';
+  import { LocationOn } from '@mui/icons-material';
+
 import SearchIcon from '@mui/icons-material/Search';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -569,6 +574,476 @@ const MidCategories = () => {
     </>
   );
 };
+
+
+
+
+// const HotelCard = () => {
+//   const [offers, setOffers] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [selectedOffer, setSelectedOffer] = useState(null);
+//   const [modalOpen, setModalOpen] = useState(false);
+
+//   // Fetch all offers
+//   const fetchOffers = async () => {
+//     try {
+//       const response = await fetch("/api/advertisedetail");
+//       const result = await response.json();
+
+//       if (response.ok) {
+//         setOffers(result.data);
+//       } else {
+//         console.error("Error fetching data:", result.msg);
+//       }
+//     } catch (error) {
+//       console.error("Network error:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   // Fetch specific offer details by ID
+//   const fetchOfferById = async (id) => {
+//     try {
+//       const response = await fetch(`/api/advertisedata/${id}`);
+//       const result = await response.json();
+
+//       if (response.ok) {
+//         setSelectedOffer(result.data);
+//         setModalOpen(true);
+//       } else {
+//         console.error("Error fetching offer details:", result.msg);
+//       }
+//     } catch (error) {
+//       console.error("Network error:", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchOffers();
+//   }, []);
+
+//   const handleVisitStore = (offer) => {
+//     fetchOfferById(offer._id); // Fetch offer details when "Visit Store" is clicked
+//   };
+
+//   if (loading) {
+//     return <Typography variant="h5" align="center">Loading offers...</Typography>;
+//   }
+
+//   return (
+//     <>
+//       <Grid container spacing={3}>
+//         {Array.isArray(offers) && offers.map((offer, index) => (
+//           <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+//             <Card
+//               style={{
+//                 backgroundColor: '#ffffe0',
+//                 borderRadius: '15px',
+//                 padding: '10px',
+//                 height: "100%",
+//               }}
+//             >
+//               <CardMedia
+//                 component="img"
+//                 sx={{ width: "100%", height: 150, borderRadius: '10px', objectFit: 'cover' }}
+//                 src={offer.addimages}
+//                 alt="Offer Image"
+//               />
+
+//               <CardContent>
+//                 <Typography variant="h6">{offer.title}</Typography>
+//                 <Typography color="textSecondary" sx={{ fontSize: "13px" }}>
+//                   {offer.description}
+//                 </Typography>
+//                 <Typography sx={{ fontSize: "12px" }}>
+//                   Offer starts: <span style={{ color: "green" }}>{new Date(offer.startdate).toLocaleDateString()}</span>
+//                 </Typography>
+//                 <Typography sx={{ fontSize: "12px" }}>
+//                   Offer ends: <span style={{ color: "red" }}>{new Date(offer.enddate).toLocaleDateString()}</span>
+//                 </Typography>
+
+//                 <Button
+//                   variant="contained"
+//                   startIcon={<LocationOn />}
+//                   sx={{ marginTop: "10px", backgroundColor: "#282866", color: "white", width: "100%" }}
+//                   onClick={() => handleVisitStore(offer)}
+//                 >
+//                   Visit Store
+//                 </Button>
+//               </CardContent>
+//             </Card>
+//           </Grid>
+//         ))}
+//       </Grid>
+
+//       {/* Modal for Offer Details */}
+//       <Dialog open={modalOpen} onClose={() => setModalOpen(false)} fullWidth maxWidth="sm">
+//         <DialogTitle sx={{ textAlign: "center", fontWeight: "bold", fontSize: "18px", color: "#333" }}>
+//           {selectedOffer?.title}
+//         </DialogTitle>
+
+//         <DialogContent sx={{ padding: "15px" }}>
+//           {/* Small Image */}
+//           <Box sx={{ width: "100%", height: "180px", borderRadius: "10px", overflow: "hidden", marginBottom: "15px" }}>
+//             <img src={selectedOffer?.addimages} alt="Offer" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+//           </Box>
+
+//           {/* Offer Description */}
+//           <Typography sx={{ fontSize: "14px", color: "#555", marginBottom: "8px" }}>
+//             {selectedOffer?.description}
+//           </Typography>
+
+//           {/* Store Details */}
+//           <Box mt={2} p={2} bgcolor="#F9FAFB" borderRadius="8px" boxShadow="0px 2px 4px rgba(0,0,0,0.1)">
+//             <Typography sx={{ fontSize: "14px", fontWeight: "bold", color: "#222" }}>
+//               Store Details:
+//             </Typography>
+//             <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+//               <b>Store Name:</b> {selectedOffer?.storename}
+//             </Typography>
+//             <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+//               <b>Category:</b> {selectedOffer?.category}
+//             </Typography>
+//             <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+//               <b>Location:</b> {selectedOffer?.location}
+//             </Typography>
+//           </Box>
+
+//           {/* Contact Information */}
+//           <Box mt={2} p={2} bgcolor="#F1F8E9" borderRadius="8px" boxShadow="0px 2px 4px rgba(0,0,0,0.1)">
+//             <Typography sx={{ fontSize: "14px", fontWeight: "bold", color: "#222" }}>
+//               Contact Information:
+//             </Typography>
+//             <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+//               <b>Contact:</b> {selectedOffer?.contactnumber}
+//             </Typography>
+//           </Box>
+
+//           {/* Offer Start & End Dates */}
+//           <Box mt={2} p={2} bgcolor="#E3F2FD" borderRadius="8px" boxShadow="0px 2px 4px rgba(0,0,0,0.1)">
+//             <Typography sx={{ fontSize: "14px", fontWeight: "bold", color: "#222" }}>
+//               Offer Validity:
+//             </Typography>
+//             <Typography sx={{ fontSize: "13px", color: "green", fontWeight: "500", mt: 1 }}>
+//               Starts: {new Date(selectedOffer?.startdate).toLocaleDateString()}
+//             </Typography>
+//             <Typography sx={{ fontSize: "13px", color: "red", fontWeight: "500", mt: 1 }}>
+//               Ends: {new Date(selectedOffer?.enddate).toLocaleDateString()}
+//             </Typography>
+//           </Box>
+//         </DialogContent>
+
+//         {/* Close Button */}
+//         <DialogActions sx={{ justifyContent: "center", paddingBottom: "15px" }}>
+//           <Button
+//             onClick={() => setModalOpen(false)}
+//             variant="contained"
+//             sx={{
+//               backgroundColor: "#333",
+//               color: "white",
+//               fontWeight: "bold",
+//               px: 3,
+//               py: 1,
+//               borderRadius: "20px",
+//               "&:hover": { backgroundColor: "#555" }
+//             }}
+//           >
+//             Close
+//           </Button>
+//         </DialogActions>
+//       </Dialog>
+//     </>
+//   );
+// };
+const HotelCard = () => {
+  const [offers, setOffers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetchOffers();
+  }, []);
+
+  // Fetch all offers
+  const fetchOffers = async () => {
+    try {
+      const response = await fetch("/api/advertisedetail");
+      const result = await response.json();
+
+      if (response.ok) {
+        setOffers(result.data);
+      } else {
+        console.error("Error fetching data:", result.msg);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch specific offer details by ID
+  const fetchOfferById = async (id) => {
+    try {
+      const response = await fetch(`/api/advertisedata/${id}`);
+      const result = await response.json();
+
+      if (response.ok) {
+        setSelectedOffer(result.data);
+        setModalOpen(true);
+      } else {
+        console.error("Error fetching offer details:", result.msg);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  };
+
+  const handleVisitStore = (offer) => {
+    if (offer._id) {
+      fetchOfferById(offer._id);
+    }
+  };
+
+  if (loading) {
+    return <Typography variant="h5" align="center">Loading offers...</Typography>;
+  }
+
+  return (
+    <>
+      <Grid container spacing={2}>
+        {Array.isArray(offers) &&
+          offers.map((offer, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <Card
+                sx={{
+                  background: "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)",
+                  borderRadius: "15px",
+                  padding: "20px",
+                  height: "500px",
+                  transition: "0.3s",
+                  boxShadow: 6,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  '&:hover': {
+                    boxShadow: 10,
+                    transform: "translateY(-5px)",
+                  },
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  sx={{
+                    width: "100%",
+                    height: "300px",
+                    borderRadius: "12px",
+                    objectFit: "cover",
+                    marginBottom: "10px",
+                  }}
+                  src={offer.addimages?.[0] || "/placeholder.jpg"}
+                  alt="Offer Image"
+                />
+                <CardContent sx={{ textAlign: "center" }}>
+                  <Typography variant="h5" fontWeight={700}>
+                    {offer.adtitle}
+                  </Typography>
+                  <Typography color="textSecondary" sx={{ fontSize: "16px", mt: 1 }}>
+                    {offer.addescription}
+                  </Typography>
+                </CardContent>
+                <Button
+                  variant="contained"
+                  startIcon={<LocationOn />}
+                  sx={{
+                    backgroundColor: "#007bff",
+                    color: "white",
+                    borderRadius: "12px",
+                    fontSize: "16px",
+                    padding: "10px 20px",
+                    width: "90%",
+                    '&:hover': {
+                      backgroundColor: "#0056b3",
+                    },
+                  }}
+                  onClick={() => handleVisitStore(offer)}
+                >
+                  Visit Store
+                </Button>
+              </Card>
+            </Grid>
+          ))}
+      </Grid>
+      <Dialog open={modalOpen} onClose={() => setModalOpen(false)} fullWidth maxWidth="sm">
+        <DialogTitle sx={{ textAlign: "center", fontWeight: "bold", fontSize: "20px", color: "#222" }}>
+          {selectedOffer?.adtitle}
+        </DialogTitle>
+        <DialogContent sx={{ padding: "20px", backgroundColor: "#f8f9fa" }}>
+          <Box sx={{ width: "100%", height: "300px", borderRadius: "12px", overflow: "hidden", mb: 2 }}>
+            <img
+              src={selectedOffer?.addimages?.[0] || "/placeholder.jpg"}
+              alt="Offer"
+              style={{ width: "60%", height: "100%", objectFit: "cover" }}
+            />
+          </Box>
+          <Typography sx={{ fontSize: "16px", color: "#444", mb: 2 }}>
+            {selectedOffer?.addescription}
+          </Typography>
+          <Box p={3} bgcolor="#F1F8E9" borderRadius="10px" boxShadow={2}>
+            <Typography fontWeight={600} fontSize="16px">Store Details</Typography>
+            <Typography sx={{ fontSize: "14px", color: "#333", mt: 1 }}>
+              <b>Store Name:</b> {selectedOffer?.storename}
+            </Typography>
+            <Typography sx={{ fontSize: "14px", color: "#333", mt: 1 }}>
+              <b>Category:</b> {selectedOffer?.adcategory}
+            </Typography>
+            <Typography sx={{ fontSize: "14px", color: "#333", mt: 1 }}>
+              <b>Location:</b> {selectedOffer?.location}
+            </Typography>
+          </Box>
+          {/* <Box p={3} bgcolor="#E3F2FD" borderRadius="10px" boxShadow={2} mt={2}>
+            <Typography fontWeight={600} fontSize="16px">Contact Information</Typography>
+            <Typography sx={{ fontSize: "14px", color: "#333", mt: 1 }}>
+              <b>Contact:</b> {selectedOffer?.contactnumber}
+            </Typography>
+          </Box> */}
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: "center", pb: 3 }}>
+          <Button
+            onClick={() => setModalOpen(false)}
+            variant="contained"
+            sx={{ backgroundColor: "#333", color: "white", borderRadius: "12px", fontSize: "16px", '&:hover': { backgroundColor: "#222" } }}
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+      {/* <Grid container spacing={3}>
+        {Array.isArray(offers) &&
+          offers.map((offer, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <Card
+                style={{
+                  backgroundColor: "#ffffe0",
+                  borderRadius: "15px",
+                  padding: "10px",
+                  height: "100%",
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  sx={{
+                    width: "100%",
+                    height: 150,
+                    borderRadius: "10px",
+                    objectFit: "cover",
+                  }}
+                  src={offer.addimages?.[0] || "/placeholder.jpg"}
+                  alt="Offer Image"
+                />
+
+                <CardContent>
+                  <Typography variant="h6">{offer.adtitle}</Typography>
+                  <Typography color="textSecondary" sx={{ fontSize: "13px" }}>
+                    {offer.addescription}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    startIcon={<LocationOn />}
+                    sx={{
+                      marginTop: "10px",
+                      backgroundColor: "#282866",
+                      color: "white",
+                      width: "100%",
+                    }}
+                    onClick={() => handleVisitStore(offer)}
+                  >
+                    Visit Store
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+      </Grid>
+      <Dialog open={modalOpen} onClose={() => setModalOpen(false)} fullWidth maxWidth="sm">
+        <DialogTitle
+          sx={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: "18px",
+            color: "#333",
+          }}
+        >
+          {selectedOffer?.adtitle}
+        </DialogTitle>
+
+        <DialogContent sx={{ padding: "15px" }}>
+          
+          <Box
+            sx={{
+              width: "100%",
+              height: "180px",
+              borderRadius: "10px",
+              overflow: "hidden",
+              marginBottom: "15px",
+            }}
+          >
+            <img
+              src={selectedOffer?.addimages?.[0] || "/placeholder.jpg"}
+              alt="Offer"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </Box>
+
+         
+          <Typography sx={{ fontSize: "14px", color: "#555", marginBottom: "8px" }}>
+            {selectedOffer?.addescription}
+          </Typography>
+
+        
+          <Box mt={2} p={2} bgcolor="#F9FAFB" borderRadius="8px">
+            <Typography sx={{ fontSize: "14px", fontWeight: "bold" }}>Store Details:</Typography>
+            <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+              <b>Store Name:</b> {selectedOffer?.storename}
+            </Typography>
+            <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+              <b>Category:</b> {selectedOffer?.adcategory}
+            </Typography>
+            <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+              <b>Location:</b> {selectedOffer?.location}
+            </Typography>
+          </Box>
+
+      
+          <Box mt={2} p={2} bgcolor="#F1F8E9" borderRadius="8px">
+            <Typography sx={{ fontSize: "14px", fontWeight: "bold" }}>Contact Information:</Typography>
+            <Typography sx={{ fontSize: "13px", color: "#444", mt: 1 }}>
+              <b>Contact:</b> {selectedOffer?.contactnumber}
+            </Typography>
+          </Box>
+
+          <Box mt={2} p={2} bgcolor="#E3F2FD" borderRadius="8px">
+          </Box>
+        </DialogContent>
+
+       
+        <DialogActions sx={{ justifyContent: "center", paddingBottom: "15px" }}>
+          <Button onClick={() => setModalOpen(false)} variant="contained" sx={{ backgroundColor: "#333", color: "white" }}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}; */}
+
+
+
 function HomePage() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 599);
   const [loginopen, setLoginOpen] = useState(false)
@@ -664,6 +1139,7 @@ function HomePage() {
               </Grid>
             </Grid>
           </Container>
+          
           <Container  >
             <Grid container xs={12} sm={10} direction="row" mt={3}>
               <Typography variant="h5" className="mb-3 title-mob">Recent Categories</Typography>
@@ -783,6 +1259,7 @@ function HomePage() {
               </Grid>
             </Grid>
           </Container>
+          
           <Container maxWidth="1200px" >
             <Typography variant="h5" className=" mt-3 title-mob">Major Categories</Typography>
             <Box sx={{ flexGrow: 1, padding: 2 }} mt={1}>
@@ -827,6 +1304,29 @@ function HomePage() {
               </Grid>
             </Grid>
           </Container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <Container  >
             <Typography variant="h5" className="mt-4 title-mob" > Categories</Typography>
@@ -952,6 +1452,7 @@ function HomePage() {
       ) : (
         <>
           <NavBar />
+        
           <Container >
             <Grid container direction="row" spacing={3} mt={5}>
               <Grid item xs={12}  >
@@ -1039,7 +1540,21 @@ function HomePage() {
           </Container>
           <Container>
           <Grid container xs={12} direction="row" ml={1} mt={10}>
-  <Typography variant="h4" className="title mb-5">Major Categories</Typography>
+          <Container>
+        <Grid mt={5} container>
+          <Grid item xs={12}>
+          <Typography variant="h4" className="title mb-5">ADVERTISES</Typography>
+            <HotelCard />
+          </Grid>
+        </Grid>
+      </Container>
+        <Grid container justifyContent="center" mt={3}>
+          <Grid item xs={12}>
+            <Box display="flex" flexDirection="column" alignItems="center">
+            </Box>
+          </Grid>
+        </Grid>
+        <Typography variant="h4" className="title mb-5">Major Categories</Typography>
   <Grid container spacing={2} xs={12}>
     {categories.map((category, index) => (
       <Grid 

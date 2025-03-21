@@ -93,7 +93,7 @@ router.post('/advertise', controller.AdvertisePost);
 
 router.get('/advertisedetail',controller.getAdvertise); 
 
-router.get('/advertisedata',controller.getadvertisedataById);
+router.get('/advertisedata/:id',controller.getadvertisedataById);
 
 router.put('/advertise_update', controller.advertiseUpdate);
 

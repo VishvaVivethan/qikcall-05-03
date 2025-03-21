@@ -1119,37 +1119,19 @@ module.exports.getAdvertise = async function () {
   }
 };
 
-// module.exports.getAvertiseData = async function (id) {
-//   try {
-    
-    
-//       var user = await AdvertisePost.findById(id)  ;
 
-//       if(user){
-//         return returnResponseJson('Fetch success', 200, user );
-//       }else{
-//         return returnResponseJson('User not found', 400, null );
-//       }
-    
-       
-     
-//   } catch (error) {
-//     console.error(error);
-//     return returnResponseJson('Server Error', 500);
-//   }
-// };
-module.exports.getAdvertiseData = async function (id) {
+module.exports.getAvertiseData = async function (id) {
   try {
-    const user = await AdvertisePost.findById(id);
+    var user = await AdvertisePost.findById(id);
 
     if (user) {
       return returnResponseJson('Fetch success', 200, user);
     } else {
-      return returnResponseJson('User not found', 404, null);
+      return returnResponseJson('User not found', 400, null);
     }
   } catch (error) {
     console.error(error);
-    return returnResponseJson('Server Error', 500, null);
+    return returnResponseJson('Server Error', 500);
   }
 };
 module.exports.advertiseUpdate = async function (update, ids) {

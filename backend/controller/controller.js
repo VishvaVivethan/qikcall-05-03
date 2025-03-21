@@ -847,19 +847,18 @@ module.exports.advertiseUpdate = async function (req, res, next) {
 //     return res.status(500).send(returnResponseJson('Server Error', 500));
 //   }
 // }
-module.exports.getAdvertiseDataById = async function (req, res) {
+module.exports.getadvertisedataById = async function (req, res, next) {
   try {
-    const { id } = req.query; // Extracting id from query params
-    if (!id) {
-      return res.status(400).json(returnResponseJson('ID is required', 400, null));
+    var formresponce = await userConnector.getAvertiseData(req.params.id);
+
+    if (formresponce) {
+      return res.status(formresponce.status).send(formresponce);
+    } else {
+      return res.status(404).send(returnResponseJson('User Not Found', 404));
     }
-
-    const formResponse = await module.exports.getAdvertiseData(id);
-
-    return res.status(formResponse.status).json(formResponse);
   } catch (error) {
     console.error(error);
-    return res.status(500).json(returnResponseJson('Server Error', 500, null));
+    return res.status(500).send(returnResponseJson('Server Error', 500));
   }
 };
 module.exports.DeleteAdvertise = async function (req, res, next) {
