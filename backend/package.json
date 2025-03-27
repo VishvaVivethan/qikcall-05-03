@@ -17,6 +17,7 @@
     "express-rate-limit": "^7.4.0",
     "firebase": "^10.13.2",
     "firebase-admin": "^12.5.0",
+    "google-auth-library": "^9.15.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.2",
