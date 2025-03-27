@@ -45,6 +45,8 @@ const navigation = [
       { name: 'Advertisement', to: '/admin/advertise', icon: <StorefrontIcon /> },
       { name: 'Today Offer', to: '/admin/offer', icon: <StorefrontIcon /> },
       { name: 'Biz-sales', to: '/admin/sales', icon: <StorefrontIcon /> },
+      { name: 'SendNotification',to:'/admin/Notification',icon:<StorefrontIcon />},
+
      
     ],
   },
